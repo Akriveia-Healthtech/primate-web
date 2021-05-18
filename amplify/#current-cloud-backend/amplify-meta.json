@@ -1,0 +1,61 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-primateweb-dev-181444-authRole",
+      "UnauthRoleArn": "arn:aws:iam::831469064615:role/amplify-primateweb-dev-181444-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::831469064615:role/amplify-primateweb-dev-181444-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-primateweb-dev-181444-deployment",
+      "UnauthRoleName": "amplify-primateweb-dev-181444-unauthRole",
+      "StackName": "amplify-primateweb-dev-181444",
+      "StackId": "arn:aws:cloudformation:ap-south-1:831469064615:stack/amplify-primateweb-dev-181444/684aa030-b642-11eb-bf24-0217332ab114",
+      "AmplifyAppId": "day3tmgvx0z7j",
+      "AuthTriggerTemplateURL": ""
+    }
+  },
+  "hosting": {
+    "S3AndCloudFront": {
+      "service": "S3AndCloudFront",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-primateweb-dev-181444-deployment/amplify-cfn-templates/hosting/template.json",
+        "logicalId": "hostingS3AndCloudFront"
+      },
+      "lastPushTimeStamp": "2021-05-18T09:12:40.584Z",
+      "output": {
+        "CloudFrontSecureURL": "https://d320m25mt8uqti.cloudfront.net",
+        "S3BucketSecureURL": "https://primate-dev.s3.amazonaws.com",
+        "CloudFrontOriginAccessIdentity": "ECIKS6U3VBTQ9",
+        "WebsiteURL": "http://primate-dev.s3-website.ap-south-1.amazonaws.com",
+        "CloudFrontDistributionID": "E1WDCUGTIO44PU",
+        "Region": "ap-south-1",
+        "HostingBucketName": "primate-dev",
+        "CloudFrontDomainName": "d320m25mt8uqti.cloudfront.net"
+      },
+      "lastPushDirHash": "/iYiYmdV2gGIbMWv3NoGQE0La6k="
+    }
+  },
+  "auth": {
+    "primateweb46bd53e6": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-primateweb-dev-181444-deployment/amplify-cfn-templates/auth/primateweb46bd53e6-cloudformation-template.yml",
+        "logicalId": "authprimateweb46bd53e6"
+      },
+      "lastPushTimeStamp": "2021-05-18T09:12:40.621Z",
+      "output": {
+        "UserPoolId": "ap-south-1_Vo6RLgBHq",
+        "AppClientIDWeb": "537af4stk41f0cd5q0kbj73fi4",
+        "AppClientID": "6mka03q97eemn02ta8umsh67nv",
+        "IdentityPoolId": "ap-south-1:50081512-4086-401e-806b-21f343efb69b",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-south-1:831469064615:userpool/ap-south-1_Vo6RLgBHq",
+        "IdentityPoolName": "primateweb46bd53e6_identitypool_46bd53e6__dev",
+        "UserPoolName": "primateweb46bd53e6_userpool_46bd53e6"
+      },
+      "lastPushDirHash": "73CrK/78whyDRtqAVnNTGq/v/wY="
+    }
+  }
+}
