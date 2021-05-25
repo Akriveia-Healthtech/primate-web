@@ -1,0 +1,68 @@
+<div class="primateMainContainer">
+  <div class="step2" [ngClass]="{ show: activeStep.step2 === true, hide: activeStep.step2 === false }">
+    <div class="signUpContainer">
+      <div class="logo">
+        <img src="../../../../assets/Logo.svg" />
+      </div>
+      <div class="title">
+        <h3>Setup your profile</h3>
+      </div>
+      <form [formGroup]="signUpFormControl" class="form">
+        <div (click)="clickImgButton()" class="imgUpload">
+          <img #containerImg />
+          <input #uploadImg type="file" (change)="uploadImgFunction($event)" />
+          <div class="underLine">Set picture</div>
+        </div>
+        <div class="formInputBox">
+          <div class="ForumEmail">
+            <p>Description</p>
+            <input type="text" formControlName="description" placeholder="Max 50 characters" />
+          </div>
+        </div>
+        <div class="formInputBox">
+          <div class="ForumEmail">
+            <p>Country</p>
+            <input
+              type="text"
+              class="dropDown"
+              placeholder="Select a Country"
+              aria-label="Number"
+              matInput
+              [formControl]="myControlCountry"
+              [matAutocomplete]="auto"
+              formControlName="country"
+            />
+            <div class="optionBox">
+              <mat-autocomplete class="optionBox" autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+          </div>
+        </div>
+        <button (click)="nextStep('step2')">Next</button>
+      </form>
+    </div>
+  </div>
+  <div class="step3" [ngClass]="{ show: activeStep.step3 === true, hide: activeStep.step3 === false }">
+    <div class="signUpContainer">
+      <div class="logo">
+        <img src="../../../../assets/Logo.svg" />
+      </div>
+      <div class="title">
+        <h3>Setup your website</h3>
+      </div>
+      <form [formGroup]="signUpFormControl" class="form">
+        <div class="formInputBox">
+          <div class="FormURL">
+            <p>Website URL</p>
+            <input type="text" placeholder="Prefix" formControlName="subDomainPrefix" />
+            <span class="subdomainPostfix">.primate.health</span>
+          </div>
+        </div>
+        <button (click)="Submit()">All Set!</button>
+      </form>
+    </div>
+  </div>
+</div>

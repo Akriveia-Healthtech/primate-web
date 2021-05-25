@@ -1,3 +1,63 @@
-<div>
-  <h2>Primate SignUp Page</h2>
+<div class="primateMainContainer">
+  <div class="step1">
+    <div class="signUpContainer">
+      <div class="logo">
+        <img src="../../../../assets/Logo.svg" />
+      </div>
+      <div class="title">
+        <h3>Create an account</h3>
+      </div>
+      <form [formGroup]="signUpFormControl" class="form">
+        <div class="formInputBox">
+          <div class="ForumName">
+            <p>First name</p>
+            <input type="text" minlength="3" formControlName="fName" [ngClass]="{ invalid: error.state.isFName }" />
+          </div>
+          <div class="ForumName">
+            <p>Last name</p>
+            <input type="text" minlength="3" formControlName="lName" [ngClass]="{ invalid: error.state.isLName }" />
+          </div>
+        </div>
+        <div class="formInputBox">
+          <div class="ForumEmail">
+            <p>Email</p>
+            <input type="email" [ngClass]="{ invalid: error.state.isEmail }" email formControlName="email" />
+          </div>
+        </div>
+        <div *ngIf="error.httpsError.state" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>{{ error.httpsError.message }}</p>
+        </div>
+        <div *ngIf="error.state.isEmail" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>Invalid email address</p>
+        </div>
+        <div *ngIf="error.state.isLName" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>Last name is too short</p>
+        </div>
+        <div *ngIf="error.state.isFName" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>First name is too short</p>
+        </div>
+        <div *ngIf="error.state.isTOU" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>Accept the Terms of use</p>
+        </div>
+        <div class="TermsofUseSection">
+          <input type="checkbox" formControlName="acceptToTOU" />
+          <span> I accept the <span class="underLine btn">Terms of Use</span> </span>
+        </div>
+        <button (click)="register()">Create account</button>
+      </form>
+    </div>
+    <div class="SignUpPageRedirect">
+      <p>Already have an account? <span (click)="gotosignin()" class="blue btn">Click here</span></p>
+    </div>
+  </div>
 </div>

@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+.primateMainContainer {
+  /* font-family: system-ui !important; */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
+
+  width: 1080px !important;
+  /* background-color: red; */
+  margin: 0 auto !important;
+  /* background-color: transparent; */
+}
+
+h3 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 28.5px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 14px;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+span,
+form,
+a,
+p,
+div {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
+}

@@ -1,9 +1,107 @@
-<div>
-  <h2>Primate SignIn Page</h2>
-  <label> Email: </label>
-  <input #email type="email" />
-  <button (click)="sendEmail(email.value)">send</button>
-  <br />
-  <hr />
-  {{ emailValue }}
+<div class="primateMainContainer">
+  <div class="step1" [ngClass]="{ show: activeStep.step1 === true, hide: activeStep.step1 === false }">
+    <div class="signUpContainer">
+      <div class="logo">
+        <img src="../../../../assets/Logo.svg" />
+      </div>
+      <div class="title">
+        <h3>Login to your account</h3>
+      </div>
+      <form [formGroup]="signInFormControl" class="form">
+        <div class="formInputBox">
+          <div class="ForumEmail">
+            <input
+              type="email"
+              placeholder="Email address"
+              [ngClass]="{ invaild: emailInvalid }"
+              email
+              formControlName="email"
+            />
+          </div>
+        </div>
+        <div *ngIf="error.state.isEmail" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+          <p>Invalid email address</p>
+        </div>
+        <div *ngIf="error.httpsError.state" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+          <p>{{ error.httpsError.message }}</p>
+        </div>
+        <div class="buttonFlex">
+          <button (click)="sendEmail()">Email login link</button>
+
+          <button (click)="nextStep('loginWithPW')" class="loginWithPWBtn">Login with password</button>
+        </div>
+      </form>
+    </div>
+    <div class="SignUpPageRedirect">
+      <p>Looking to create an account? <span (click)="gotosignup()" class="blue btn">Click here</span></p>
+    </div>
+  </div>
+  <div class="step2" [ngClass]="{ show: activeStep.step2 === true, hide: activeStep.step2 === false }">
+    <div class="signInFormControl">
+      <div class="logo">
+        <img src="../../../../assets/Logo.svg" />
+      </div>
+
+      <form [formGroup]="signInFormControl" class="form">
+        <div class="checkMail">
+          <p>Check your email</p>
+        </div>
+        <div>
+          <p>
+            We have sent an email to {{ emailValue }} with a link that can be used to log in. You can also
+            <span class="underLine" (click)="nextStep('loginWithEmail')"> try again </span> or
+            <span class="underLine" (click)="nextStep('loginWithPW')"> log in using your password </span>.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div
+    class="loginWithPW"
+    [ngClass]="{ show: activeStep.loginWithPW === true, hide: activeStep.loginWithPW === false }"
+  >
+    <div class="signInFormControl">
+      <div class="logo">
+        <img src="../../../../assets/Logo.svg" />
+      </div>
+      <div class="title">
+        <h3>Login to your account</h3>
+      </div>
+      <form [formGroup]="signInFormControl" class="form">
+        <div class="formInputBox">
+          <div class="ForumEmail">
+            <input
+              type="email"
+              placeholder="Email address"
+              [ngClass]="{ invaild: emailInvalid }"
+              email
+              formControlName="email"
+            />
+          </div>
+        </div>
+        <div class="formInputBox">
+          <div class="ForumEmail">
+            <input
+              type="email"
+              placeholder="Password"
+              [ngClass]="{ invaild: emailInvalid }"
+              email
+              formControlName="email"
+            />
+          </div>
+        </div>
+        <div class="buttonFlex">
+          <button>login</button>
+
+          <button (click)="nextStep('loginWithEmail')" class="loginWithPWBtn">Login with email</button>
+        </div>
+        <div class="setNewPW">Set a new password</div>
+      </form>
+    </div>
+    <div class="SignUpPageRedirect">
+      <p>Looking to create an account? <span (click)="gotosignup()" class="blue btn">Click here</span></p>
+    </div>
+  </div>
 </div>
