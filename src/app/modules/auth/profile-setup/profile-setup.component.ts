@@ -23,6 +23,42 @@ export class ProfileSetupComponent implements OnInit {
     step2: true,
     step3: false,
   };
+  base64Image = {
+    image: '',
+    mime: '',
+  };
+
+  post = {
+    postId: '123e4567-e89b-12d3-a456-426614174000',
+    authorId: '972swq08-ja82-9a7d-as8v-as8xc7a6dan8',
+    createdDate: 1622044008,
+    title: 'The Art Of Writing An Article',
+    slug: 'the-art-of-ariting-an-article',
+    description:
+      'The definite article is the word the. It limits the meaning of a noun to one particular thing. For example, your friend might ask, “Are you going to the party this weekend?”',
+    body: `<p> The indefinite <b> article </b> takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing.</p> 
+    <p>For example, you might ask your friend, “Should I bring a gift to the party?” Your friend will understand that you are not asking about a specific type of gift or a specific item. “I am going to bring an apple pie,” your friend tells you. Again, the indefinite article indicates that she is not talking about a specific apple pie. Your friend probably doesn’t even have any pie yet. The indefinite article only appears with singular nouns. Consider the following examples of indefinite articles used in context:</p>
+    `,
+    featuredImg:
+      'https://uploads-ssl.webflow.com/5f5fb097a5d1a7e8248a80bd/5f84ababa603ecc62d8f7282_1MT7HgpJN5Qz1UXjEqfw4BA.png',
+    tags: ['Article', 'Meditating'],
+    reads: 10,
+    votes: 7,
+    status: 'Published',
+  };
+  error = {
+    state: {
+      isDescription: false,
+      isCountry: false,
+      isImage: false,
+      isImageType: false,
+      isPrefix: false,
+    },
+    httpsError: {
+      state: false,
+      message: '',
+    },
+  };
   emailInvalid: boolean = false;
   uuid: string;
   constructor(
@@ -64,10 +100,13 @@ export class ProfileSetupComponent implements OnInit {
   nextStep(currentStep) {
     console.log(this.signUpFormControl.value);
     if (currentStep == 'step2') {
-      this.activeStep = {
-        step2: false,
-        step3: true,
-      };
+      const valid = this.checkYourProfileValidity();
+      if (valid) {
+        this.activeStep = {
+          step2: false,
+          step3: true,
+        };
+      }
     } else if (currentStep == 'step3') {
       this.activeStep = {
         step2: true,
@@ -90,46 +129,97 @@ export class ProfileSetupComponent implements OnInit {
     this.uploadImgElem.nativeElement.click();
   }
   uploadImgFunction(event) {
-    var image = event.target.files[0];
-    console.log(image);
-    this.containerImg.nativeElement.src = window.URL.createObjectURL(image);
+    let self = this;
+    var fileImage = event.target.files[0];
+    console.log(fileImage, fileImage.type);
+    const valid = fileImage.type.includes('image');
+    this.checkImageType(fileImage);
+
+    this.containerImg.nativeElement.src = window.URL.createObjectURL(fileImage);
     let reader = new FileReader();
-    reader.readAsDataURL(image);
-    reader.onload = () => {
-      console.log(reader.result);
+    reader.readAsArrayBuffer(fileImage);
+    reader.onload = function (event) {
+      var blob = new Blob([event.target.result]);
+      window.URL = window.URL || window.webkitURL;
+      var blobURL = window.URL.createObjectURL(blob);
+      var image = new Image();
+      image.src = blobURL;
+      image.onload = function () {
+        var resized = self._utility.reSizeImage(image, 100, 100);
+        self.base64Image.image = resized.slice(16).toString();
+        self.base64Image.mime = fileImage.type;
+        console.log(self.base64Image);
+      };
     };
-    this._auth
-      .S3_addUserImg(image)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   Submit() {
-    console.log(this.uuid);
-    const payLoad = {
-      uuid: this.uuid,
-      description: this.signUpFormControl.value.description,
-      country: this.signUpFormControl.value.country,
-      subDomainPrefix: this.signUpFormControl.value.subDomainPrefix,
-      image: this.signUpFormControl.value.userImg,
-    };
-    this._auth
-      .dynamoDB_updateSetupUser(payLoad)
-      .then((res) => {
-        //TODO:: Pass it in to the api as well coz backend data will not update it self
-        console.log(res);
-        let user = this._utility.LOCAL_STORAGE_GET('user');
-        user.isSetupCompleted_FLAG = true;
-        this._utility.LOCAL_STORAGE_DELETE('user');
-        this._utility.LOCAL_STORAGE_SET('user', user);
-        this._router.navigate([routes.dashBaord]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(this.base64Image.image, this.base64Image.mime);
+    if (this.signUpFormControl.get('subDomainPrefix').valid) {
+      this._auth
+        .S3_addUserImg(this.base64Image.image, this.base64Image.mime)
+        .then((data) => {
+          this.error.httpsError.state = false;
+
+          console.log(data);
+          const payLoad = {
+            uuid: this.uuid,
+            description: this.signUpFormControl.value.description,
+            country: this.signUpFormControl.value.country,
+            subDomainPrefix: this.signUpFormControl.value.subDomainPrefix,
+            image: data.imageURL,
+          };
+          console.log(payLoad);
+          this._auth
+            .dynamoDB_updateSetupUser(payLoad)
+            .then((res) => {
+              //TODO:: Pass it in to the api as well coz backend data will not update it self
+              console.log(res);
+              let user = this._utility.LOCAL_STORAGE_GET('user');
+              user.isSetupCompleted_FLAG = true;
+              this._utility.LOCAL_STORAGE_DELETE('user');
+              this._utility.LOCAL_STORAGE_SET('user', user);
+              this._router.navigate([routes.dashBaord]);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+          this.error.httpsError.state = true;
+          this.error.httpsError.message = 'Something went wrong, please reload.';
+        });
+    } else {
+      this.error.state.isPrefix = true;
+    }
+  }
+
+  checkPreFixValid() {
+    return this.signUpFormControl.get('subDomainPrefix').valid;
+  }
+
+  checkImageType(fileImage) {
+    this.error.state.isImageType = !fileImage.type.includes('image');
+    console.log(this.error.state.isImageType);
+  }
+
+  checkYourProfileValidity() {
+    if (this.base64Image.image.length <= 1) {
+      this.error.state.isImage = true;
+    } else {
+      this.error.state.isImage = false;
+    }
+    if (!this.signUpFormControl.get('description').valid) {
+      this.error.state.isDescription = true;
+    } else {
+      this.error.state.isDescription = false;
+    }
+    if (this.signUpFormControl.value.country.length < 1) {
+      this.error.state.isCountry = true;
+    } else {
+      this.error.state.isCountry = false;
+    }
+    return this.error.state.isImage || this.error.state.isCountry || this.error.state.isDescription ? false : true;
   }
 }

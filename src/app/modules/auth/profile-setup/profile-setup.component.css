@@ -84,13 +84,9 @@ input {
   height: 18px;
 }
 button {
-  cursor: pointer;
   width: 360px;
   height: 40px;
-  color: white;
-  outline: none;
-  border: none;
-  background: #1c68fc;
+
   border-radius: 3px;
   font-style: normal;
   font-weight: 600;

@@ -16,7 +16,7 @@
         <div class="formInputBox">
           <div class="ForumEmail">
             <p>Description</p>
-            <input type="text" formControlName="description" placeholder="Max 50 characters" />
+            <input type="text" minlength="1" formControlName="description" placeholder="Max 50 characters" />
           </div>
         </div>
         <div class="formInputBox">
@@ -41,7 +41,22 @@
             </div>
           </div>
         </div>
-        <button (click)="nextStep('step2')">Next</button>
+        <div *ngIf="error.state.isImageType" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>Invalid file type.</p>
+        </div>
+        <!-- <div *ngIf="error.state.isDescription" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>Description should not be less then 10 words.</p>
+        </div> -->
+        <!-- <div *ngIf="error.state.isCountry" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>Please enter your country.</p>
+        </div> -->
+        <button (click)="nextStep('step2')" [disabled]="!checkYourProfileValidity()">Next</button>
       </form>
     </div>
   </div>
@@ -57,11 +72,21 @@
         <div class="formInputBox">
           <div class="FormURL">
             <p>Website URL</p>
-            <input type="text" placeholder="Prefix" formControlName="subDomainPrefix" />
+            <input type="text" minlength="1" placeholder="" formControlName="subDomainPrefix" />
             <span class="subdomainPostfix">.primate.health</span>
           </div>
         </div>
-        <button (click)="Submit()">All Set!</button>
+        <div *ngIf="error.httpsError.state" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>{{ error.httpsError.message }}</p>
+        </div>
+        <!-- <div *ngIf="error.state.isPrefix" class="invalidEmailErrorSection">
+          <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
+
+          <p>Prefix should not be less then 3 words.</p>
+        </div> -->
+        <button (click)="Submit()" [disabled]="!checkPreFixValid()">All Set!</button>
       </form>
     </div>
   </div>
