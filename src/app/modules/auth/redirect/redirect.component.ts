@@ -54,14 +54,32 @@ export class RedirectComponent implements OnInit {
 
   async definationFunction() {
     const user = await this._Auth.AWS_signIn(this.reDirectState.email, this.reDirectState.code);
-    if (user == true) {
-      console.log('Login Success full');
-
-      this._state.setAuthentication(true);
-      this.error.httpsError.state = false;
-      this._router.navigate([routes.dashBaord]);
+    if (user == false) {
+      this.error.httpsError.state = true;
+      this.error.httpsError.message = 'Link Expired!';
+      this._state.setAuthentication(false);
+    } else {
+      user.subscribe(
+        (res) => {
+          console.log(res);
+          let userStorage = {
+            uuid: res['data']['uuid'],
+            name: res['data']['fName'] + ' ' + res['data']['lName'],
+            email: res['data']['email'],
+            isPro: res['data']['isPro'],
+            isSetupCompleted_FLAG: res['data']['isSetupCompleted_FLAG'],
+          };
+          this._utility.LOCAL_STORAGE_SET('user', userStorage);
+          console.log('AUTH CODE:', userStorage);
+          console.log('Login Success full');
+          this._state.setAuthentication(true);
+          this.error.httpsError.state = false;
+          this._router.navigate([routes.dashBaord]);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     }
-
-    // console.log(signn);
   }
 }
