@@ -19,16 +19,16 @@
             />
           </div>
         </div>
-        <div *ngIf="error.state.isEmail" class="invalidEmailErrorSection">
+        <!-- <div *ngIf="error.state.isEmail" class="invalidEmailErrorSection">
           <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
           <p>Invalid email address</p>
-        </div>
+        </div> -->
         <div *ngIf="error.httpsError.state" class="invalidEmailErrorSection">
           <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
           <p>{{ error.httpsError.message }}</p>
         </div>
         <div class="buttonFlex">
-          <button (click)="sendEmail()">Email login link</button>
+          <button (click)="sendEmail()" [disabled]="!validityChecker()">Email login link</button>
 
           <button (click)="nextStep('loginWithPW')" class="loginWithPWBtn">Login with password</button>
         </div>
@@ -93,7 +93,7 @@
           </div>
         </div>
         <div class="buttonFlex">
-          <button>login</button>
+          <button disabled>login</button>
 
           <button (click)="nextStep('loginWithEmail')" class="loginWithPWBtn">Login with email</button>
         </div>
