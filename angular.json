@@ -16,6 +16,7 @@
           "options": {
             "allowedCommonJsDependencies": [
               "zen-observable",
+              "crypto-js/enc-base64",
               "@aws-sdk/eventstream-marshaller",
               "aws-sdk/clients/s3",
               "aws-sdk/clients/pinpoint",
