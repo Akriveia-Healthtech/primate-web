@@ -33,22 +33,16 @@ export class AuthService {
 
   async AWS_signIn(userName, code) {
     try {
+      let state = false;
       const user = await Auth.signIn(userName);
       const authCode = await Auth.sendCustomChallengeAnswer(user, code);
-      console.log('USER:', user);
-      let userStorage = {
-        uuid: authCode.attributes.sub,
-        name: authCode.username,
-        email: authCode.attributes.email,
-        isPro: false,
-        isSetupCompleted_FLAG: false,
-      };
-      this._utility.LOCAL_STORAGE_SET('user', userStorage);
-      console.log('AUTH CODE:', userStorage);
+
+      console.log('USER:', user.signInUserSession.accessToken.jwtToken);
+      const userDetails = await this.getUserDetails(authCode.attributes.sub.toString());
       await Auth.currentSession();
-      return true;
+      return userDetails;
     } catch (e) {
-      return e;
+      return false;
     }
     // await Auth.currentSession();
     // return Auth.signIn(userName);
@@ -78,11 +72,13 @@ export class AuthService {
     return this._http.post(api.addUser, data).toPromise();
   }
 
-  S3_addUserImg(obj) {
+  S3_addUserImg(obj, type) {
     const payLoad = {
-      file: obj,
+      image: obj,
+      mime: type,
     };
-    return this._http.post(api.addUserImg, payLoad).toPromise();
+    console.log(payLoad);
+    return this._http.uploadImgPost(api.addUserImg, payLoad).toPromise();
   }
 
   dynamoDB_updateSetupUser(data) {
@@ -95,5 +91,8 @@ export class AuthService {
         email: email,
       })
       .toPromise();
+  }
+  getUserDetails(uuid) {
+    return this._http.get(api.getUser + '/' + uuid);
   }
 }

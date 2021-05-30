@@ -16,6 +16,15 @@ export class HttpService {
     return this._http.get(url).pipe(catchError(this.handleError));
   }
 
+  uploadImgPost(url, obj) {
+    return this._http
+      .post<any>(url, obj, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
   handleError(error) {
     console.log(error);
     return throwError(error);

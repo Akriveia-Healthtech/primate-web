@@ -8,7 +8,11 @@ import { Auth } from 'aws-amplify';
 export class StateService {
   private isAuthenticatedSource = new BehaviorSubject<boolean>(false);
   private uuidSource = new BehaviorSubject<string>('');
+  private authTokenSource = new BehaviorSubject<string>('');
+
   uuid = this.uuidSource.asObservable();
+  authToken = this.authTokenSource.asObservable();
+
   isAuthenticated = this.isAuthenticatedSource.asObservable();
 
   constructor() {
@@ -30,6 +34,10 @@ export class StateService {
 
   setAuthentication(bool) {
     this.isAuthenticatedSource.next(bool);
+  }
+
+  setAuthjwtToken(jwtToken) {
+    this.authTokenSource.next('Bearer ' + jwtToken);
   }
   setUuid(id) {
     this.uuidSource.next(id);
