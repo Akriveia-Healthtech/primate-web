@@ -61,14 +61,9 @@ export class SignupComponent implements OnInit {
   initializeForm(): void {
     this.signUpFormControl = this.fb.group({
       email: ['', Validators.required],
-      password: ['', Validators.required],
       fName: ['', Validators.required],
       lName: ['', Validators.required],
-      description: ['', Validators.required],
-      country: ['', Validators.required],
-      subDomainPrefix: ['', Validators.required],
-      userImg: ['', Validators.required],
-      acceptToTOU: [false, Validators.required],
+      acceptToTOU: ['', Validators.required],
     });
   }
   gotosignin() {
@@ -121,42 +116,49 @@ export class SignupComponent implements OnInit {
       let randomPassword = this.generatePassword();
       console.log(randomPassword);
 
-      this._auth.AWS_signUp(uploadData.email, randomPassword).then((res) => {
-        uploadData.uuid = res.userSub;
-        console.log('setting up user . . . ');
-        let userStorage = {
-          uuid: uploadData.uuid,
-          name: uploadData.fName + ' ' + uploadData.lName,
-          email: uploadData.email,
-          isPro: uploadData.isPro,
-          isSetupCompleted_FLAG: uploadData.isSetupCompleted_FLAG,
-        };
-        this._auth
-          .dynamoDB_addUser(uploadData)
-          .then((res) => {
-            this.error.httpsError.state = false;
-            console.log(res);
-            this._auth
-              .AWS_signInWithPassword(uploadData.email, randomPassword)
-              .then((res) => {
-                console.log('login succesfull!');
-                this._state.setAuthentication(true);
-                this._utility.LOCAL_STORAGE_SET('user', userStorage);
-                this.error.httpsError.state = false;
-                this._router.navigate(['/auth/setup']);
-              })
-              .catch((err) => {
-                console.log(err);
-                this.error.httpsError.state = true;
-                this.error.httpsError.message = 'Something went terribly wrong, Try using login Service';
-              });
-          })
-          .catch((err) => {
-            this.error.httpsError.state = true;
-            this.error.httpsError.message = 'User Creds Could not be stored';
-            console.log(err);
-          });
-      });
+      this._auth
+        .AWS_signUp(uploadData.email, randomPassword)
+        .then((res) => {
+          uploadData.uuid = res.userSub;
+          console.log('setting up user . . . ');
+          let userStorage = {
+            uuid: uploadData.uuid,
+            name: uploadData.fName + ' ' + uploadData.lName,
+            email: uploadData.email,
+            isPro: uploadData.isPro,
+            isSetupCompleted_FLAG: uploadData.isSetupCompleted_FLAG,
+          };
+          this._auth
+            .dynamoDB_addUser(uploadData)
+            .then((res) => {
+              this.error.httpsError.state = false;
+              console.log(res);
+              this._auth
+                .AWS_signInWithPassword(uploadData.email, randomPassword)
+                .then((res) => {
+                  console.log('login succesfull!');
+                  this._state.setAuthentication(true);
+                  this._utility.LOCAL_STORAGE_SET('user', userStorage);
+                  this.error.httpsError.state = false;
+                  this._router.navigate(['/auth/setup']);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  this.error.httpsError.state = true;
+                  this.error.httpsError.message = 'Something went terribly wrong, Try using login Service';
+                });
+            })
+            .catch((err) => {
+              this.error.httpsError.state = true;
+              this.error.httpsError.message = 'User Creds Could not be stored';
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          this.error.httpsError.state = true;
+          this.error.httpsError.message = err.message;
+          console.log(err);
+        });
     }
   }
   generatePassword() {

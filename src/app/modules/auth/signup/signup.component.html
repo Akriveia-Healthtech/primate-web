@@ -11,17 +11,17 @@
         <div class="formInputBox">
           <div class="ForumName">
             <p>First name</p>
-            <input type="text" minlength="3" formControlName="fName" [ngClass]="{ invalid: error.state.isFName }" />
+            <input type="text" minlength="3" formControlName="fName" />
           </div>
           <div class="ForumName">
             <p>Last name</p>
-            <input type="text" minlength="3" formControlName="lName" [ngClass]="{ invalid: error.state.isLName }" />
+            <input type="text" minlength="3" formControlName="lName" />
           </div>
         </div>
         <div class="formInputBox">
           <div class="ForumEmail">
             <p>Email</p>
-            <input type="email" [ngClass]="{ invalid: error.state.isEmail }" email formControlName="email" />
+            <input type="email" email formControlName="email" />
           </div>
         </div>
         <div *ngIf="error.httpsError.state" class="invalidEmailErrorSection">
@@ -29,7 +29,7 @@
 
           <p>{{ error.httpsError.message }}</p>
         </div>
-        <div *ngIf="error.state.isEmail" class="invalidEmailErrorSection">
+        <!--  <div *ngIf="error.state.isEmail" class="invalidEmailErrorSection">
           <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
 
           <p>Invalid email address</p>
@@ -48,12 +48,12 @@
           <img class="invalidEmailErrorSVG" src="../../../../assets/error_outline.svg" />
 
           <p>Accept the Terms of use</p>
-        </div>
+        </div> -->
         <div class="TermsofUseSection">
           <input type="checkbox" formControlName="acceptToTOU" />
           <span> I accept the <span class="underLine btn">Terms of Use</span> </span>
         </div>
-        <button (click)="register()">Create account</button>
+        <button (click)="register()" [disabled]="!validityChecker()">Create account</button>
       </form>
     </div>
     <div class="SignUpPageRedirect">
