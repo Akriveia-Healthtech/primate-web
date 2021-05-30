@@ -27,17 +27,36 @@ export class UtilityService {
   }
 
   ENCRYPT_TEXT(plain_text) {
-    // return AES.encrypt(JSON.stringify(plain_text), this.privateKey).toString();
     return plain_text.replace(/./g, function (c) {
       return ('00' + c.charCodeAt(0)).slice(-3);
     });
   }
 
   DECRYPT_TEXT(cipher_text) {
-    // var bytes = AES.decrypt(cipher_text, this.privateKey);
-    // return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     return cipher_text.replace(/.{3}/g, function (c) {
       return String.fromCharCode(c);
     });
+  }
+
+  reSizeImage(img, maxWidth, maxHeight) {
+    var canvas = document.createElement('canvas');
+    var width = img.width;
+    var height = img.height;
+    if (width > height) {
+      if (width > maxWidth) {
+        height = Math.round((height *= maxWidth / width));
+        width = maxWidth;
+      }
+    } else {
+      if (height > maxHeight) {
+        width = Math.round((width *= maxHeight / height));
+        height = maxHeight;
+      }
+    }
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, width, height);
+    return canvas.toDataURL('image/jpeg', 0.7);
   }
 }
