@@ -35,3 +35,21 @@ p,
 div {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
 }
+
+button {
+  cursor: pointer;
+  background: #1653c9;
+  color: white;
+  outline: none;
+  border-radius: 3px;
+  font-style: normal;
+  border: none;
+}
+
+button:disabled {
+  background: #1c68fc;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+
+  cursor: initial;
+}
