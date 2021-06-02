@@ -12,13 +12,13 @@ import { StatsComponent } from './modules/dashboard/stats/stats.component';
 import { UrlGuard } from '../app/core/services/guard/url.guard';
 import { StateService } from './core/services/state/state.service';
 const routes: Routes = [
-  { path: '', redirectTo: '/auth/signup', pathMatch: 'full' },
-  { path: '*', redirectTo: '/auth/signup', pathMatch: 'full' },
+  { path: '', redirectTo: '/auth/signin', pathMatch: 'full' },
+  { path: '*', redirectTo: '/auth/signin', pathMatch: 'full' },
   {
     path: 'auth',
     component: AuthComponent,
     children: [
-      { path: '', redirectTo: '/auth/signup', pathMatch: 'full' },
+      { path: '', redirectTo: '/auth/signin', pathMatch: 'full' },
       { path: 'signup', canActivate: [UrlGuard], data: ['signUpPage'], component: SignupComponent },
       { path: 'signin', canActivate: [UrlGuard], data: ['signInPage'], component: SigninComponent },
       {
