@@ -1,0 +1,37 @@
+.footer {
+  background-color: #fafafa;
+
+  position: absolute;
+  bottom: 0;
+  width: stretch;
+  padding: 31px 195px;
+  border-top: 1px solid #eeeeee;
+}
+
+.footerBox {
+  /* background-color: red; */
+  width: fit-content;
+  display: flex;
+}
+
+.footerItem {
+  font-size: 14px;
+  line-height: 18px;
+  font-style: normal;
+  font-weight: normal;
+  color: #474747;
+  margin-right: 45px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+@media (max-width: 1080px) {
+  .footer {
+    padding: 16px 70px;
+    position: absolute;
+    bottom: 0;
+    width: stretch;
+  }
+}

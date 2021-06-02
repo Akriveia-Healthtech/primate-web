@@ -1,0 +1,127 @@
+.header {
+  padding: 0px 15px;
+  display: flex;
+  /* background-color: red; */
+  /* align-items: center; */
+  /* height: 100px; */
+  justify-content: space-between;
+}
+
+.headerContainer {
+  z-index: 3;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  width: -webkit-fill-available;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.brand {
+  display: flex;
+  /* background-color: lawngreen; */
+  width: fit-content;
+  cursor: pointer;
+}
+
+.iconPrimate {
+  margin: 30px 0;
+  width: 40px;
+  height: 40px;
+}
+
+.iconPrimate svg {
+  width: 40px;
+  height: 40px;
+}
+
+.brand .brandName {
+  margin: 26px 0px 26px 15px;
+
+  font-weight: bold;
+  font-size: 32px;
+  height: 48px;
+  line-height: 38px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.menu {
+  cursor: pointer;
+  width: 24px;
+  width: fit-content;
+  height: fit-content;
+  padding: 0%;
+  margin: 38px 0px;
+  /* background-color: lawngreen; */
+  height: 24px;
+}
+
+svg {
+  margin: 0%;
+  padding: 0%;
+}
+
+hr {
+  margin: 0%;
+  padding: 0%;
+}
+
+.dropdownOption {
+  display: block;
+  /* background-color: lightcoral; */
+  text-align: right;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.menuItem {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #000000;
+}
+
+@media (max-width: 1080px) {
+  .headerContainer {
+    padding: 0px 20px;
+    display: block;
+    justify-content: space-between;
+  }
+  .brand .brandName {
+    margin: 10px 0px 10px 8px;
+
+    font-weight: bold;
+    font-size: 16.2652px;
+    line-height: 19px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+  }
+
+  .iconPrimate {
+    margin: 12.3px 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .iconPrimate svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .menu {
+    cursor: pointer;
+    width: 24px;
+    width: fit-content;
+    height: fit-content;
+    padding: 0%;
+    margin: 16px 0px;
+    /* background-color: lawngreen; */
+    height: 24px;
+  }
+}

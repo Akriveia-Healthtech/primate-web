@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
 import AES from 'crypto-js/aes';
 import * as CryptoJS from 'crypto-js';
+import { HttpService } from '../services/http/http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilityService {
   privateKey = 'Prazzuuuhahahhaha';
-  constructor() {}
+  constructor(private _https: HttpService) {}
 
   getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -58,5 +59,10 @@ export class UtilityService {
     var ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0, width, height);
     return canvas.toDataURL('image/jpeg', 0.7);
+  }
+
+  async getCountriesList() {
+    const res = await this._https.get('https://unstats.un.org/unsd/amaapi/api/Country?countriesOnly=true').toPromise();
+    return res;
   }
 }
