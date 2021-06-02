@@ -7,11 +7,14 @@ import { Auth } from 'aws-amplify';
 })
 export class StateService {
   private isAuthenticatedSource = new BehaviorSubject<boolean>(false);
+  private backDropSource = new BehaviorSubject<boolean>(false);
+
   private uuidSource = new BehaviorSubject<string>('');
   private authTokenSource = new BehaviorSubject<string>('');
 
   uuid = this.uuidSource.asObservable();
   authToken = this.authTokenSource.asObservable();
+  isbackDropON = this.backDropSource.asObservable();
 
   isAuthenticated = this.isAuthenticatedSource.asObservable();
 
@@ -41,5 +44,12 @@ export class StateService {
   }
   setUuid(id) {
     this.uuidSource.next(id);
+  }
+
+  setBackdrop_On() {
+    this.backDropSource.next(true);
+  }
+  setBackdrop_Off() {
+    this.backDropSource.next(false);
   }
 }
