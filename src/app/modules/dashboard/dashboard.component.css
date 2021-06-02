@@ -1,0 +1,115 @@
+.dashBoardContainer {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+}
+
+.sideNav {
+  /* background: #fafafa; */
+  background-color: #fafafa;
+  padding: 0px 30px;
+}
+.menuBtn.active {
+  background: #1c68fc;
+}
+.menuBtn {
+  width: 193.97px;
+  height: 42px;
+  background: transparent;
+
+  cursor: pointer;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  display: flex;
+  padding-right: 16.05px;
+  align-items: center;
+  justify-content: space-between;
+}
+.iconContainer {
+  display: flex;
+  margin: 0%;
+  /* background-color: red; */
+  padding: 0%;
+}
+.menuBtn .iconContainer > svg {
+  margin-left: 17px;
+  margin: 12.75px 12.75px 12.75px 17.75px;
+}
+
+.menuBtn.active .iconContainer .menuText {
+  padding: 13px 0px 12px 0px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  text-align: left;
+
+  line-height: 17px;
+}
+
+.menuBtn.active svg {
+  fill: white;
+}
+
+.menuBtn svg {
+  fill: black;
+}
+
+.menuBtn.active .arrow svg {
+  fill: white;
+}
+
+.menuBtn .arrow svg {
+  fill: transparent;
+}
+
+.menuBtn .menuText {
+  padding: 13px 0px 12px 0;
+  font-style: normal;
+  font-weight: 600;
+  text-align: left;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.user {
+  display: flex;
+  /* background-color: red; */
+  align-items: center;
+  margin-bottom: 40px;
+  margin-top: 35px;
+}
+
+.user .img {
+  margin-right: 10px;
+  width: 30px;
+  border-radius: 100%;
+  overflow: hidden;
+  height: 30px;
+}
+
+.user img {
+  height: 100%;
+  width: 100%;
+}
+
+.user .name {
+  font-style: normal;
+  /* background-color: yellow; */
+  font-weight: 600;
+  font-size: 18px;
+  /* margin-top: 38px; */
+  line-height: 24px;
+}
+
+.toggleContainer {
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}

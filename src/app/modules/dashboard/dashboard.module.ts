@@ -5,9 +5,10 @@ import { AppRoutingModule } from '../../app-routing.module';
 import { PostComponent } from './post/post.component';
 import { SettingComponent } from './setting/setting.component';
 import { StatsComponent } from './stats/stats.component';
+import { CommonComponentsModule } from 'src/app/core/commonComponents/commomComponents.module';
 
 @NgModule({
   declarations: [PostComponent, SettingComponent, StatsComponent],
-  imports: [CommonModule, AppRoutingModule],
+  imports: [CommonModule, AppRoutingModule, CommonComponentsModule],
 })
 export class DashboardModule {}
