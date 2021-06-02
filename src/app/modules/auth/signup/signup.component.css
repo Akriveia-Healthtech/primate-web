@@ -2,13 +2,12 @@
   width: 40px;
   height: 40px;
   margin: 0 auto;
-  margin-top: 130px;
-  /* background: #000000; */
+  /* margin-top: 130px; */
 }
 
 .title {
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 160px;
   width: fit-content;
 }
 .form {
@@ -25,7 +24,7 @@
 input {
   height: 40px;
   background: #ffffff;
-  padding: 10px 20px;
+  padding: 10px;
   outline: none;
   border: 1px solid #eeeeee;
   box-sizing: border-box;
@@ -209,4 +208,40 @@ button {
 
 .invalid {
   border: 1px solid #e50101;
+}
+
+@media (max-width: 1080px) {
+  .mainContainer {
+    width: 100%;
+    background-color: green;
+    height: fit-content;
+  }
+  .form {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    margin-top: 30px;
+    border: 1px solid #eeeeee;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 15px;
+  }
+  button {
+    width: 305px;
+    height: 40px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .formInputBox {
+    display: block;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .ForumName input {
+    width: 305px;
+  }
+  .ForumEmail input {
+    width: 305px;
+  }
 }

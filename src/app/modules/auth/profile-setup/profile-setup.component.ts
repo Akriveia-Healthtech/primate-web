@@ -17,7 +17,7 @@ import { UtilityService } from 'src/app/core/utility/utility.service';
 export class ProfileSetupComponent implements OnInit {
   myControlCountry = new FormControl();
   signUpFormControl: FormGroup;
-  options: string[] = ['Nepal', 'India', 'USA', 'United Kingdom'];
+  options: string[] = [];
   filteredOptions: Observable<string[]>;
   activeStep = {
     step2: true,
@@ -84,6 +84,7 @@ export class ProfileSetupComponent implements OnInit {
     oneLiner: '',
   };
   ngOnInit(): void {
+    this.populateOptions();
     this.initializeForm();
     this._state.uuid.subscribe((res) => {
       this.uuid = res;
@@ -101,6 +102,7 @@ export class ProfileSetupComponent implements OnInit {
     console.log(this.signUpFormControl.value);
     if (currentStep == 'step2') {
       const valid = this.checkYourProfileValidity();
+      console.log('forum Valid', valid);
       if (valid) {
         this.activeStep = {
           step2: false,
@@ -114,6 +116,24 @@ export class ProfileSetupComponent implements OnInit {
       };
     }
   }
+
+  populateOptions() {
+    let self = this;
+    this.options = [];
+    this._utility
+      .getCountriesList()
+      .then((data: Array<Object>) => {
+        console.log(data);
+        data.map((data, index) => {
+          self.options.push(data['countryName']);
+        });
+        console.log(self.options);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   @ViewChild('uploadImg') uploadImgElem;
   @ViewChild('containerImg') containerImg;
   initializeForm(): void {
@@ -154,7 +174,14 @@ export class ProfileSetupComponent implements OnInit {
   }
 
   Submit() {
-    console.log(this.base64Image.image, this.base64Image.mime);
+    const TestpayLoad = {
+      uuid: this.uuid,
+      description: this.signUpFormControl.value.description,
+      country: this.countryNameTemp,
+      subDomainPrefix: this.signUpFormControl.value.subDomainPrefix,
+      image: '',
+    };
+    console.log(TestpayLoad);
     if (this.signUpFormControl.get('subDomainPrefix').valid) {
       this._auth
         .S3_addUserImg(this.base64Image.image, this.base64Image.mime)
@@ -165,7 +192,7 @@ export class ProfileSetupComponent implements OnInit {
           const payLoad = {
             uuid: this.uuid,
             description: this.signUpFormControl.value.description,
-            country: this.signUpFormControl.value.country,
+            country: this.countryNameTemp,
             subDomainPrefix: this.signUpFormControl.value.subDomainPrefix,
             image: data.imageURL,
           };
@@ -203,8 +230,22 @@ export class ProfileSetupComponent implements OnInit {
     this.error.state.isImageType = !fileImage.type.includes('image');
     console.log(this.error.state.isImageType);
   }
-
+  countryNameTemp = '';
   checkYourProfileValidity() {
+    // this.signUpFormControl.setValue({
+    //   country: = this.myControlCountry.value;
+    // })
+    this.countryNameTemp = this.myControlCountry.value;
+    if (typeof this.countryNameTemp == 'string') {
+      console.log(this.countryNameTemp);
+      if (this.countryNameTemp.length < 1) {
+        this.error.state.isCountry = true;
+      } else {
+        this.error.state.isCountry = false;
+      }
+    } else {
+      this.error.state.isCountry = true;
+    }
     if (this.base64Image.image.length <= 1) {
       this.error.state.isImage = true;
     } else {
@@ -215,11 +256,7 @@ export class ProfileSetupComponent implements OnInit {
     } else {
       this.error.state.isDescription = false;
     }
-    if (this.signUpFormControl.value.country.length < 1) {
-      this.error.state.isCountry = true;
-    } else {
-      this.error.state.isCountry = false;
-    }
+    // console.log(this.error.state);
     return this.error.state.isImage || this.error.state.isCountry || this.error.state.isDescription ? false : true;
   }
 }

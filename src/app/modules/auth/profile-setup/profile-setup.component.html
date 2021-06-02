@@ -2,7 +2,9 @@
   <div class="step2" [ngClass]="{ show: activeStep.step2 === true, hide: activeStep.step2 === false }">
     <div class="signUpContainer">
       <div class="logo">
-        <img src="../../../../assets/Logo.svg" />
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0H40V40H0V20.0133H10V30H30V10H0V0Z" fill="black" />
+        </svg>
       </div>
       <div class="title">
         <h3>Setup your profile</h3>
@@ -22,19 +24,36 @@
         <div class="formInputBox">
           <div class="ForumEmail">
             <p>Country</p>
+            <input style="display: none" formControlName="country" [value]="countryInput.value" />
             <input
+              #countryInput
               type="text"
               class="dropDown"
               placeholder="Select a Country"
-              aria-label="Number"
               matInput
               [formControl]="myControlCountry"
               [matAutocomplete]="auto"
-              formControlName="country"
             />
-            <div class="optionBox">
-              <mat-autocomplete class="optionBox" autoActiveFirstOption #auto="matAutocomplete">
+            <!-- formControlName="country" -->
+            <div>
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  <div class="checkOption">
+                    <svg
+                      *ngIf="countryInput.value == option"
+                      width="11"
+                      height="10"
+                      viewBox="0 0 11 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.49566 7.50895L0.887932 4.94351L-7.23675e-05 5.81096L3.49566 9.25L10.9999 1.86745L10.1182 1L3.49566 7.50895Z"
+                        fill="black"
+                      />
+                    </svg>
+                  </div>
+
                   {{ option }}
                 </mat-option>
               </mat-autocomplete>
@@ -63,7 +82,9 @@
   <div class="step3" [ngClass]="{ show: activeStep.step3 === true, hide: activeStep.step3 === false }">
     <div class="signUpContainer">
       <div class="logo">
-        <img src="../../../../assets/Logo.svg" />
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0H40V40H0V20.0133H10V30H30V10H0V0Z" fill="black" />
+        </svg>
       </div>
       <div class="title">
         <h3>Setup your website</h3>

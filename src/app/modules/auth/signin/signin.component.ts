@@ -51,7 +51,9 @@ export class SigninComponent implements OnInit {
         .catch((err) => {
           console.log(err);
           this.error.httpsError.state = true;
-          this.error.httpsError.message = err.error.errorDetail;
+          this.error.httpsError.message = err.error.errorDetail.includes('User does not exist.')
+            ? 'Invalid email address'
+            : 'Something went wrong, reload.';
         });
       console.log(this.signInFormControl.value);
     }

@@ -9,11 +9,19 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // import { FormsModule } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileSetupComponent } from './profile-setup/profile-setup.component';
+import { CommonComponentsModule } from 'src/app/core/commonComponents/commomComponents.module';
 
 @NgModule({
   declarations: [AuthComponent, SignupComponent, SigninComponent, RedirectComponent, ProfileSetupComponent],
   providers: [],
 
-  imports: [CommonModule, AppRoutingModule, MatAutocompleteModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonComponentsModule,
+    CommonModule,
+    AppRoutingModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AuthModule {}
