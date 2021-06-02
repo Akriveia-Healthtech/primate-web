@@ -15,6 +15,7 @@
 
           "options": {
             "allowedCommonJsDependencies": [
+              "crypto-js/sha256",
               "zen-observable",
               "crypto-js/enc-base64",
               "@aws-sdk/eventstream-marshaller",

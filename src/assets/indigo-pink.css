@@ -1,12 +1,7 @@
-@font-face {
-  font-family: 'PrimatePrimaryFont';
-  src: url('./fonts/SFProText-Regular.ttf') format('truetype'); /* IE9 Compat Modes */
-}
-
 .mat-badge-content {
   font-weight: 600;
   font-size: 12px;
-  font-family: 'PrimatePrimaryFont' !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important;
 }
 
 .mat-badge-small .mat-badge-content {
@@ -22,7 +17,8 @@
 .mat-h2,
 .mat-title,
 .mat-typography h2 {
-  font: 500 20px/32px, 'PrimatePrimaryFont';
+  font: 500 20px/32px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
   margin: 0 0 16px;
 }
@@ -32,7 +28,8 @@
 .mat-typography .mat-h4,
 .mat-subheading-1,
 .mat-typography h4 {
-  font: 400 15px/24px, 'PrimatePrimaryFont';
+  font: 400 15px/24px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
   margin: 0 0 16px;
 }
@@ -40,20 +37,23 @@
 .mat-h5,
 .mat-h6,
 .mat-typography h6 {
-  font: 400 calc(14px * 0.67) / 20px, 'PrimatePrimaryFont';
+  font: 400 calc(14px * 0.67) / 20px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu,
+    'Helvetica Neue', sans-serif;
   margin: 0 0 12px;
 }
 
 .mat-body-strong,
 .mat-body-2 {
-  font: 500 14px/24px, 'PrimatePrimaryFont';
+  font: 500 14px/24px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
 }
 
 .mat-body,
 .mat-body-1,
 .mat-typography {
-  font: 400 14px/20px, 'PrimatePrimaryFont';
+  font: 400 14px/20px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
 }
 
@@ -61,40 +61,46 @@
 .mat-body-1 p,
 .mat-small,
 .mat-caption {
-  font: 400 12px/20px, 'PrimatePrimaryFont';
+  font: 400 12px/20px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
 }
 
 .mat-display-4,
 .mat-typography .mat-display-4 {
-  font: 300 112px/112px, 'PrimatePrimaryFont';
+  font: 300 112px/112px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: -0.05em;
   margin: 0 0 56px;
 }
 
 .mat-display-3,
 .mat-typography .mat-display-3 {
-  font: 400 56px/56px, 'PrimatePrimaryFont';
+  font: 400 56px/56px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: -0.02em;
   margin: 0 0 64px;
 }
 
 .mat-display-2,
 .mat-typography .mat-display-2 {
-  font: 400 45px/48px, 'PrimatePrimaryFont';
+  font: 400 45px/48px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: -0.005em;
   margin: 0 0 64px;
 }
 
 .mat-display-1,
 .mat-typography .mat-display-1 {
-  font: 400 34px/40px, 'PrimatePrimaryFont';
+  font: 400 34px/40px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
   margin: 0 0 64px;
 }
 
 .mat-bottom-sheet-container {
-  font: 400 14px/20px, 'PrimatePrimaryFont';
+  font: 400 14px/20px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
 }
 
@@ -105,17 +111,17 @@
 .mat-flat-button,
 .mat-fab,
 .mat-mini-fab {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
 
 .mat-button-toggle {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-card {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-card-title {
@@ -133,7 +139,7 @@
 }
 
 .mat-checkbox {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-checkbox-layout .mat-checkbox-label {
@@ -151,7 +157,7 @@
 }
 
 .mat-table {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-header-cell {
@@ -165,7 +171,7 @@
 }
 
 .mat-calendar {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-calendar-body {
@@ -184,18 +190,20 @@
 }
 
 .mat-dialog-title {
-  font: 500 20px/32px, 'PrimatePrimaryFont';
+  font: 500 20px/32px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
 }
 
 .mat-expansion-panel-header {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 15px;
   font-weight: 400;
 }
 
 .mat-expansion-panel-content {
-  font: 400 14px/20px, 'PrimatePrimaryFont';
+  font: 400 14px/20px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
 }
 
@@ -203,7 +211,7 @@
   font-size: inherit;
   font-weight: 400;
   line-height: 1.125;
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   letter-spacing: normal;
 }
 
@@ -414,23 +422,23 @@ input.mat-input-element {
 }
 
 .mat-menu-item {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 14px;
   font-weight: 400;
 }
 
 .mat-paginator,
 .mat-paginator-page-size .mat-select-trigger {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 12px;
 }
 
 .mat-radio-button {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-select {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-select-trigger {
@@ -438,18 +446,18 @@ input.mat-input-element {
 }
 
 .mat-slide-toggle-content {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-slider-thumb-label-text {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 12px;
   font-weight: 500;
 }
 
 .mat-stepper-vertical,
 .mat-stepper-horizontal {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-step-label {
@@ -471,12 +479,12 @@ input.mat-input-element {
 }
 
 .mat-tab-group {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-tab-label,
 .mat-tab-link {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
@@ -488,13 +496,14 @@ input.mat-input-element {
 .mat-toolbar h4,
 .mat-toolbar h5,
 .mat-toolbar h6 {
-  font: 500 20px/32px, 'PrimatePrimaryFont';
+  font: 500 20px/32px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
   margin: 0;
 }
 
 .mat-tooltip {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -507,11 +516,11 @@ input.mat-input-element {
 }
 
 .mat-list-item {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-list-option {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-list-base .mat-list-item {
@@ -547,7 +556,7 @@ input.mat-input-element {
 }
 
 .mat-list-base .mat-subheader {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
@@ -585,23 +594,27 @@ input.mat-input-element {
 }
 
 .mat-list-base[dense] .mat-subheader {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 12px;
   font-weight: 500;
 }
 
 .mat-option {
-  font-family: 'PrimatePrimaryFont';
-  font-size: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
+  font-size: 14px !important;
+  height: 20px !important;
+  padding: 0 9px !important;
+  line-height: 20px !important;
 }
 
 .mat-optgroup-label {
-  font: 500 14px/24px, 'PrimatePrimaryFont';
+  font: 500 14px/24px, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue',
+    sans-serif;
   letter-spacing: normal;
 }
 
 .mat-simple-snackbar {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
   font-size: 14px;
 }
 
@@ -613,7 +626,7 @@ input.mat-input-element {
 }
 
 .mat-tree {
-  font-family: 'PrimatePrimaryFont';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 .mat-tree-node,
@@ -998,7 +1011,12 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 }
 
 .mat-autocomplete-panel {
-  background: #fff;
+  background: #eeeeee;
+  /* Border/Border - Dark Grey */
+
+  border: 1px solid #bebebe;
+  box-sizing: border-box;
+  border-radius: 3px;
   color: rgba(0, 0, 0, 0.87);
 }
 
