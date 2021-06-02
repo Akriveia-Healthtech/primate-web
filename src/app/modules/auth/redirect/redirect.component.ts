@@ -4,7 +4,7 @@ import { StateService } from 'src/app/core/services/state/state.service';
 import { UtilityService } from 'src/app/core/utility/utility.service';
 import { routes } from 'src/environments/routes';
 import { AuthService } from '../../../core/services/auth/auth.service';
-
+import { userLocalStorageDataTemplate } from '../../../core/interfaces/userLocalStorageTemplate';
 @Component({
   selector: 'app-redirect',
   templateUrl: './redirect.component.html',
@@ -62,11 +62,12 @@ export class RedirectComponent implements OnInit {
       user.subscribe(
         (res) => {
           console.log(res);
-          let userStorage = {
+          let userStorage: userLocalStorageDataTemplate = {
             uuid: res['data']['uuid'],
             name: res['data']['fName'] + ' ' + res['data']['lName'],
             email: res['data']['email'],
             isPro: res['data']['isPro'],
+            img: res['data']['image'],
             isSetupCompleted_FLAG: res['data']['isSetupCompleted_FLAG'],
           };
           this._utility.LOCAL_STORAGE_SET('user', userStorage);

@@ -8,6 +8,7 @@ import { SignUpDataTemplate } from '../../../core/interfaces/signUpDataTemplate'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { StateService } from 'src/app/core/services/state/state.service';
+import { userLocalStorageDataTemplate } from 'src/app/core/interfaces/userLocalStorageTemplate';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -121,10 +122,11 @@ export class SignupComponent implements OnInit {
         .then((res) => {
           uploadData.uuid = res.userSub;
           console.log('setting up user . . . ');
-          let userStorage = {
+          let userStorage: userLocalStorageDataTemplate = {
             uuid: uploadData.uuid,
             name: uploadData.fName + ' ' + uploadData.lName,
             email: uploadData.email,
+            img: '',
             isPro: uploadData.isPro,
             isSetupCompleted_FLAG: uploadData.isSetupCompleted_FLAG,
           };
