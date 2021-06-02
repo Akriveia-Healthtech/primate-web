@@ -4,4 +4,5 @@ export const routes = {
   setup: '/auth/setup',
   dashBaord: '/dashboard/post',
   setting: '/dashboard/setting',
+  stats: '/dashboard/stats',
 };
