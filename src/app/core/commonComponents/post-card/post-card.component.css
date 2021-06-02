@@ -1,0 +1,87 @@
+.card {
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.img {
+  width: 170px;
+  height: 130px;
+  background: #ffffff;
+  border: 0.737881px solid #e8e8e8;
+  border-radius: 3px;
+}
+
+h4 {
+  padding: 0%;
+  margin: 0%;
+}
+
+p {
+  margin-top: 7px;
+}
+
+.body {
+  margin-left: 17px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+.bottom {
+  margin-top: 9px;
+  display: flex;
+  font-style: normal;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: normal;
+  color: #474747;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.leftBottom {
+  display: flex;
+}
+
+.vote {
+  display: flex;
+  margin-left: 10px;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.upVote {
+  margin-right: 4px;
+}
+
+.downVote {
+  margin-left: 4px;
+}
+
+.views {
+  display: flex;
+  align-items: center;
+}
+
+.views svg {
+  margin-right: 4px;
+}
+
+.pin {
+  display: none;
+  margin-right: 12px;
+}
+
+.pin.pinned {
+  display: initial;
+}
+
+.clickable {
+  cursor: pointer;
+}

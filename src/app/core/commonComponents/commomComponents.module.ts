@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { PostCardComponent } from './post-card/post-card.component';
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
-  providers: [HeaderComponent, FooterComponent],
-  bootstrap: [HeaderComponent, FooterComponent],
-  exports: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, PostCardComponent],
+  providers: [HeaderComponent, FooterComponent, PostCardComponent],
+  bootstrap: [HeaderComponent, FooterComponent, PostCardComponent],
+  exports: [HeaderComponent, FooterComponent, PostCardComponent],
 
   imports: [CommonModule],
 })
