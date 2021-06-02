@@ -204,6 +204,7 @@ export class ProfileSetupComponent implements OnInit {
               console.log(res);
               let user = this._utility.LOCAL_STORAGE_GET('user');
               user.isSetupCompleted_FLAG = true;
+              user.img = payLoad.image;
               this._utility.LOCAL_STORAGE_DELETE('user');
               this._utility.LOCAL_STORAGE_SET('user', user);
               this._router.navigate([routes.dashBaord]);
