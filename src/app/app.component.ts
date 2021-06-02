@@ -10,8 +10,12 @@ import { UtilityService } from './core/utility/utility.service';
 })
 export class AppComponent {
   title = 'Primate';
+  backDropState: boolean = false;
   constructor(private _state: StateService, private _utility: UtilityService) {
     this._CheckAuth();
+    this._state.isbackDropON.subscribe((data) => {
+      this.backDropState = data;
+    });
   }
 
   private async _CheckAuth() {
@@ -52,5 +56,8 @@ export class AppComponent {
       }
     );
     const auth = Auth.currentUserInfo();
+  }
+  setbackoff() {
+    this._state.setBackdrop_Off();
   }
 }

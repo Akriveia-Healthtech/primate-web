@@ -11,11 +11,21 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+// import { HeaderComponent } from './core/commonComponents/header/header.component';
+import { CommonComponentsModule } from '../app/core/commonComponents/commomComponents.module';
 Amplify.configure(awsconfig);
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, AuthModule, DashboardModule, BrowserAnimationsModule],
+  imports: [
+    CommonComponentsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    AuthModule,
+    DashboardModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
