@@ -8,11 +8,11 @@ import { HttpService } from '../http.service';
 export class PostService {
   constructor(private _http: HttpService) {}
 
-  getAllPost(LastEvaluatedKey: null | object) {
+  getAllPost(LastEvaluatedKey: null | object, jwtToken: string) {
     const body = {
       pageNo: 1,
       LastEvaluatedKey: LastEvaluatedKey === undefined ? null : LastEvaluatedKey,
     };
-    return this._http.post(api.getAllPost, body);
+    return this._http.post(api.getAllPost, body, jwtToken);
   }
 }
