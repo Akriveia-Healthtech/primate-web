@@ -12,9 +12,15 @@
 .img {
   width: 170px;
   height: 130px;
+  overflow: hidden;
   background: #ffffff;
   border: 1px solid #e8e8e8;
   border-radius: 3px;
+}
+
+.img img {
+  width: 170px;
+  height: 130px;
 }
 
 h4 {
@@ -75,12 +81,7 @@ p {
 }
 
 .pin {
-  display: none;
   margin-right: 12px;
-}
-
-.pin.pinned {
-  display: initial;
 }
 
 .clickable {
