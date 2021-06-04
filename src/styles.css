@@ -2,6 +2,7 @@ html,
 body {
   padding: 0%;
   margin: 0%;
+  overflow: hidden;
 }
 
 .primateMainContainer {
@@ -11,6 +12,17 @@ body {
   width: 1080px !important;
   /* background-color: red; */
   margin: 0 auto !important;
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 48px;
+  width: fit-content;
+  margin: 0%;
+  padding: 0%;
+  color: #000000;
 }
 
 h3 {
@@ -53,6 +65,7 @@ button {
   background: #1c68fc;
   color: white;
   outline: none;
+  padding: 10px 20px;
   border-radius: 3px;
   font-style: normal;
   border: none;
