@@ -54,22 +54,57 @@
           <div class="filterOption-between" *ngIf="filter.date.status">
             <div class="text">Between</div>
             <div class="between-box">
-              <input class="dataInput" [matDatepicker]="picker" value="7/5/2021" (click)="toggleCalender()" />
-              <mat-datepicker #picker></mat-datepicker>
+              <mat-date-range-input [rangePicker]="picker">
+                <input
+                  class="dataInput"
+                  [(value)]="filter.date.startDate"
+                  matStartDate
+                  placeholder="Start date"
+                  (click)="picker.open()"
+                />
+                <div class="mat-date-range-input-separator custom">&</div>
+                <input
+                  class="dataInput"
+                  [(value)]="filter.date.endDate"
+                  matEndDate
+                  placeholder="End date"
+                  (click)="picker.open()"
+                />
+              </mat-date-range-input>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              <!-- <input
+                class="dataInput"
+                [matDatepicker]="pickerStartDate"
+                value="7/5/2021"
+                (click)="pickerStartDate.open()"
+              />
+              <mat-datepicker #pickerStartDate></mat-datepicker>
 
               <div>&</div>
-              <input class="dataInput" #date1 type="date" />
+              <input
+                class="dataInput"
+                [matDatepicker]="pickerEndDate"
+                value="7/5/2021"
+                (click)="pickerEndDate.open()"
+              />
+              <mat-datepicker #pickerEndDate></mat-datepicker> -->
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <app-post-card></app-post-card>
-  <app-post-card [draft]="true"></app-post-card>
-  <app-post-card></app-post-card>
-  <app-post-card></app-post-card>
-  <app-post-card></app-post-card>
-
-  <app-post-card></app-post-card>
+  <div *ngFor="let post of PostData.PostList">
+    <app-post-card
+      [postID]="post.postID"
+      [slug]="post.slug"
+      [createdDate]="post.createdDate"
+      [reads]="post.reads"
+      [votes]="post.votes"
+      [title]="post.title"
+      [description]="post.description"
+      [featuredImg]="post.featuredImg"
+      [status]="post.status"
+    ></app-post-card>
+  </div>
 </div>

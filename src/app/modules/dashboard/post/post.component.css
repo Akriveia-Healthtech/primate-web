@@ -197,7 +197,7 @@ input:checked {
 }
 
 .dataInput {
-  width: 69px;
+  width: 70px;
   height: 26px;
   padding: 5px 10px;
   background: #ffffff;
@@ -223,4 +223,10 @@ input:checked {
 
 input[type='date']::-webkit-calendar-picker-indicator {
   display: none;
+}
+
+.mat-date-range-input-container {
+  display: flex;
+  align-items: none !important;
+  background-color: red;
 }
