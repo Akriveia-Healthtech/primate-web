@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Auth } from 'aws-amplify';
+import { UtilityService } from '../../utility/utility.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,14 +19,14 @@ export class StateService {
 
   isAuthenticated = this.isAuthenticatedSource.asObservable();
 
-  constructor() {
+  constructor(private _utility: UtilityService) {
     this._CheckAuth();
   }
 
   private async _CheckAuth() {
     const session = (await Auth.currentSession()).isValid;
     if (session) {
-      console.log('SESSION:', session);
+      // console.log('SESSION:', session);
       this.isAuthenticatedSource.next(true);
     } else {
       console.log('No SESSIOn:', session);
