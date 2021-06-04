@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { observable, throwError } from 'rxjs';
 import { HttpClient, HttpClientModule, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Auth } from 'aws-amplify';
 import { Router } from '@angular/router';
 import { UtilityService } from '../../utility/utility.service';
 @Injectable({
@@ -10,21 +11,17 @@ import { UtilityService } from '../../utility/utility.service';
 export class HttpService {
   constructor(private _http: HttpClient, private router: Router) {}
 
-  post(url: string, obj: any) {
+  post(url: string, obj: any, jwtToken: string | null) {
     let headers;
     let options = {};
-    try {
-      const token = JSON.parse(localStorage.getItem('TId'));
-      console.log(token);
-      if (token === null) {
-      } else {
-        headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        });
-        options = { headers: headers };
-      }
-    } catch (e) {}
+    if (jwtToken !== null) {
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: jwtToken,
+      });
+      options = { headers: headers };
+    }
+
     return this._http.post<any>(url, obj, options).pipe(catchError(this.handleError));
   }
   get(url: string) {
