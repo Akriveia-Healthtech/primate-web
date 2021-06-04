@@ -1,17 +1,18 @@
 <div class="card">
-  <div class="img">
-    <img src="../../../../assets/post.svg" />
+  <div [ngClass]="{ img: draft == false, 'draftCard-img': draft == true }">
+    <img src="../../../../assets/post.svg" *ngIf="!draft" />
+    {{ draft ? 'Draft' : '' }}
   </div>
   <div class="body">
     <h4>You might be struggling with Depression</h4>
-    <p>
+    <p *ngIf="!draft">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis, sapien ac egestas ultricies, metus odio
       vehicula nulla, eu facilisis est risus quis ipsum. Aen varius mauris libero, a tristique nunc imperdiet sed.
     </p>
     <div class="bottom">
       <div class="leftBottom">
         <div class="date">May 13 at 11:54 am</div>
-        <div class="vote">
+        <div class="vote" *ngIf="!draft">
           <svg class="upVote" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M2.66732 8.99992L3.60732 9.93992L7.33398 6.21992L7.33398 14.3333L8.66732 14.3333L8.66732 6.21992L12.3873 9.94659L13.334 8.99992L8.00065 3.66659L2.66732 8.99992Z"
@@ -33,7 +34,7 @@
             />
           </svg>
         </div>
-        <div class="views">
+        <div class="views" *ngIf="!draft">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M8.00033 3.99996C10.527 3.99996 12.7803 5.41996 13.8803 7.66663C12.7803 9.91329 10.527 11.3333 8.00033 11.3333C5.47366 11.3333 3.22033 9.91329 2.12033 7.66663C3.22033 5.41996 5.47366 3.99996 8.00033 3.99996ZM8.00033 2.66663C4.66699 2.66663 1.82033 4.73996 0.666992 7.66663C1.82033 10.5933 4.66699 12.6666 8.00033 12.6666C11.3337 12.6666 14.1803 10.5933 15.3337 7.66663C14.1803 4.73996 11.3337 2.66663 8.00033 2.66663ZM8.00033 5.99996C8.92033 5.99996 9.66699 6.74663 9.66699 7.66663C9.66699 8.58663 8.92033 9.33329 8.00033 9.33329C7.08033 9.33329 6.33366 8.58663 6.33366 7.66663C6.33366 6.74663 7.08033 5.99996 8.00033 5.99996ZM8.00033 4.66663C6.34699 4.66663 5.00033 6.01329 5.00033 7.66663C5.00033 9.31996 6.34699 10.6666 8.00033 10.6666C9.65366 10.6666 11.0003 9.31996 11.0003 7.66663C11.0003 6.01329 9.65366 4.66663 8.00033 4.66663Z"
@@ -45,6 +46,7 @@
       </div>
       <div class="rightBottom">
         <svg
+          *ngIf="!draft"
           class="pin clickable"
           width="16"
           height="16"
@@ -59,6 +61,7 @@
         </svg>
 
         <svg
+          *ngIf="!draft"
           class="pin clickable pinned"
           width="10"
           height="14"
