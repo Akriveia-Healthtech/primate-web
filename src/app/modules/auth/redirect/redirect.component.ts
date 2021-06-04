@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
+
 import { StateService } from 'src/app/core/services/state/state.service';
 import { UtilityService } from 'src/app/core/utility/utility.service';
 import { routes } from 'src/environments/routes';
@@ -75,6 +77,7 @@ export class RedirectComponent implements OnInit {
           console.log('Login Success full');
           this._state.setAuthentication(true);
           this.error.httpsError.state = false;
+          this._Auth._CheckAuth();
           this._router.navigate([routes.dashBaord]);
         },
         (err) => {
