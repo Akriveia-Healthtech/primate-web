@@ -113,3 +113,38 @@
   overflow: scroll;
   overflow-x: hidden;
 }
+
+.dashboardTopMenu {
+  background-color: transparent;
+  padding-top: 35px;
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 50px;
+  padding-bottom: 35px;
+}
+
+.dashboardTopMenu .box {
+  display: flex;
+  align-items: center;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.feedback {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 10px;
+  width: fit-content;
+  background: #fafafa;
+
+  border: 1px solid #bebebe;
+  border-radius: 3px;
+}
+
+.notification {
+  margin: 0 25px;
+}
