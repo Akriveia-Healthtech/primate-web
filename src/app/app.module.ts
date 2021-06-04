@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 // import { HeaderComponent } from './core/commonComponents/header/header.component';
 import { CommonComponentsModule } from '../app/core/commonComponents/commomComponents.module';
+import { HttpRequestInterceptor } from './core/services/interceptor/http-request.interceptor';
 Amplify.configure(awsconfig);
 
 @NgModule({
@@ -26,7 +27,7 @@ Amplify.configure(awsconfig);
     DashboardModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
