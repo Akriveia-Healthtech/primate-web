@@ -95,9 +95,22 @@ export class SignupComponent implements OnInit {
       ? false
       : true;
   }
+
+  @ViewChild('ButtonLoading') ButtonLoading;
+  toggleButtonLoading() {
+    console.log('asda');
+
+    console.log(this.ButtonLoading.nativeElement.classList[0]);
+    if (this.ButtonLoading.nativeElement.classList[0] !== undefined) {
+      this.ButtonLoading.nativeElement.classList.remove('loading');
+    } else {
+      this.ButtonLoading.nativeElement.classList.add('loading');
+    }
+  }
   register() {
     let valid = this.validityChecker();
     if (valid) {
+      this.toggleButtonLoading();
       console.log(this.signUpFormControl.value);
       let uploadData: SignUpDataTemplate = {
         uuid: '',

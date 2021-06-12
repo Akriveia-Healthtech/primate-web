@@ -15,4 +15,18 @@ export class PostService {
     };
     return this._http.post(api.getAllPost, body, jwtToken);
   }
+
+  filterPost(status: null | string = null, startDate: null | string = null, endDate: null | string = null) {
+    let params = {};
+    if (status !== null) {
+      params['status'] = status.toUpperCase();
+    }
+    if (startDate !== null) {
+      params['startDate'] = startDate;
+    }
+    if (endDate !== null) {
+      params['endDate'] = endDate;
+    }
+    return this._http.get(api.filterPost, params, null);
+  }
 }

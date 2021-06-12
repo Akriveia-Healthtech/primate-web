@@ -54,7 +54,8 @@
           <input type="checkbox" formControlName="acceptToTOU" />
           <span> I accept the <span class="underLine btn">Terms of Use</span> </span>
         </div>
-        <button (click)="register()" [disabled]="!validityChecker()">Create account</button>
+
+        <button #ButtonLoading (click)="register()" [disabled]="!validityChecker()">Create account</button>
       </form>
     </div>
     <div class="SignUpPageRedirect">

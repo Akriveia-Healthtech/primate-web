@@ -136,6 +136,17 @@ export class ProfileSetupComponent implements OnInit {
 
   @ViewChild('uploadImg') uploadImgElem;
   @ViewChild('containerImg') containerImg;
+  @ViewChild('ButtonLoading') ButtonLoading;
+  toggleButtonLoading() {
+    console.log('asda');
+
+    console.log(this.ButtonLoading.nativeElement.classList[0]);
+    if (this.ButtonLoading.nativeElement.classList[0] !== undefined) {
+      this.ButtonLoading.nativeElement.classList.remove('loading');
+    } else {
+      this.ButtonLoading.nativeElement.classList.add('loading');
+    }
+  }
   initializeForm(): void {
     this.signUpFormControl = this.fb.group({
       description: ['', Validators.required],
@@ -183,6 +194,7 @@ export class ProfileSetupComponent implements OnInit {
     };
     console.log(TestpayLoad);
     if (this.signUpFormControl.get('subDomainPrefix').valid) {
+      this.toggleButtonLoading();
       this._auth
         .S3_addUserImg(this.base64Image.image, this.base64Image.mime)
         .then((data) => {
@@ -200,6 +212,8 @@ export class ProfileSetupComponent implements OnInit {
           this._auth
             .dynamoDB_updateSetupUser(payLoad)
             .then((res) => {
+              this.toggleButtonLoading();
+
               //TODO:: Pass it in to the api as well coz backend data will not update it self
               console.log(res);
               let user = this._utility.LOCAL_STORAGE_GET('user');

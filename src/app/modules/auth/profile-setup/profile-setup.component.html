@@ -107,7 +107,7 @@
 
           <p>Prefix should not be less then 3 words.</p>
         </div> -->
-        <button (click)="Submit()" [disabled]="!checkPreFixValid()">All Set!</button>
+        <button (click)="Submit()" #ButtonLoading [disabled]="!checkPreFixValid()">All Set!</button>
       </form>
     </div>
   </div>

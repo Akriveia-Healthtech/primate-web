@@ -65,4 +65,24 @@ export class UtilityService {
     const res = await this._https.get('https://unstats.un.org/unsd/amaapi/api/Country?countriesOnly=true').toPromise();
     return res;
   }
+
+  reArrangePostData(posts): Array<object> {
+    let post = [];
+    posts.map((data, index) => {
+      const CurData = {
+        postID: data.postID.S,
+        slug: data.slug.S,
+        createdDate: data.createdDate.N,
+        reads: data.reads.N,
+        votes: data.votes.N,
+        title: data.title.S,
+        description: data.description.S,
+        featuredImg: data.featuredImg.S,
+        tags: data.tags.L,
+        status: data.status.S,
+      };
+      post.push(CurData);
+    });
+    return post;
+  }
 }

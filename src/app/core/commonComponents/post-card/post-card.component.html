@@ -1,22 +1,10 @@
-<div class="card">
+<div class="card" *ngIf="!isSkeleton">
   <div [ngClass]="{ img: draft == false, 'draftCard-img': draft == true }">
     <img src="{{ featuredImg }}" *ngIf="!draft && featuredImg.length >= 1" />
-    <svg
-      *ngIf="!draft && !(featuredImg.length >= 1)"
-      xmlns="http://www.w3.org/2000/svg"
-      width="170"
-      height="130"
-      viewBox="0 0 170 130"
-    >
-      <rect fill="#ddd" width="170" height="130" />
-      <text fill="rgba(0,0,0,0.5)" font-size="14" dy="10.5" font-weight="bold" x="50%" y="50%" text-anchor="middle">
-        170×130
-      </text>
-    </svg>
 
     {{ draft ? 'Draft' : '' }}
   </div>
-  <div class="body">
+  <div class="body" [ngClass]="{ noImage: featuredImg.length <= 1 && !draft }">
     <h4>{{ title }}</h4>
     <p *ngIf="!draft">
       {{ description }}
@@ -107,6 +95,21 @@
           />
         </svg>
       </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isSkeleton" class="card skeleton-card">
+  <div class="sk-img">
+    <app-skeleton [image]="true"></app-skeleton>
+  </div>
+  <div class="sk-body body">
+    <app-skeleton [title]="true"></app-skeleton>
+    <div style="margin-top: 10px">
+      <app-skeleton [description]="true"></app-skeleton>
+    </div>
+    <div style="margin-top: 12px">
+      <app-skeleton [paragraph]="true"></app-skeleton>
     </div>
   </div>
 </div>

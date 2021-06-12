@@ -29,9 +29,23 @@
 
 @media (max-width: 1080px) {
   .footer {
-    padding: 16px 70px;
+    padding: 16px 0px;
     position: absolute;
     bottom: 0;
     width: stretch;
+  }
+
+  .footerBox {
+    margin: 0 auto;
+  }
+  .footerItem {
+    font-style: normal;
+    font-weight: normal;
+    width: fit-content;
+    font-size: 12px;
+    white-space: nowrap;
+    line-height: 18px;
+    color: #474747;
+    margin-right: 25px;
   }
 }

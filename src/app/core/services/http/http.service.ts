@@ -24,8 +24,20 @@ export class HttpService {
 
     return this._http.post<any>(url, obj, options).pipe(catchError(this.handleError));
   }
-  get(url: string) {
-    return this._http.get(url).pipe(catchError(this.handleError));
+  get(url: string, query: null | object = null, jwtToken: string | null = null) {
+    let options = {};
+    let headers;
+    if (query !== null) {
+      options['params'] = query;
+    }
+    if (jwtToken !== null) {
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: jwtToken,
+      });
+      options['headers'] = headers;
+    }
+    return this._http.get(url, options).pipe(catchError(this.handleError));
   }
 
   uploadImgPost(url, obj) {

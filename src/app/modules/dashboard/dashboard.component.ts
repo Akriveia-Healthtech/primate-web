@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     name: 'Unknown',
     img: '',
   };
-
+  menuState: boolean = false;
   ngOnInit(): void {
     try {
       const localUser = this._utility.LOCAL_STORAGE_GET('user');
@@ -44,7 +44,10 @@ export class DashboardComponent implements OnInit {
   signOut() {
     this._auth.AWS_signOut();
   }
-
+  toggleMenu() {
+    this.menuState = this.menuState ? false : true;
+    return this.menuState;
+  }
   toggleDashboardPage(pageTo) {
     switch (pageTo) {
       case 'post':

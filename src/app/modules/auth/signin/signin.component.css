@@ -222,6 +222,11 @@ button {
   padding: 0%;
 }
 
+.loginBtn {
+  padding: 10px 20px;
+  width: 78px;
+}
+
 .buttonFlex .loginWithPWBtn {
   background-color: transparent;
   font-style: normal;

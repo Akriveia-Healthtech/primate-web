@@ -148,3 +148,34 @@
 .notification {
   margin: 0 25px;
 }
+
+.menuIcon {
+  position: relative;
+}
+
+.MenuSVG {
+  background-color: transparent;
+}
+.dropdownOption {
+  position: absolute;
+
+  margin-top: 10px;
+  width: 90px;
+  left: -65px;
+  padding: 5px 0px 5px 15px;
+  background: #ffffff;
+  /* Border/Border - Grey */
+
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
+  /* Primary - Shadow */
+
+  box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.2);
+  border-radius: 3px;
+}
+
+.menuItem {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}

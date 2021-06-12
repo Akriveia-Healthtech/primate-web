@@ -30,8 +30,7 @@
           <p>{{ error.httpsError.message }}</p>
         </div>
         <div class="buttonFlex">
-          <button (click)="sendEmail()" [disabled]="!validityChecker()">Email login link</button>
-
+          <button (click)="sendEmail()" #ButtonLoading [disabled]="!validityChecker()">Email login link</button>
           <button (click)="nextStep('loginWithPW')" class="loginWithPWBtn">Login with password</button>
         </div>
       </form>
@@ -95,7 +94,7 @@
           </div>
         </div>
         <div class="buttonFlex">
-          <button disabled>login</button>
+          <button class="loginBtn" disabled>login</button>
 
           <button (click)="nextStep('loginWithEmail')" class="loginWithPWBtn">Login with email</button>
         </div>

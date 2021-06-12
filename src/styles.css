@@ -18,7 +18,7 @@ h2 {
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
-  line-height: 48px;
+  line-height: auto;
   width: fit-content;
   margin: 0%;
   padding: 0%;
@@ -28,7 +28,7 @@ h2 {
 h3 {
   margin: 0;
   font-size: 24px;
-  line-height: 28.5px;
+  line-height: auto;
   font-weight: 600;
 }
 
@@ -36,7 +36,7 @@ h4 {
   margin: 0;
   font-weight: 600;
   font-size: 20px;
-  line-height: 30px;
+  line-height: auto;
 }
 
 p {
@@ -80,6 +80,10 @@ button:disabled {
 }
 
 button:active {
+  background-color: #1653c9;
+}
+
+button.loading {
   background-color: #1653c9;
 }
 

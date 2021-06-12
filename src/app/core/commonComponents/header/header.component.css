@@ -24,37 +24,31 @@
 }
 
 .iconPrimate {
-  margin: 30px 0;
-  width: 40px;
-  height: 40px;
+  margin: 25px 0;
+  width: 30px;
+  height: 30px;
 }
 
 .iconPrimate svg {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .brand .brandName {
-  margin: 26px 0px 26px 15px;
-
+  margin: 25px 0px 25px 10px;
+  height: fit-content;
+  font-style: normal;
   font-weight: bold;
-  font-size: 32px;
-  height: 48px;
-  line-height: 38px;
+  font-size: 24px;
+  line-height: 29px;
   display: flex;
   align-items: center;
   color: #000000;
+  /* background-color: red; */
 }
 
 .menu {
-  cursor: pointer;
-  width: 24px;
-  width: fit-content;
-  height: fit-content;
-  padding: 0%;
-  margin: 38px 0px;
-  /* background-color: lawngreen; */
-  height: 24px;
+  display: none;
 }
 
 svg {
@@ -85,6 +79,53 @@ hr {
   color: #000000;
 }
 
+.desktop {
+  display: flex;
+  align-items: center;
+}
+
+.desktop .search input,
+.search {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  line-height: 20px;
+  color: #959da5;
+}
+
+.search {
+  display: flex;
+  margin-right: 25px;
+  position: relative;
+}
+
+.search svg {
+  position: absolute;
+  left: 270px;
+  cursor: pointer;
+  top: 10px;
+}
+
+.search input {
+  padding: 10px;
+}
+
+.desktop .search input:focus {
+  border: 1px solid #1653c9;
+}
+
+.loginBtn {
+  font-style: normal;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+}
+
 @media (max-width: 1080px) {
   .headerContainer {
     padding: 0px 20px;
@@ -92,19 +133,19 @@ hr {
     justify-content: space-between;
   }
   .brand .brandName {
-    margin: 10px 0px 10px 8px;
-
+    margin: 15px 0px 15px 8px;
+    background-color: red;
     font-weight: bold;
     font-size: 16.2652px;
     line-height: 19px;
-    height: 24px;
+    height: fit-content;
     display: flex;
     align-items: center;
     color: #000000;
   }
 
   .iconPrimate {
-    margin: 12.3px 0;
+    margin: 15px 0px 0 0;
     width: 20px;
     height: 20px;
   }
@@ -114,14 +155,19 @@ hr {
     height: 20px;
   }
 
-  .menu {
+  .menu.mobile {
+    display: initial;
     cursor: pointer;
     width: 24px;
     width: fit-content;
     height: fit-content;
     padding: 0%;
-    margin: 16px 0px;
+    margin: 15px 25px 15px 0px;
     /* background-color: lawngreen; */
     height: 24px;
+  }
+
+  .desktop {
+    display: none;
   }
 }

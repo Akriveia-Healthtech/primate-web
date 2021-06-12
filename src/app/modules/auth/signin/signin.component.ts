@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UtilityService } from '../../../core/utility/utility.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -41,11 +41,14 @@ export class SigninComponent implements OnInit {
   sendEmail() {
     const vaild = this.validityChecker();
     if (vaild) {
+      this.toggleButtonLoading();
       this._auth
         .sendMagiclink(this.signInFormControl.value.email)
         .then((res) => {
           this.error.httpsError.state = false;
           console.log(res);
+          this.toggleButtonLoading();
+
           this.nextStep('step1');
         })
         .catch((err) => {
@@ -102,6 +105,18 @@ export class SigninComponent implements OnInit {
       this.error.state.isEmail = false;
     }
     return this.error.state.isEmail ? false : true;
+  }
+
+  @ViewChild('ButtonLoading') ButtonLoading;
+  toggleButtonLoading() {
+    console.log('asda');
+
+    console.log(this.ButtonLoading.nativeElement.classList[0]);
+    if (this.ButtonLoading.nativeElement.classList[0] !== undefined) {
+      this.ButtonLoading.nativeElement.classList.remove('loading');
+    } else {
+      this.ButtonLoading.nativeElement.classList.add('loading');
+    }
   }
 }
 

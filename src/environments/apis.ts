@@ -5,4 +5,5 @@ export const api = {
   addUserImg: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/addUserImg',
   getUser: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/getUser',
   getAllPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/getAllPost',
+  filterPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/filterPost',
 };
