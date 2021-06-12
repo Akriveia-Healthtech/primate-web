@@ -109,14 +109,17 @@ button {
 .optionMenu {
   position: absolute;
   float: left;
-  width: 180px;
+  z-index: 3;
+  width: 189px;
   height: fit-content;
   margin-top: 7px;
   background: #ffffff;
+  /* background-color: red; */
   box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.2);
   border: 1px solid #eeeeee;
   box-sizing: border-box;
   border-radius: 3px;
+  left: -76px;
 }
 .checkbox {
   margin: 0%;
@@ -141,13 +144,14 @@ button {
 }
 
 .filterOption-single.status {
-  padding: 10px 0px 7px 10px;
+  padding: 5px 0px 2px 15px;
   display: flex;
+  /* background-color: red; */
   align-items: center;
 }
 
 .filterOption-single.date {
-  padding: 7px 0px 10px 10px;
+  padding: 2px 0px 5px 15px;
   display: flex;
   align-items: center;
 }
@@ -155,7 +159,8 @@ button {
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
   background-color: #fafafa;
-  padding: 7px 9px;
+  padding: 3px 0px 3px 15px;
+  /* background-color: red; */
 }
 
 .filterOption-double .filterOptionText {
@@ -179,7 +184,7 @@ input:checked {
 .filterOption-between {
   border-top: 1px solid #eeeeee;
   background: #fafafa;
-  padding: 7px 9px 9px 9px;
+  padding: 2px 0px 11px 15px;
   border-radius: 0px 0px 2px 2px;
 }
 
@@ -197,7 +202,7 @@ input:checked {
 }
 
 .dataInput {
-  width: 70px;
+  width: 69px;
   height: 26px;
   padding: 5px 10px;
   background: #ffffff;

@@ -1,7 +1,7 @@
 <div class="postContainer">
   <div class="topBar">
     <div class="typeContent">
-      <h2>ALL (32)</h2>
+      <h2>All ({{ PostData.TotalSize }})</h2>
     </div>
     <div class="postCTA">
       <button>New post</button>
@@ -27,7 +27,7 @@
             <input class="checkbox" type="checkbox" [checked]="filter.status.status" (click)="toggleFilter('Status')" />
             <div class="filterOptionText">Status</div>
           </div>
-          <div class="filterOption-double">
+          <div class="filterOption-double" *ngIf="filter.status.status">
             <div class="marginbottom-3">
               <input
                 class="checkbox"
@@ -55,56 +55,44 @@
             <div class="text">Between</div>
             <div class="between-box">
               <mat-date-range-input [rangePicker]="picker">
-                <input
-                  class="dataInput"
-                  [(value)]="filter.date.startDate"
-                  matStartDate
-                  placeholder="Start date"
-                  (click)="picker.open()"
-                />
+                <input class="dataInput" matStartDate placeholder="Start date" #start (click)="picker.open()" />
                 <div class="mat-date-range-input-separator custom">&</div>
                 <input
                   class="dataInput"
-                  [(value)]="filter.date.endDate"
                   matEndDate
+                  #end
                   placeholder="End date"
+                  (dateChange)="filterDate(end, start)"
                   (click)="picker.open()"
                 />
               </mat-date-range-input>
               <mat-date-range-picker #picker></mat-date-range-picker>
-              <!-- <input
-                class="dataInput"
-                [matDatepicker]="pickerStartDate"
-                value="7/5/2021"
-                (click)="pickerStartDate.open()"
-              />
-              <mat-datepicker #pickerStartDate></mat-datepicker>
-
-              <div>&</div>
-              <input
-                class="dataInput"
-                [matDatepicker]="pickerEndDate"
-                value="7/5/2021"
-                (click)="pickerEndDate.open()"
-              />
-              <mat-datepicker #pickerEndDate></mat-datepicker> -->
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div *ngFor="let post of PostData.PostList">
-    <app-post-card
-      [postID]="post.postID"
-      [slug]="post.slug"
-      [createdDate]="post.createdDate"
-      [reads]="post.reads"
-      [votes]="post.votes"
-      [title]="post.title"
-      [description]="post.description"
-      [featuredImg]="post.featuredImg"
-      [status]="post.status"
-    ></app-post-card>
+
+  <div *ngIf="isLoading">
+    <div *ngFor="let post of [1, 2, 3, 4]">
+      <app-post-card [isSkeleton]="true"></app-post-card>
+    </div>
+  </div>
+  <div *ngIf="!isLoading">
+    <div *ngFor="let post of PostData.PostList">
+      <app-post-card
+        [postID]="post.postID"
+        [slug]="post.slug"
+        [createdDate]="post.createdDate"
+        [reads]="post.reads"
+        [votes]="post.votes"
+        [title]="post.title"
+        [description]="post.description"
+        [featuredImg]="post.featuredImg"
+        [status]="post.status"
+        [draft]="post.status == 'DRAFT' ? true : false"
+      ></app-post-card>
+    </div>
   </div>
 </div>
