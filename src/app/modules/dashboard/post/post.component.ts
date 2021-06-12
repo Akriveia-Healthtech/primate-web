@@ -7,13 +7,20 @@ import { EventEmitter } from '@angular/core';
 import { UtilityService } from 'src/app/core/utility/utility.service';
 
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { routes } from 'src/environments/routes';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
-  constructor(private _utility: UtilityService, private _postHttp: PostService, private _state: StateService) {}
+  constructor(
+    private _router: Router,
+    private _utility: UtilityService,
+    private _postHttp: PostService,
+    private _state: StateService
+  ) {}
   filterMenuState: boolean = false;
 
   filter = {
@@ -210,5 +217,9 @@ export class PostComponent implements OnInit {
     });
     console.log(this.PostData);
     this.isLoading = false;
+  }
+
+  nagivate_CreatePost() {
+    this._router.navigate([routes.createPost]);
   }
 }
