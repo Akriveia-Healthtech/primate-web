@@ -1,0 +1,13 @@
+.headings {
+  width: fit-content;
+}
+
+.primateMainContainer {
+  display: flex;
+}
+
+.componentBox {
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 15px;
+}

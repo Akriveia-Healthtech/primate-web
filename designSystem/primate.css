@@ -1,0 +1,167 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --primaryBlue: #1c68fc;
+  --errorRed: #e50101;
+  --grey: #fafafa;
+  --yellow: #ffc700;
+  --dividerGrey: rgba(33, 33, 33, 0.08);
+  --black-80E: rgba(0, 0, 0, 0.8);
+  --black-60E: rgba(0, 0, 0, 0.6);
+  --black-12E: rgba(0, 0, 0, 0.12);
+
+  --placeHolderFontColor: var(--black-80E);
+
+  --btnMarginTop: 8px;
+  --btnMarginBottom: 8px;
+  --btnMarginLeft: 16px;
+  --btnMarginRight: 16px;
+  --btnBorderRadius: 4px;
+  --btnDefaultBGColor: var(--primaryBlue);
+  --btnDisabledBGColor: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), #1c68fc;
+  --btnFocusedBGColor: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #1c68fc;
+  --btnSelectedBGColor: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #1c68fc;
+
+  --h1FontWeight: 500;
+  --h1FontSize: 32px;
+  --h1LineHeight: 48px;
+  --h1LetterSpacing: 0.4px;
+
+  --h2FontWeight: 500;
+  --h2FontSize: 24px;
+  --h2LineHeight: 36px;
+  --h2LetterSpacing: 0.3px;
+
+  --h3FontWeight: 500;
+  --h3FontSize: 20px;
+  --h3LineHeight: 28px;
+  --h3LetterSpacing: 0.3px;
+
+  --h4FontWeight: 500;
+  --h4FontSize: 16px;
+  --h4LineHeight: 24px;
+  --h4LetterSpacing: 0px;
+
+  --textNormalSize: 14px;
+  --textSmallSize: 12px;
+  --textVerySmallSize: 10px;
+
+  --textNormalWeight: 400;
+  --textBoldWeight: 500;
+
+  --textNormalLineHeight: 20px;
+  --textSmallLineHeight: 18px;
+}
+
+html,
+body {
+  padding: 0%;
+  margin: 0%;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.primateMainContainer {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
+  width: 1080px !important;
+  margin: 0 auto !important;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-style: normal;
+
+  margin: 0%;
+  padding: 0%;
+  color: var(--black);
+}
+
+h1 {
+  font-weight: var(--h1FontWeight);
+  font-size: var(--h1FontSize);
+  line-height: var(--h1LineHeight);
+}
+
+h2 {
+  font-weight: var(--h2FontWeight);
+  font-size: var(--h2FontSize);
+  line-height: var(--h2LineHeight);
+}
+
+h3 {
+  font-weight: var(--h3FontWeight);
+  font-size: var(--h3FontSize);
+  line-height: var(--h3LineHeight);
+}
+
+h4 {
+  font-weight: var(--h4FontWeight);
+  font-size: var(--h4FontSize);
+  line-height: var(--h4LineHeight);
+}
+
+p {
+  font-size: var(--textNormalSize);
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+span,
+form,
+a,
+p,
+div {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
+}
+
+hr {
+  border: 1px solid var(--dividerGrey);
+}
+
+input::placeholder {
+  color: var(--black-80E);
+}
+
+input {
+  border: 1px solid var(--black-12E);
+}
+
+button {
+  cursor: pointer;
+  background: #1c68fc;
+  color: white;
+  outline: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  font-style: normal;
+  border: none;
+}
+
+button:disabled {
+  background: #1c68fc;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+
+  cursor: initial;
+}
+
+button:active {
+  background-color: #1653c9;
+}
+
+button.loading {
+  background-color: #1653c9;
+}
