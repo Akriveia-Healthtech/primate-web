@@ -85,4 +85,68 @@ export class UtilityService {
     });
     return post;
   }
+
+  formatCreatedDate(createdDate) {
+    const month = new Date(createdDate * 1000).toLocaleString('default', { month: 'short' });
+    const date = new Date(createdDate * 1000).getDate();
+    const year = new Date(createdDate * 1000).getFullYear();
+    const time = new Date(createdDate * 1000).toLocaleTimeString(navigator.language, {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    const currentYear = new Date().getFullYear();
+    let returnFormat = '';
+    if (year < currentYear) {
+      returnFormat = month.toString() + ' ' + date.toString() + ' on ' + year.toString();
+    } else {
+      returnFormat = month.toString() + ' ' + date.toString() + ' at ' + time.toString();
+    }
+    console.log(returnFormat);
+    return returnFormat;
+  }
+
+  kFormatter(num): any {
+    const k: any = ((num / 1000) * Math.sign(num)).toFixed(0).toString() + 'K';
+    return Math.abs(num) > 999 ? k : Math.sign(num) * Math.abs(num);
+  }
+  testSite = 'https://primate.health';
+  checkSubdomainInput(): boolean {
+    var domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
+    // var domain = /:\/\/([^\/]+)/.exec(this.testSite)[1];
+
+    let list = domain.split('.');
+    console.log(domain);
+
+    if (list.length == 3) {
+      if (list[0] == 'www') {
+        return false;
+      } else {
+        if (list.includes('d320m25mt8uqti')) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    } else {
+      return false;
+    }
+  }
+
+  throwSubDomainPreFix(): string {
+    var domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
+    // var domain = /:\/\/([^\/]+)/.exec(this.testSite)[1];
+
+    let list = domain.split('.');
+    console.log(domain);
+
+    if (list.length == 3) {
+      if (list[0] == 'www') {
+        return '';
+      } else {
+        return list[0];
+      }
+    } else {
+      return '';
+    }
+  }
 }

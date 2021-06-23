@@ -9,17 +9,22 @@
   margin-bottom: 15px;
 }
 
-.img {
-  width: fit-content;
-  height: fit-content;
+.imgPlaceholder {
+  display: none;
+}
+
+.imgPlaceholder.img {
+  display: initial;
+  width: 170px;
+  height: 130px;
   background: #ffffff;
   border: 1px solid #e8e8e8;
   border-radius: 3px;
 }
 
 .img img {
-  width: 170px;
-  height: 130px;
+  width: inherit;
+  height: inherit;
 }
 
 h4 {
@@ -95,9 +100,11 @@ p {
   cursor: pointer;
 }
 
-.draftCard-img {
+.imgPlaceholder.draftCard-img {
   width: fit-content;
   height: fit-content;
+  display: initial;
+
   background: #fafafa;
   border: 1px solid #e8e8e8;
   border-radius: 3px;

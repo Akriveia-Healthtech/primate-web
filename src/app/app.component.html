@@ -1,2 +1,3 @@
 <div class="backDrop" *ngIf="backDropState" (click)="setbackoff()"></div>
-<router-outlet></router-outlet>
+<router-outlet *ngIf="!isPrimateLandingPage"></router-outlet>
+<app-users *ngIf="isPrimateLandingPage"></app-users>

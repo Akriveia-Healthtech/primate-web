@@ -18,6 +18,9 @@ export class UrlGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this._CheckAuth();
     console.log('isAuthenticated', this.isAuthenticated);
+    if (this._utility.checkSubdomainInput()) {
+      return false;
+    }
     if (next.data[0] == 'setupPage') {
       if (this.isAuthenticated && !this.isSetupCompleted_FLAG) {
         return true;
@@ -32,7 +35,13 @@ export class UrlGuard implements CanActivate {
         this._router.navigate([routes.dashBaord]);
         return false;
       } else {
-        return true;
+        if (window.location.pathname.includes(routes.redirect)) {
+          this._router.navigate([window.location.pathname]);
+
+          return false;
+        } else {
+          return true;
+        }
       }
     } else if (next.data[0] == 'dashboard') {
       if (this.isAuthenticated) {

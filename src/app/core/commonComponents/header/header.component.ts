@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routes } from 'src/environments/routes';
 import { StateService } from '../../services/state/state.service';
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     }
     return this.menuState;
   }
-
+  @Input() userLandingPage: boolean = false;
   redirectToSignin() {
     this._state.setBackdrop_Off();
     this._router.navigate([routes.signIp]);

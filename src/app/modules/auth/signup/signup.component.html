@@ -6,23 +6,23 @@
         <img src="../../../../assets/Logo.svg" />
       </div> -->
       <div class="title">
-        <h3>Create an account</h3>
+        <h2>Create an account</h2>
       </div>
       <form [formGroup]="signUpFormControl" class="form">
         <div class="formInputBox">
           <div class="ForumName">
-            <p>First name</p>
-            <input type="text" minlength="3" formControlName="fName" />
+            <!-- <p>First name</p> -->
+            <input type="text" minlength="3" placeholder="Your first name" formControlName="fName" />
           </div>
           <div class="ForumName">
-            <p>Last name</p>
-            <input type="text" minlength="3" formControlName="lName" />
+            <!-- <p>Last name</p> -->
+            <input type="text" minlength="3" placeholder="Your last name" formControlName="lName" />
           </div>
         </div>
         <div class="formInputBox">
           <div class="ForumEmail">
-            <p>Email</p>
-            <input type="email" email formControlName="email" />
+            <!-- <p>Email</p> -->
+            <input type="email" email placeholder="Your email address" formControlName="email" />
           </div>
         </div>
         <div *ngIf="error.httpsError.state" class="invalidEmailErrorSection">

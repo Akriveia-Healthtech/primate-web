@@ -23,5 +23,7 @@ export class PostCardComponent implements OnInit {
   @Input() featuredImg: string | null;
   @Input() status: string;
   @Input() pinned: boolean = false;
+  @Input() isLandingPage: boolean = false;
+
   @Input() isSkeleton: boolean = false;
 }

@@ -1,0 +1,75 @@
+<app-header [userLandingPage]="true" *ngIf="show"></app-header>
+<div class="primateMainContainer" *ngIf="show">
+  <div class="profileTop">
+    <div class="imgContainer">
+      <img src="{{ user.image }}" />
+    </div>
+    <div class="bodyContainer">
+      <h1>{{ user.fName }} {{ user.lName }}</h1>
+      <h4>{{ user.oneLiner }}</h4>
+      <div class="location">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M13.125 6.25C13.125 10.625 7.5 14.375 7.5 14.375C7.5 14.375 1.875 10.625 1.875 6.25C1.875 4.75816 2.46763 3.32742 3.52252 2.27252C4.57742 1.21763 6.00816 0.625 7.5 0.625C8.99184 0.625 10.4226 1.21763 11.4775 2.27252C12.5324 3.32742 13.125 4.75816 13.125 6.25Z"
+            stroke="#474747"
+            stroke-width="1.08333"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M7.5 8.125C8.53553 8.125 9.375 7.28553 9.375 6.25C9.375 5.21447 8.53553 4.375 7.5 4.375C6.46447 4.375 5.625 5.21447 5.625 6.25C5.625 7.28553 6.46447 8.125 7.5 8.125Z"
+            stroke="#474747"
+            stroke-width="1.08333"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <p>
+          {{ user.country }}
+        </p>
+      </div>
+      <div class="des">
+        <p>
+          {{ user.description }}
+        </p>
+      </div>
+    </div>
+    <div class="CTAContainer">
+      <div class="professional">
+        <p>Professional</p>
+      </div>
+      <button>Connect</button>
+    </div>
+  </div>
+</div>
+<hr *ngIf="show" />
+<div class="primateMainContainer" style="display: none" *ngIf="show">
+  <div class="profileBottom">
+    <div class="post">
+      <h2>Posts</h2>
+      <div *ngIf="isLoading">
+        <div *ngFor="let post of [1, 2, 3]">
+          <app-post-card [isSkeleton]="true"></app-post-card>
+        </div>
+      </div>
+      <div *ngIf="!isLoading">
+        <div *ngFor="let post of PostData.PostList">
+          <app-post-card
+            [postID]="post.postID"
+            [slug]="post.slug"
+            [createdDate]="post.createdDate"
+            [reads]="post.reads"
+            [votes]="post.votes"
+            [title]="post.title"
+            [description]="post.description"
+            [featuredImg]="post.featuredImg"
+            [status]="post.status"
+            [isLandingPage]="true"
+            [draft]="post.status == 'DRAFT' ? true : false"
+          ></app-post-card>
+        </div>
+      </div>
+    </div>
+    <div class="filterTags"></div>
+  </div>
+</div>

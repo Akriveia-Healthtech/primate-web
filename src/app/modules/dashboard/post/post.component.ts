@@ -40,6 +40,7 @@ export class PostComponent implements OnInit {
     TotalSize: 0,
     LastEvaluatedKey: null,
   };
+  contentType: string = 'All';
 
   postDataStruct = {
     postID: '',
@@ -63,7 +64,9 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this._loadAllPostData();
   }
-
+  changeContentType(string: 'Drafts' | 'Shared' | 'All') {
+    this.contentType = string;
+  }
   toggleFilterOption() {
     this.filterMenuState = this.filterMenuState ? false : true;
   }
@@ -79,11 +82,13 @@ export class PostComponent implements OnInit {
           } else {
             this._loadFilterData('PUBLISHED');
           }
+          this.changeContentType('Shared');
         } else {
           this._loadAllPostData();
           this.filter.status.status = false;
           this.filter.status.shared = false;
           this.filter.status.draft = false;
+          this.changeContentType('All');
         }
         break;
       case 'SHARED':
@@ -96,10 +101,13 @@ export class PostComponent implements OnInit {
           } else {
             this._loadFilterData('PUBLISHED');
           }
+          this.changeContentType('Shared');
         } else {
           this.filter.status.status = false;
           this.filter.status.shared = false;
           this.filter.status.draft = false;
+          this.changeContentType('All');
+          this._loadAllPostData();
         }
         break;
       case 'DRAFTS':
@@ -112,10 +120,13 @@ export class PostComponent implements OnInit {
           } else {
             this._loadFilterData('DRAFT');
           }
+          this.changeContentType('Drafts');
         } else {
           this.filter.status.status = false;
           this.filter.status.shared = false;
           this.filter.status.draft = false;
+          this.changeContentType('All');
+
           this._loadAllPostData();
         }
         break;
@@ -128,29 +139,6 @@ export class PostComponent implements OnInit {
         }
         break;
     }
-  }
-
-  formatCreatedDate(createdDate) {
-    const month = new Date(createdDate * 1000).toLocaleString('default', { month: 'short' });
-    const date = new Date(createdDate * 1000).getDate();
-    const year = new Date(createdDate * 1000).getFullYear();
-    const time = new Date(createdDate * 1000).toLocaleTimeString(navigator.language, {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-    const currentYear = new Date().getFullYear();
-    let returnFormat = '';
-    if (year < currentYear) {
-      returnFormat = month.toString() + ' ' + date.toString() + ' on ' + year.toString();
-    } else {
-      returnFormat = month.toString() + ' ' + date.toString() + ' at ' + time.toString();
-    }
-    return returnFormat;
-  }
-
-  kFormatter(num): any {
-    const k: any = ((num / 1000) * Math.sign(num)).toFixed(0).toString() + 'K';
-    return Math.abs(num) > 999 ? k : Math.sign(num) * Math.abs(num);
   }
 
   filterDate(end: HTMLInputElement, start: HTMLInputElement) {
@@ -210,9 +198,9 @@ export class PostComponent implements OnInit {
     this.PostData.PostList = this._utility.reArrangePostData(data.posts);
     this.PostData.TotalSize = data.TotalSize;
     this.PostData.PostList.map((data) => {
-      data.createdDate = this.formatCreatedDate(data.createdDate);
-      data.reads = this.kFormatter(data.reads);
-      data.votes = this.kFormatter(data.votes);
+      data.createdDate = this._utility.formatCreatedDate(data.createdDate);
+      data.reads = this._utility.kFormatter(data.reads);
+      data.votes = this._utility.kFormatter(data.votes);
       // console.log(data.featuredImg);
     });
     console.log(this.PostData);

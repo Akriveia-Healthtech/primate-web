@@ -11,9 +11,12 @@ import { SettingComponent } from './modules/dashboard/setting/setting.component'
 import { StatsComponent } from './modules/dashboard/stats/stats.component';
 import { UrlGuard } from '../app/core/services/guard/url.guard';
 import { StateService } from './core/services/state/state.service';
+import { CreatePostComponent } from './modules/dashboard/post/create-post/create-post.component';
+import { ErrorPageNotFoundComponent } from './core/errors/error-page-not-found/error-page-not-found.component';
+import { UsersComponent } from './modules/users/users.component';
+import { LandingPageComponent } from './modules/users/landing-page/landing-page.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/auth/signin', pathMatch: 'full' },
-  { path: '*', redirectTo: '/auth/signin', pathMatch: 'full' },
+  // { path: '', redirectTo: '/auth/signin', pathMatch: 'full' },
   {
     path: 'auth',
     component: AuthComponent,
@@ -38,14 +41,26 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/dashboard/post', pathMatch: 'full' },
       { path: 'post', component: PostComponent },
+      { path: 'createPost', component: CreatePostComponent },
       { path: 'setting', component: SettingComponent },
       { path: 'stats', component: StatsComponent },
     ],
   },
+  {
+    path: 'primate',
+    component: UsersComponent,
+    //! Checking from subdomain
+    // children: [{ path: ':prefix', component: LandingPageComponent }],
+  },
+  { path: '404', component: ErrorPageNotFoundComponent },
+  // { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({
   // RouterModule.forRoot(routes, {  })
+  // TODO: Have turned on the hash routing to check NGINX can work in it or not, if it does not work then please turn off
+  // ! Make sure you check the hashing route with NGINX
+  // ! The /user/:prefix doesn't work with hash coz the array index doesn't match, check the array index if you wannt debug
   imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })

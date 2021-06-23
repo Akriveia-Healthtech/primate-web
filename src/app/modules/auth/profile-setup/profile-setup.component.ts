@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { StateService } from 'src/app/core/services/state/state.service';
 import { UtilityService } from 'src/app/core/utility/utility.service';
+import { UserService } from 'src/app/core/services/http/users/user.service';
 @Component({
   selector: 'app-profile-setup',
   templateUrl: './profile-setup.component.html',
@@ -64,6 +65,7 @@ export class ProfileSetupComponent implements OnInit {
   constructor(
     private _state: StateService,
     private _router: Router,
+    private _userService: UserService,
     private fb: FormBuilder,
     private _auth: AuthService,
     private _utility: UtilityService
@@ -176,7 +178,7 @@ export class ProfileSetupComponent implements OnInit {
       var image = new Image();
       image.src = blobURL;
       image.onload = function () {
-        var resized = self._utility.reSizeImage(image, 100, 100);
+        var resized = self._utility.reSizeImage(image, 200, 200);
         self.base64Image.image = resized.slice(16).toString();
         self.base64Image.mime = fileImage.type;
         console.log(self.base64Image);
@@ -195,42 +197,52 @@ export class ProfileSetupComponent implements OnInit {
     console.log(TestpayLoad);
     if (this.signUpFormControl.get('subDomainPrefix').valid) {
       this.toggleButtonLoading();
-      this._auth
-        .S3_addUserImg(this.base64Image.image, this.base64Image.mime)
+      this._userService
+        .checkSubdomain(this.signUpFormControl.value.subDomainPrefix)
+        .toPromise()
         .then((data) => {
-          this.error.httpsError.state = false;
+          if (!data.exists) {
+            this._auth
+              .S3_addUserImg(this.base64Image.image, this.base64Image.mime)
+              .then((data) => {
+                this.error.httpsError.state = false;
 
-          console.log(data);
-          const payLoad = {
-            uuid: this.uuid,
-            description: this.signUpFormControl.value.description,
-            country: this.countryNameTemp,
-            subDomainPrefix: this.signUpFormControl.value.subDomainPrefix,
-            image: data.imageURL,
-          };
-          console.log(payLoad);
-          this._auth
-            .dynamoDB_updateSetupUser(payLoad)
-            .then((res) => {
-              this.toggleButtonLoading();
+                console.log(data);
+                const payLoad = {
+                  uuid: this.uuid,
+                  description: this.signUpFormControl.value.description,
+                  country: this.countryNameTemp,
+                  subDomainPrefix: this.signUpFormControl.value.subDomainPrefix,
+                  image: data.imageURL,
+                };
+                console.log(payLoad);
+                this._auth
+                  .dynamoDB_updateSetupUser(payLoad)
+                  .then((res) => {
+                    this.toggleButtonLoading();
 
-              //TODO:: Pass it in to the api as well coz backend data will not update it self
-              console.log(res);
-              let user = this._utility.LOCAL_STORAGE_GET('user');
-              user.isSetupCompleted_FLAG = true;
-              user.img = payLoad.image;
-              this._utility.LOCAL_STORAGE_DELETE('user');
-              this._utility.LOCAL_STORAGE_SET('user', user);
-              this._router.navigate([routes.dashBaord]);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-          this.error.httpsError.state = true;
-          this.error.httpsError.message = 'Something went wrong, please reload.';
+                    //TODO:: Pass it in to the api as well coz backend data will not update it self
+                    console.log(res);
+                    let user = this._utility.LOCAL_STORAGE_GET('user');
+                    user.isSetupCompleted_FLAG = true;
+                    user.img = payLoad.image;
+                    this._utility.LOCAL_STORAGE_DELETE('user');
+                    this._utility.LOCAL_STORAGE_SET('user', user);
+                    this._router.navigate([routes.dashBaord]);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
+                this.error.httpsError.state = true;
+                this.error.httpsError.message = 'Something went wrong, please reload.';
+              });
+          } else {
+            this.error.httpsError.state = true;
+            this.error.httpsError.message = 'Sub Domain already taken.';
+          }
         });
     } else {
       this.error.state.isPrefix = true;

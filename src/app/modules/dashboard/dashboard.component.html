@@ -4,7 +4,7 @@
       <div class="img">
         <img src="{{ user.img }}" />
       </div>
-      <div class="name">{{ user.name }}</div>
+      <h4>{{ user.name }}</h4>
     </div>
     <div class="menuBtn" (click)="toggleDashboardPage('post')" [ngClass]="{ active: dashboardMenuState.post == true }">
       <div class="iconContainer">
@@ -13,7 +13,7 @@
             d="M12.9892 4.58333L17.4167 9.01083V17.4167H4.58333V4.58333H12.9892ZM12.9892 2.75H4.58333C3.575 2.75 2.75 3.575 2.75 4.58333V17.4167C2.75 18.425 3.575 19.25 4.58333 19.25H17.4167C18.425 19.25 19.25 18.425 19.25 17.4167V9.01083C19.25 8.525 19.0575 8.0575 18.7092 7.71833L14.2817 3.29083C13.9425 2.9425 13.475 2.75 12.9892 2.75ZM6.41667 13.75H15.5833V15.5833H6.41667V13.75ZM6.41667 10.0833H15.5833V11.9167H6.41667V10.0833ZM6.41667 6.41667H12.8333V8.25H6.41667V6.41667Z"
           />
         </svg>
-        <div class="menuText">Post</div>
+        <h4 class="menuText">Post</h4>
       </div>
 
       <div class="arrow">
@@ -34,7 +34,7 @@
           />
         </svg>
 
-        <div class="menuText">Stats</div>
+        <h4 class="menuText">Stats</h4>
       </div>
 
       <div class="arrow">
@@ -55,7 +55,7 @@
           />
         </svg>
 
-        <div class="menuText">Settings</div>
+        <h4 class="menuText">Settings</h4>
       </div>
 
       <div class="arrow">

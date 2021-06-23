@@ -6,4 +6,5 @@ export const api = {
   getUser: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/getUser',
   getAllPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/getAllPost',
   filterPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/filterPost',
+  checkSubdomain: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/checkSubdomain',
 };

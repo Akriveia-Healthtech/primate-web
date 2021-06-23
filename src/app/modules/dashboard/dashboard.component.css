@@ -39,13 +39,8 @@
 
 .menuBtn.active .iconContainer .menuText {
   padding: 13px 0px 12px 0px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
   color: #ffffff;
   text-align: left;
-
-  line-height: 17px;
 }
 
 .menuBtn.active svg {
@@ -87,24 +82,15 @@
 
 .user .img {
   margin-right: 10px;
-  width: 30px;
+  width: 36px;
   border-radius: 100%;
   overflow: hidden;
-  height: 30px;
+  height: 36px;
 }
 
 .user img {
   height: 100%;
   width: 100%;
-}
-
-.user .name {
-  font-style: normal;
-  /* background-color: yellow; */
-  font-weight: 600;
-  font-size: 18px;
-  /* margin-top: 38px; */
-  line-height: 24px;
 }
 
 .toggleContainer {

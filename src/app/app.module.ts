@@ -14,10 +14,13 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 // import { HeaderComponent } from './core/commonComponents/header/header.component';
 import { CommonComponentsModule } from '../app/core/commonComponents/commomComponents.module';
 import { HttpRequestInterceptor } from './core/services/interceptor/http-request.interceptor';
+import { ErrorPageNotFoundComponent } from './core/errors/error-page-not-found/error-page-not-found.component';
+import { UsersComponent } from './modules/users/users.component';
+import { LandingPageComponent } from './modules/users/landing-page/landing-page.component';
 Amplify.configure(awsconfig);
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent],
+  declarations: [AppComponent, DashboardComponent, ErrorPageNotFoundComponent, UsersComponent, LandingPageComponent],
   imports: [
     CommonComponentsModule,
     BrowserModule,

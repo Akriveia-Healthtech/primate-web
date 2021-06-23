@@ -94,12 +94,6 @@ input {
 button {
   width: 143px;
   height: 40px;
-
-  border-radius: 3px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
 }
 
 .SignUpPageRedirect {
@@ -229,17 +223,14 @@ button {
 
 .buttonFlex .loginWithPWBtn {
   background-color: transparent;
-  font-style: normal;
-  font-weight: 600;
+  width: fit-content;
   white-space: nowrap;
-  font-size: 14px;
-  line-height: 20px;
-  /* identical to box height, or 143% */
-  padding-left: 20px;
+
   display: flex;
   align-items: center;
+  margin-left: 8px;
 
-  color: #959da5;
+  color: var(--black-60E);
 }
 
 .setNewPW {
