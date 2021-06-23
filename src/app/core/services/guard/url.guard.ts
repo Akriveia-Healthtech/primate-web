@@ -44,6 +44,7 @@ export class UrlGuard implements CanActivate {
         }
       }
     } else if (next.data[0] == 'dashboard') {
+      console.log('Dashboard Route');
       if (this.isAuthenticated) {
         if (!this.isSetupCompleted_FLAG) {
           this._router.navigate([routes.setup]);

@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { AuthComponent } from './modules/auth/auth.component';
 import { ProfileSetupComponent } from './modules/auth/profile-setup/profile-setup.component';
 import { RedirectComponent } from './modules/auth/redirect/redirect.component';
 import { SigninComponent } from './modules/auth/signin/signin.component';
 import { SignupComponent } from './modules/auth/signup/signup.component';
+
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostComponent } from './modules/dashboard/post/post.component';
 import { SettingComponent } from './modules/dashboard/setting/setting.component';
@@ -15,36 +17,15 @@ import { CreatePostComponent } from './modules/dashboard/post/create-post/create
 import { ErrorPageNotFoundComponent } from './core/errors/error-page-not-found/error-page-not-found.component';
 import { UsersComponent } from './modules/users/users.component';
 import { LandingPageComponent } from './modules/users/landing-page/landing-page.component';
+import { DashboardModule } from '../app/modules/dashboard/dashboard.module';
 const routes: Routes = [
-  // { path: '', redirectTo: '/auth/signin', pathMatch: 'full' },
   {
     path: 'auth',
-    component: AuthComponent,
-    children: [
-      { path: '', redirectTo: '/auth/signup', pathMatch: 'full' },
-      { path: 'signup', canActivate: [UrlGuard], data: ['signUpPage'], component: SignupComponent },
-      { path: 'signin', canActivate: [UrlGuard], data: ['signInPage'], component: SigninComponent },
-      {
-        path: 'setup',
-        canActivate: [UrlGuard],
-        data: ['setupPage'],
-        component: ProfileSetupComponent,
-      },
-      { path: 'redirect/:cypherCode', component: RedirectComponent },
-    ],
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [UrlGuard],
-    data: ['dashboard'],
-    children: [
-      { path: '', redirectTo: '/dashboard/post', pathMatch: 'full' },
-      { path: 'post', component: PostComponent },
-      { path: 'createPost', component: CreatePostComponent },
-      { path: 'setting', component: SettingComponent },
-      { path: 'stats', component: StatsComponent },
-    ],
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
     path: 'primate',
@@ -53,7 +34,7 @@ const routes: Routes = [
     // children: [{ path: ':prefix', component: LandingPageComponent }],
   },
   { path: '404', component: ErrorPageNotFoundComponent },
-  // { path: '**', redirectTo: '404' },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({
@@ -61,7 +42,7 @@ const routes: Routes = [
   // TODO: Have turned on the hash routing to check NGINX can work in it or not, if it does not work then please turn off
   // ! Make sure you check the hashing route with NGINX
   // ! The /user/:prefix doesn't work with hash coz the array index doesn't match, check the array index if you wannt debug
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

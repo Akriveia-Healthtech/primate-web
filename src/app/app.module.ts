@@ -17,20 +17,18 @@ import { HttpRequestInterceptor } from './core/services/interceptor/http-request
 import { ErrorPageNotFoundComponent } from './core/errors/error-page-not-found/error-page-not-found.component';
 import { UsersComponent } from './modules/users/users.component';
 import { LandingPageComponent } from './modules/users/landing-page/landing-page.component';
+import { Router } from '@angular/router';
 Amplify.configure(awsconfig);
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, ErrorPageNotFoundComponent, UsersComponent, LandingPageComponent],
-  imports: [
-    CommonComponentsModule,
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AuthModule,
-    DashboardModule,
-    BrowserAnimationsModule,
-  ],
+  declarations: [AppComponent, ErrorPageNotFoundComponent, UsersComponent, LandingPageComponent],
+  imports: [AppRoutingModule, CommonComponentsModule, BrowserModule, HttpClientModule, BrowserAnimationsModule],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private _r: Router) {
+    // NOTE: This is for router debugging
+    // _r.events.subscribe((d) => console.log(d));
+  }
+}

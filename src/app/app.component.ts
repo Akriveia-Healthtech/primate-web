@@ -29,11 +29,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if (!this._utility.checkSubdomainInput()) {
       this.isPrimateLandingPage = false;
-      this._router.navigate([routes.signUp]);
-
+      if (window.location.pathname.length >= 2) {
+        this._router.navigate([window.location.pathname]);
+      } else {
+        this._router.navigate([routes.signUp]);
+      }
       console.log('THIS IS THE MAIN SITE');
     } else {
-      // this._router.navigate([routes.landingPage]);
       this.isPrimateLandingPage = true;
       console.log('THIS IS THE Primate landing SITE');
     }

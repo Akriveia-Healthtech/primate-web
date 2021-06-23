@@ -101,7 +101,7 @@ export class UtilityService {
     } else {
       returnFormat = month.toString() + ' ' + date.toString() + ' at ' + time.toString();
     }
-    console.log(returnFormat);
+    // console.log(returnFormat);
     return returnFormat;
   }
 
@@ -115,7 +115,7 @@ export class UtilityService {
     // var domain = /:\/\/([^\/]+)/.exec(this.testSite)[1];
 
     let list = domain.split('.');
-    console.log(domain);
+    // console.log(domain);
 
     if (list.length == 3) {
       if (list[0] == 'www') {
@@ -137,7 +137,7 @@ export class UtilityService {
     // var domain = /:\/\/([^\/]+)/.exec(this.testSite)[1];
 
     let list = domain.split('.');
-    console.log(domain);
+    // console.log(domain);
 
     if (list.length == 3) {
       if (list[0] == 'www') {
