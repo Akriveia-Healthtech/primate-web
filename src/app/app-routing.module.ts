@@ -34,7 +34,7 @@ const routes: Routes = [
     // children: [{ path: ':prefix', component: LandingPageComponent }],
   },
   { path: '404', component: ErrorPageNotFoundComponent },
-  { path: '**', redirectTo: '404' },
+  // { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

@@ -1,15 +1,16 @@
 :root {
+  --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
   --black: #000000;
   --white: #ffffff;
   --primaryBlue: #1c68fc;
   --errorRed: #e50101;
   --grey: #fafafa;
   --yellow: #ffc700;
-  --dividerGrey: rgba(33, 33, 33, 0.08);
+  --dividerGrey: #f0f0f0;
   --black-80E: rgba(0, 0, 0, 0.8);
   --black-60E: rgba(0, 0, 0, 0.6);
   --black-12E: rgba(0, 0, 0, 0.12);
-
+  --borderRadius: 4px;
   --placeHolderFontColor: var(--black-80E);
 
   --btnMarginTop: 8px;
@@ -60,8 +61,24 @@ body {
   overflow: hidden;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+span,
+form,
+a,
+p,
+textarea,
+div {
+  font-family: var(--font);
+}
 .primateMainContainer {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
+  font-family: var(--font);
   width: 1080px !important;
   margin: 0 auto !important;
 }
@@ -103,23 +120,27 @@ h4 {
 
 p {
   font-size: var(--textNormalSize);
+  line-height: var(--textNormalLineHeight);
+  font-weight: var(--textNormalWeight);
   margin: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button,
-input,
-span,
-form,
-a,
-p,
-div {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
+p.small {
+  font-size: var(--textSmallSize);
+  line-height: var(--textSmallLineHeight);
+  font-weight: var(--textNormalWeight);
+  margin: 0;
+}
+p.bold {
+  font-weight: var(--textBoldWeight);
+}
+
+p.italic {
+  font-style: italic;
+}
+
+p.underline {
+  text-decoration: underline;
 }
 
 input::placeholder {
@@ -158,6 +179,28 @@ button:active {
 
 button.loading {
   background-color: #1653c9;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--dividerGrey);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--grey);
 }
 
 .mat-option-text {

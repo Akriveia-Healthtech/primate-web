@@ -17,17 +17,22 @@
   margin-top: 16px;
   border: 1px solid #eeeeee;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
   padding: 15px;
 }
 
 input {
   height: 40px;
   background: #ffffff;
-  padding: 10px;
+  padding: 8px 10px;
   outline: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
 }
 
 .ForumName input {
@@ -39,7 +44,7 @@ input {
 .formInputBox {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .ForumName p,
 .ForumEmail p,
@@ -51,22 +56,28 @@ input {
 .TermsofUseSection {
   display: flex;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
+  /* background-color: lawngreen; */
   color: var(--black-80E);
 }
 .TermsofUseSection input {
-  height: 13px;
-  width: 13px;
+  height: 15px;
+  width: 15px;
   cursor: pointer;
+  margin: 5px;
+  border: 1px solid rbga(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6);
+
   margin-right: 8px;
-  background-color: lawngreen;
+  /* background-color: lawngreen; */
 }
 
 .TermsofUseSection span {
   font-size: 14px;
   padding: 0;
-  line-height: 20px;
+  line-height: 15px;
   width: fit-content;
+
   /* background-color: red; */
 }
 .invalidEmailErrorSection {
@@ -126,7 +137,7 @@ button {
   margin-top: 4px;
   border: 1px solid #bebebe;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
 }
 
 .item {
@@ -207,19 +218,24 @@ button {
 }
 
 @media (max-width: 1080px) {
-  .mainContainer {
+  .primateMainContainer {
     width: 100%;
-    background-color: green;
     height: fit-content;
+    /* padding: 0 16px; */
+  }
+
+  .title {
+    margin: 0 auto;
+    margin-top: 100px;
+    width: fit-content;
   }
   .form {
     width: fit-content;
     height: fit-content;
     margin: 0 auto;
-    margin-top: 30px;
-    border: 1px solid #eeeeee;
-    box-sizing: border-box;
-    border-radius: 3px;
+    /* background-color: green; */
+    margin-top: 16px;
+
     padding: 15px;
   }
   button {
@@ -230,14 +246,19 @@ button {
     line-height: 20px;
   }
   .formInputBox {
-    display: block;
+    display: flex;
     justify-content: space-between;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .ForumName input {
-    width: 305px;
+    width: 100%;
+    max-width: 150px;
+  }
+  .ForumEmail {
+    width: 100%;
+    max-width: 311px;
   }
   .ForumEmail input {
-    width: 305px;
+    width: 100%;
   }
 }

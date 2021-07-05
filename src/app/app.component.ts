@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { routes } from 'src/environments/routes';
+import { Title } from '@angular/platform-browser';
 
 import { StateService } from '../app/core/services/state/state.service';
 import { AuthService } from './core/services/auth/auth.service';
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
     private _router: Router,
     private _state: StateService,
     private _auth: AuthService,
+    private _title: Title,
     private _utility: UtilityService
   ) {
     this._auth._CheckAuth();
@@ -32,13 +34,17 @@ export class AppComponent implements OnInit {
       if (window.location.pathname.length >= 2) {
         this._router.navigate([window.location.pathname]);
       } else {
-        this._router.navigate([routes.signUp]);
+        this._router.navigate([routes.signIp]);
       }
-      console.log('THIS IS THE MAIN SITE');
+      this._utility.systemLog('THIS IS THE MAIN SITE', 'info');
     } else {
       this.isPrimateLandingPage = true;
-      console.log('THIS IS THE Primate landing SITE');
+      this._utility.systemLog('THIS IS THE Primate landing SITE', 'info');
     }
+
+    this._state.pageTitle.subscribe((data) => {
+      this._title.setTitle(data);
+    });
   }
 
   setbackoff() {

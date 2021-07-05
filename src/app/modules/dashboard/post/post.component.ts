@@ -24,6 +24,7 @@ export class PostComponent implements OnInit {
   filterMenuState: boolean = false;
 
   filter = {
+    activeFilterNumber: 0,
     status: {
       status: false,
       shared: false,
@@ -60,8 +61,12 @@ export class PostComponent implements OnInit {
     tags: [],
     status: '',
   };
+  currentPinnedPostId = '';
   isLoading: boolean = false;
   ngOnInit(): void {
+    this.piningFunction = this._piningFunction.bind(this);
+    this._state.setPageTitle('Dashboard | Primate ');
+
     this._loadAllPostData();
   }
   changeContentType(string: 'Drafts' | 'Shared' | 'All') {
@@ -79,8 +84,10 @@ export class PostComponent implements OnInit {
           this.filter.status.draft = false;
           if (this.filter.date.endDate.length >= 2 && this.filter.date.startDate.length >= 2) {
             this._loadFilterData('PUBLISHED', this.filter.date.startDate, this.filter.date.endDate);
+            this.filter.activeFilterNumber = 2;
           } else {
             this._loadFilterData('PUBLISHED');
+            this.filter.activeFilterNumber = 1;
           }
           this.changeContentType('Shared');
         } else {
@@ -88,6 +95,7 @@ export class PostComponent implements OnInit {
           this.filter.status.status = false;
           this.filter.status.shared = false;
           this.filter.status.draft = false;
+          this.filter.activeFilterNumber -= 1;
           this.changeContentType('All');
         }
         break;
@@ -98,8 +106,10 @@ export class PostComponent implements OnInit {
           this.filter.status.draft = false;
           if (this.filter.date.endDate.length >= 2 && this.filter.date.startDate.length >= 2) {
             this._loadFilterData('PUBLISHED', this.filter.date.startDate, this.filter.date.endDate);
+            this.filter.activeFilterNumber = 2;
           } else {
             this._loadFilterData('PUBLISHED');
+            this.filter.activeFilterNumber = 1;
           }
           this.changeContentType('Shared');
         } else {
@@ -107,6 +117,8 @@ export class PostComponent implements OnInit {
           this.filter.status.shared = false;
           this.filter.status.draft = false;
           this.changeContentType('All');
+          this.filter.activeFilterNumber -= 1;
+
           this._loadAllPostData();
         }
         break;
@@ -117,7 +129,10 @@ export class PostComponent implements OnInit {
           this.filter.status.draft = true;
           if (this.filter.date.endDate.length >= 2 && this.filter.date.startDate.length >= 2) {
             this._loadFilterData('DRAFT', this.filter.date.startDate, this.filter.date.endDate);
+            this.filter.activeFilterNumber = 2;
           } else {
+            this.filter.activeFilterNumber = 1;
+
             this._loadFilterData('DRAFT');
           }
           this.changeContentType('Drafts');
@@ -126,6 +141,7 @@ export class PostComponent implements OnInit {
           this.filter.status.shared = false;
           this.filter.status.draft = false;
           this.changeContentType('All');
+          this.filter.activeFilterNumber -= 1;
 
           this._loadAllPostData();
         }
@@ -135,6 +151,8 @@ export class PostComponent implements OnInit {
           this.filter.date.status = true;
         } else {
           this.filter.date.status = false;
+          this.filter.activeFilterNumber -= 1;
+
           this._loadAllPostData();
         }
         break;
@@ -147,16 +165,45 @@ export class PostComponent implements OnInit {
       this.filter.date.startDate = Math.round(new Date(start.value).getTime() / 1000).toString();
       this.filter.date.endDate = Math.round(new Date(end.value).getTime() / 1000).toString();
       console.log(this.filter);
-      this._loadFilterData(null, this.filter.date.startDate, this.filter.date.endDate);
+      this.filter.activeFilterNumber += 1;
+
+      if (this.filter.status.shared) {
+        this._loadFilterData('PUBLISHED', this.filter.date.startDate, this.filter.date.endDate);
+      } else if (this.filter.status.draft) {
+        this._loadFilterData('DRAFT', this.filter.date.startDate, this.filter.date.endDate);
+      } else {
+        this._loadFilterData(null, this.filter.date.startDate, this.filter.date.endDate);
+      }
     }
   }
 
+  public piningFunction: Function;
+
+  _piningFunction(newPinnedPostId) {
+    this.isLoading = true;
+    this._state.authToken.subscribe((res) => {
+      if (res) {
+        this._postHttp
+          .pinPost(this.currentPinnedPostId == '' ? null : this.currentPinnedPostId, newPinnedPostId, res)
+          .subscribe(
+            (data) => {
+              console.log(data);
+              this._loadAllPostData();
+            },
+            (err) => {
+              console.log(err);
+              this.isLoading = false;
+            }
+          );
+      }
+    });
+  }
   _loadAllPostData() {
     this.isLoading = true;
     this._state.authToken.subscribe((res) => {
       // console.log(res);
       if (res) {
-        this._postHttp.getAllPost(null, res).subscribe(
+        this._postHttp.getAllPost(null, res, null).subscribe(
           (data) => {
             this._loadResponseData(data);
           },
@@ -204,10 +251,21 @@ export class PostComponent implements OnInit {
       // console.log(data.featuredImg);
     });
     console.log(this.PostData);
+    if (this.PostData.PostList[0].isPinned !== undefined && this.PostData.PostList[0].isPinned == true) {
+      this.currentPinnedPostId = this.PostData.PostList[0].postID;
+      this._utility.systemLog(`Pinned Post Id: ${this.currentPinnedPostId}`, 'info');
+    }
     this.isLoading = false;
   }
 
   nagivate_CreatePost() {
     this._router.navigate([routes.createPost]);
+  }
+
+  postContainerClickEventRecorder() {
+    console.log('Click on post event');
+    if (this.filterMenuState) {
+      this.filterMenuState = false;
+    }
   }
 }

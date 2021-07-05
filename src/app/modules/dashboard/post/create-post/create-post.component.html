@@ -1,1 +1,21 @@
-<p>create-post works!</p>
+<div class="cp-header">
+  <div class="cp-header-mid cp-container">
+    <button class="cp-dashboardBtn" [routerLink]="['/dashboard/post']">Dashboard</button>
+  </div>
+</div>
+<div class="cp-body cp-container">
+  <textarea type="text" class="inputTitle max-width" placeholder="Enter Title"></textarea>
+  <textarea type="text" class="inputSubTitle max-width" placeholder="Enter subtitle"></textarea>
+</div>
+<div class="cp-footer">
+  <div class="cp-footer-mid cp-container">
+    <div class="cp-footer-mid-left">
+      <p>Last save</p>
+      <p>4:34 PM</p>
+    </div>
+    <div class="cp-footer-mid-right">
+      <button class="cp-settingBtn">Setting</button>
+      <button class="cp-postBtn">Post</button>
+    </div>
+  </div>
+</div>

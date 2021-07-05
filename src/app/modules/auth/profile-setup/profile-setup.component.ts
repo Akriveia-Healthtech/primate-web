@@ -87,6 +87,8 @@ export class ProfileSetupComponent implements OnInit {
   };
   ngOnInit(): void {
     this.populateOptions();
+    this._state.setPageTitle('Setup your profile | Primate ');
+
     this.initializeForm();
     this._state.uuid.subscribe((res) => {
       this.uuid = res;

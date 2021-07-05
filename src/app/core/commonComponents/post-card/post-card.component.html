@@ -8,36 +8,58 @@
     {{ draft ? 'Draft' : '' }}
   </div>
   <div class="body" [ngClass]="{ noImage: featuredImg.length <= 1 && !draft }">
-    <h4>{{ title }}</h4>
-    <p *ngIf="!draft">
+    <h3>{{ title }}</h3>
+    <p class="Pbody" *ngIf="!draft">
       {{ description }}
     </p>
     <div class="bottom">
       <div class="leftBottom">
         <div class="date">
           <!-- {{new Date(createdDate * 1000)}} -->
-
-          {{ createdDate }}
+          <p class="small">
+            {{ createdDate }}
+          </p>
         </div>
         <div class="vote" *ngIf="!draft">
-          <svg class="upVote" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M2.66732 8.99992L3.60732 9.93992L7.33398 6.21992L7.33398 14.3333L8.66732 14.3333L8.66732 6.21992L12.3873 9.94659L13.334 8.99992L8.00065 3.66659L2.66732 8.99992Z"
-              fill="#959DA5"
-            />
-          </svg>
-          <div class="voteText">{{ votes }}</div>
           <svg
-            class="downVote"
-            width="16"
-            height="18"
-            viewBox="0 0 16 18"
+            class="upVote clickable"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M13.3327 9.00008L12.3927 8.06008L8.66602 11.7801L8.66602 3.66675L7.33268 3.66675L7.33268 11.7801L3.61268 8.05341L2.66602 9.00008L7.99935 14.3334L13.3327 9.00008Z"
-              fill="#959DA5"
+              *ngIf="!voted"
+              d="M0.666992 5.99996L1.60699 6.93996L5.33366 3.21996V11.3333H6.66699V3.21996L10.387 6.94663L11.3337 5.99996L6.00033 0.666626L0.666992 5.99996Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+            <path
+              *ngIf="voted"
+              d="M0.666504 6.00002L1.6065 6.94002L5.33317 3.22002V11.3334H6.6665V3.22002L10.3865 6.94669L11.3332 6.00002L5.99984 0.666687L0.666504 6.00002Z"
+              fill="white"
+            />
+          </svg>
+
+          <div class="voteText">
+            <p class="small">
+              {{ votes }}
+            </p>
+          </div>
+
+          <svg
+            class="downVote clickable"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.333 6.00004L10.393 5.06004L6.66634 8.78004L6.66634 0.666708L5.33301 0.666709L5.33301 8.78004L1.61301 5.05338L0.666341 6.00004L5.99967 11.3334L11.333 6.00004Z"
+              fill="black"
+              fill-opacity="0.6"
             />
           </svg>
         </div>
@@ -48,53 +70,44 @@
               fill="#959DA5"
             />
           </svg>
-          <div class="viewText">{{ reads }}</div>
+          <div class="viewText">
+            <p class="small">
+              {{ reads }}
+            </p>
+          </div>
         </div>
       </div>
       <div class="rightBottom" *ngIf="!isLandingPage">
         <svg
-          *ngIf="!draft && !pinned"
+          *ngIf="!draft"
           class="pin clickable"
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M9.33301 2.66671V6.00004C9.33301 6.74671 9.57967 7.44004 9.99967 8.00004H5.99967C6.43301 7.42671 6.66634 6.73337 6.66634 6.00004V2.66671H9.33301ZM11.333 1.33337H4.66634C4.29967 1.33337 3.99967 1.63337 3.99967 2.00004C3.99967 2.36671 4.29967 2.66671 4.66634 2.66671H5.33301V6.00004C5.33301 7.10671 4.43967 8.00004 3.33301 8.00004V9.33337H7.31301V14L7.97967 14.6667L8.64634 14V9.33337H12.6663V8.00004C11.5597 8.00004 10.6663 7.10671 10.6663 6.00004V2.66671H11.333C11.6997 2.66671 11.9997 2.36671 11.9997 2.00004C11.9997 1.63337 11.6997 1.33337 11.333 1.33337Z"
-            fill="#474747"
-          />
-        </svg>
-
-        <svg
-          *ngIf="!draft && pinned"
-          class="pin clickable"
+          [ngClass]="{ pinned: pinned == true, notPinned: pinned == false }"
           width="10"
           height="14"
           viewBox="0 0 10 14"
+          (click)="piningFunction(postID)"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M7.66634 5.00004V1.66671H8.33301C8.69967 1.66671 8.99967 1.36671 8.99967 1.00004C8.99967 0.633374 8.69967 0.333374 8.33301 0.333374H1.66634C1.29967 0.333374 0.999674 0.633374 0.999674 1.00004C0.999674 1.36671 1.29967 1.66671 1.66634 1.66671H2.33301V5.00004C2.33301 6.10671 1.43967 7.00004 0.333008 7.00004V8.33337H4.31301V13L4.97967 13.6667L5.64634 13V8.33337H9.66634V7.00004C8.55968 7.00004 7.66634 6.10671 7.66634 5.00004Z"
-            fill="#FFC700"
+            d="M6.3335 1.66665V4.99998C6.3335 5.74665 6.58016 6.43998 7.00016 6.99998H3.00016C3.4335 6.42665 3.66683 5.73331 3.66683 4.99998V1.66665H6.3335ZM8.3335 0.333313H1.66683C1.30016 0.333313 1.00016 0.633313 1.00016 0.99998C1.00016 1.36665 1.30016 1.66665 1.66683 1.66665H2.3335V4.99998C2.3335 6.10665 1.44016 6.99998 0.333496 6.99998V8.33331H4.3135V13L4.98016 13.6666L5.64683 13V8.33331H9.66683V6.99998C8.56016 6.99998 7.66683 6.10665 7.66683 4.99998V1.66665H8.3335C8.70016 1.66665 9.00016 1.36665 9.00016 0.99998C9.00016 0.633313 8.70016 0.333313 8.3335 0.333313Z"
+            fill="black"
+            fill-opacity="0.6"
           />
         </svg>
 
         <svg
           class="edit clickable"
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
+          width="13"
+          height="12"
+          viewBox="0 0 13 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M2 11.5V14H4.5L11.8733 6.62667L9.37333 4.12667L2 11.5ZM3.94667 12.6667H3.33333V12.0533L9.37333 6.01333L9.98667 6.62667L3.94667 12.6667ZM13.8067 3.75333L12.2467 2.19333C12.1133 2.06 11.9467 2 11.7733 2C11.6 2 11.4333 2.06667 11.3067 2.19333L10.0867 3.41333L12.5867 5.91333L13.8067 4.69333C14.0667 4.43333 14.0667 4.01333 13.8067 3.75333Z"
-            fill="#474747"
+            d="M7.37333 4.01333L7.98667 4.62667L1.94667 10.6667H1.33333V10.0533L7.37333 4.01333ZM9.77333 0C9.60667 0 9.43333 0.0666666 9.30667 0.193333L8.08667 1.41333L10.5867 3.91333L11.8067 2.69333C12.0667 2.43333 12.0667 2.01333 11.8067 1.75333L10.2467 0.193333C10.1133 0.06 9.94667 0 9.77333 0ZM7.37333 2.12667L0 9.5V12H2.5L9.87333 4.62667L7.37333 2.12667Z"
+            fill="black"
+            fill-opacity="0.6"
           />
         </svg>
       </div>
@@ -111,8 +124,13 @@
     <div style="margin-top: 10px">
       <app-skeleton [description]="true"></app-skeleton>
     </div>
-    <div style="margin-top: 12px">
-      <app-skeleton [paragraph]="true"></app-skeleton>
+    <div style="margin-top: 12px; display: flex; align-items: center">
+      <div style="width: 253px; margin-right: 24px">
+        <app-skeleton [paragraph]="true"></app-skeleton>
+      </div>
+      <div style="width: 44px">
+        <app-skeleton [paragraph]="true"></app-skeleton>
+      </div>
     </div>
   </div>
 </div>

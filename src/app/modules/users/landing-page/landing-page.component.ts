@@ -61,11 +61,12 @@ export class LandingPageComponent implements OnInit {
             oneLiner: userData.oneLiner.S,
             lName: userData.lName.S,
             email: userData.email.S,
-
             description: userData.description.S,
             country: userData.country.S,
           };
-          // this._loadAllPostData();
+          this._state.setPageTitle(`${this.user.fName} ${this.user.lName} | Primate `);
+
+          this._loadAllPostData();
           this.show = true;
         }
       },
@@ -79,20 +80,15 @@ export class LandingPageComponent implements OnInit {
 
   _loadAllPostData() {
     this.isLoading = true;
-    this._state.authToken.subscribe((res) => {
-      // console.log(res);
-      if (res) {
-        this._postHttp.getAllPost(null, res).subscribe(
-          (data) => {
-            this._loadResponseData(data);
-          },
-          (err) => {
-            this.isLoading = false;
-            console.log(err);
-          }
-        );
+    this._postHttp.getAllPost(null, null, this.user.uuid).subscribe(
+      (data) => {
+        this._loadResponseData(data);
+      },
+      (err) => {
+        this.isLoading = false;
+        console.log(err);
       }
-    });
+    );
   }
   isLoading: boolean = false;
 
@@ -111,8 +107,19 @@ export class LandingPageComponent implements OnInit {
       this.PostData.LastEvaluatedKey = null;
     }
     data.posts.map((data) => {
+      let readyData = data;
       if (data.status.S == 'PUBLISHED') {
-        displayPost.push(data);
+        if (data.isPinned !== undefined) {
+          if (data.isPinned.BOOL) {
+            if (displayPost[0] === undefined) {
+              readyData = data;
+            } else {
+              readyData = displayPost[0];
+              displayPost[0] = data;
+            }
+          }
+        }
+        displayPost.push(readyData);
       }
     });
     this.PostData.PostList = this._utility.reArrangePostData(displayPost.slice(0, 3));

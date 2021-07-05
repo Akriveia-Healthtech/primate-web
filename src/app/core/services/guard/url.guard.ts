@@ -18,6 +18,7 @@ export class UrlGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this._CheckAuth();
     console.log('isAuthenticated', this.isAuthenticated);
+    this._utility.systemLog(`isAuthenticated ${this.isAuthenticated}`, 'debug');
     if (this._utility.checkSubdomainInput()) {
       return false;
     }
@@ -25,19 +26,18 @@ export class UrlGuard implements CanActivate {
       if (this.isAuthenticated && !this.isSetupCompleted_FLAG) {
         return true;
       } else {
-        console.log('SETUP PAGE NOT ALLOW');
+        this._utility.systemLog('SETUP PAGE NOT ALLOW', 'error');
         this._router.navigate([routes.dashBaord]);
         return false;
       }
     } else if (next.data[0] == 'signUpPage' || next.data[0] == 'signInPage') {
       if (this.isAuthenticated) {
-        console.log('SIGN PAGE NOT ALLOW');
+        this._utility.systemLog('SIGN PAGE NOT ALLOW', 'error');
         this._router.navigate([routes.dashBaord]);
         return false;
       } else {
         if (window.location.pathname.includes(routes.redirect)) {
           this._router.navigate([window.location.pathname]);
-
           return false;
         } else {
           return true;
@@ -53,7 +53,7 @@ export class UrlGuard implements CanActivate {
           return true;
         }
       } else {
-        console.log('DASHBOARD NOT ALLOW');
+        this._utility.systemLog('DASHBOARD NOT ALLOW', 'error');
         this._router.navigate([routes.signIp]);
         return false;
       }
@@ -63,6 +63,7 @@ export class UrlGuard implements CanActivate {
   }
   constructor(private _utility: UtilityService, private _state: StateService, private _router: Router) {}
   private _CheckAuth() {
+    this._utility.systemLog('Checking Auth From Guard', 'debug');
     const user = this._utility.LOCAL_STORAGE_GET('user');
     if (user) {
       this.isSetupCompleted_FLAG = user.isSetupCompleted_FLAG;
@@ -75,4 +76,6 @@ export class UrlGuard implements CanActivate {
       this.isAuthenticated = res;
     });
   }
+
+  private _titleChanger(route) {}
 }

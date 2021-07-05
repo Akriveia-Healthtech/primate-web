@@ -28,6 +28,18 @@ export class DashboardComponent implements OnInit {
   };
   menuState: boolean = false;
   ngOnInit(): void {
+    // this._state.setPageTitle('Dashboard | Primate ');
+    switch (window.location.pathname) {
+      case routes.setting:
+        this.toggleDashboardPage('settings');
+        break;
+      case routes.stats:
+        this.toggleDashboardPage('stats');
+        break;
+      case routes.dashBaord:
+        this.toggleDashboardPage('post');
+        break;
+    }
     try {
       const localUser = this._utility.LOCAL_STORAGE_GET('user');
       this.user.name = localUser.name;

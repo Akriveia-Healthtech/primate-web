@@ -17,10 +17,14 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/dashboard/post', pathMatch: 'full' },
       { path: 'post', component: PostComponent },
-      { path: 'createPost', component: CreatePostComponent },
+      // { path: 'createPost', component: CreatePostComponent },
       { path: 'setting', component: SettingComponent },
       { path: 'stats', component: StatsComponent },
     ],
+  },
+  {
+    path: 'createPost',
+    component: CreatePostComponent,
   },
 ];
 

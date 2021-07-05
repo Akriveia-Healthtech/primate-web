@@ -1,12 +1,17 @@
 .card {
-  border: 1px solid #eeeeee;
+  border: none;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 4px;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
   align-items: flex-start;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.card:hover {
+  background-color: #fafafa;
 }
 
 .imgPlaceholder {
@@ -15,16 +20,17 @@
 
 .imgPlaceholder.img {
   display: initial;
-  width: 170px;
-  height: 130px;
+  width: 156px;
+  height: 120px;
   background: #ffffff;
   border: 1px solid #e8e8e8;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .img img {
   width: inherit;
   height: inherit;
+  border-radius: inherit;
 }
 
 h4 {
@@ -35,52 +41,90 @@ h4 {
   margin: 0%;
 }
 
-p {
-  margin-top: 10px;
-  max-height: 80px;
-  overflow: hidden;
+p.Pbody {
+  margin-top: 8px;
+  max-height: 72px;
+  font-size: 16px;
+  color: var(--black-80E);
+
   text-overflow: ellipsis;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  /* max-width: 200px; */
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .body {
   width: 100%;
   margin-left: 20px;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 20px;
 }
 .body.noImage {
   margin-left: 0;
 }
 .bottom {
-  margin-top: 12px;
+  margin-top: 16px;
   display: flex;
   font-style: normal;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   font-weight: normal;
-  color: #474747;
-  font-size: 12px;
+  color: var(--black-80E);
+  font-size: 14px;
   line-height: 18px;
 }
 
 .leftBottom {
   display: flex;
+  margin-right: 24px;
+}
+
+.rightBottom {
+  /* background-color: red; */
+  height: 20px;
 }
 
 .vote {
   display: flex;
-  margin-left: 10px;
+  margin-left: 16px;
   align-items: center;
-  margin-right: 10px;
+  margin-right: 16px;
+}
+.edit {
+  padding: 3px;
 }
 
 .upVote {
-  margin-right: 4px;
+  margin-right: 8px;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 3.67px;
 }
 
 .downVote {
-  margin-left: 4px;
+  margin-left: 8px;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 3.67px;
+}
+
+.upVote:hover,
+.downVote:hover,
+.pin.notPinned:hover,
+.edit:hover {
+  background-color: rgba(33, 33, 33, 0.08);
+  border-radius: 4px;
+}
+
+.pinned {
+  /* background-color: rgb(28, 104, 252); */
+  background-color: #ffc700;
+  border-radius: 4px;
 }
 
 .views {
@@ -89,10 +133,11 @@ p {
 }
 
 .views svg {
-  margin-right: 4px;
+  margin-right: 6px;
 }
 
 .pin {
+  padding: 2px 4px;
   margin-right: 12px;
 }
 
@@ -107,7 +152,7 @@ p {
 
   background: #fafafa;
   border: 1px solid #e8e8e8;
-  border-radius: 3px;
+  border-radius: 4px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

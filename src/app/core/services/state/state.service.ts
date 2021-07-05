@@ -11,10 +11,13 @@ export class StateService {
   private backDropSource = new BehaviorSubject<boolean>(false);
 
   private uuidSource = new BehaviorSubject<string>('');
+  private titleSource = new BehaviorSubject<string>('Primate');
+
   private authTokenSource = new BehaviorSubject<string>('');
 
   uuid = this.uuidSource.asObservable();
   authToken = this.authTokenSource.asObservable();
+  pageTitle = this.titleSource.asObservable();
   isbackDropON = this.backDropSource.asObservable();
 
   isAuthenticated = this.isAuthenticatedSource.asObservable();
@@ -52,5 +55,9 @@ export class StateService {
   }
   setBackdrop_Off() {
     this.backDropSource.next(false);
+  }
+
+  setPageTitle(titleString) {
+    this.titleSource.next(titleString);
   }
 }

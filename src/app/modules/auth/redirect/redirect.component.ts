@@ -41,7 +41,9 @@ export class RedirectComponent implements OnInit {
     this.definationFunction();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._state.setPageTitle('Authenticating | Primate ');
+  }
 
   private _createMetaState(url) {
     let urlArray = url.split('/');

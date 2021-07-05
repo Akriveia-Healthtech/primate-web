@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { routes } from 'src/environments/routes';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { StateService } from 'src/app/core/services/state/state.service';
 
 @Component({
   selector: 'app-signin',
@@ -27,6 +28,7 @@ export class SigninComponent implements OnInit {
   constructor(
     private _auth: AuthService,
     private _router: Router,
+    private _state: StateService,
     private utils: UtilityService,
     private fb: FormBuilder
   ) {}
@@ -36,28 +38,64 @@ export class SigninComponent implements OnInit {
     loginWithPW: false,
   };
   ngOnInit(): void {
+    this._state.setPageTitle('Login | Primate');
+
     this.initializeForm();
   }
-  sendEmail() {
+  async sendEmail() {
     const vaild = this.validityChecker();
     if (vaild) {
       this.toggleButtonLoading();
-      this._auth
-        .sendMagiclink(this.signInFormControl.value.email)
-        .then((res) => {
-          this.error.httpsError.state = false;
-          console.log(res);
-          this.toggleButtonLoading();
+      try {
+        let userExists: boolean = false;
+        let userData = {
+          userName: '',
+          prefix: '',
+        };
+        const userResponse = await this._auth.checkUserExistsWithEmail(this.signInFormControl.value.email);
+        await userResponse.subscribe(
+          (data) => {
+            console.log(data);
+            userExists = data['exists'];
+            console.log(userExists);
+            if (userExists) {
+              console.log(data.userDetails);
+              userData.userName = data['userDetails'][0]['fName'].S + ' ' + data['userDetails'][0]['lName'].S;
+              userData.prefix = data['userDetails'][0]['subDomainPrefix'].S;
+              console.log(userData);
+              this._auth
+                .sendMagiclink(this.signInFormControl.value.email, userData.userName, userData.prefix)
+                .then((res) => {
+                  this.error.httpsError.state = false;
+                  console.log(res);
+                  this.toggleButtonLoading();
 
-          this.nextStep('step1');
-        })
-        .catch((err) => {
-          console.log(err);
-          this.error.httpsError.state = true;
-          this.error.httpsError.message = err.error.errorDetail.includes('User does not exist.')
-            ? 'Invalid email address'
-            : 'Something went wrong, reload.';
-        });
+                  this.nextStep('step1');
+                })
+                .catch((err) => {
+                  console.log(err);
+                  this.error.httpsError.state = true;
+                  this.error.httpsError.message = err.error.errorDetail.includes('User does not exist.')
+                    ? 'Invalid email address'
+                    : 'Something went wrong, reload.';
+                });
+            } else {
+              this.error.httpsError.state = true;
+              this.error.httpsError.message = "User doesn't exit.";
+            }
+          },
+          (error) => {
+            console.log(error);
+            this.error.httpsError.state = true;
+            this.error.httpsError.message = 'Taking long time to load. Please reload.';
+          }
+        );
+      } catch (err) {
+        console.log(err);
+        this.error.httpsError.state = true;
+        this.error.httpsError.message = 'Something went wrong.';
+      }
+
       console.log(this.signInFormControl.value);
     }
   }

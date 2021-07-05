@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="CTAContainer">
-      <div class="professional">
+      <div class="professional" *ngIf="user.isPro">
         <p>Professional</p>
       </div>
       <button>Connect</button>
@@ -43,7 +43,7 @@
   </div>
 </div>
 <hr *ngIf="show" />
-<div class="primateMainContainer" style="display: none" *ngIf="show">
+<div class="primateMainContainer" *ngIf="show">
   <div class="profileBottom">
     <div class="post">
       <h2>Posts</h2>

@@ -56,6 +56,8 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this._state.setPageTitle('Create an account | Primate ');
+
     this.initializeForm();
   }
 

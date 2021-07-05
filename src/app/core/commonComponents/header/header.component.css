@@ -20,6 +20,7 @@
   display: flex;
   /* background-color: lawngreen; */
   width: fit-content;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -35,7 +36,7 @@
 }
 
 .brand .brandName {
-  margin: 25px 0px 25px 10px;
+  margin: 25px 40px 25px 10px;
   height: fit-content;
   font-style: normal;
   font-weight: bold;
@@ -84,17 +85,18 @@ hr {
   align-items: center;
 }
 
-.desktop .search input,
+.search input,
 .search {
-  width: 300px;
-  height: 40px;
-  border: 1px solid #eeeeee;
+  width: 360px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 4px;
   outline: none;
   font-size: 14px;
   line-height: 20px;
-  color: #959da5;
+  color: black;
 }
 
 .search {
@@ -105,22 +107,23 @@ hr {
 
 .search svg {
   position: absolute;
-  left: 270px;
+  left: 330px;
   cursor: pointer;
-  top: 10px;
+  top: 8px;
 }
 
 .search input {
-  padding: 10px;
+  padding: 8px 10px;
 }
 
-.desktop .search input:focus {
+.search input:focus {
   border: 1px solid #1653c9;
 }
 
 .loginBtn {
   font-style: normal;
   font-weight: 600;
+
   cursor: pointer;
   font-size: 14px;
   line-height: 20px;
@@ -128,46 +131,74 @@ hr {
 
 @media (max-width: 1080px) {
   .headerContainer {
-    padding: 0px 20px;
+    /* width: fill; */
+    width: stretch;
+
+    /* overflow: scroll; */
+
+    padding: 0px 0px;
     display: block;
     justify-content: space-between;
   }
+  .header {
+    /* justify-content: left; */
+    padding: 0;
+  }
+
+  .primateMainContainer {
+    /* background-color: royalblue; */
+    padding: 0vw;
+    margin: 0;
+    width: inherit !important;
+    padding: 14px 16px;
+  }
   .brand .brandName {
-    margin: 15px 0px 15px 8px;
-    /* background-color: red; */
-    font-weight: bold;
-    font-size: 16.2652px;
-    line-height: 19px;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    color: #000000;
+    display: none;
   }
 
   .iconPrimate {
-    margin: 15px 0px 0 0;
-    width: 20px;
-    height: 20px;
+    margin: 0;
+    padding: 3px 16px;
+
+    /* background-color: saddlebrown; */
   }
 
   .iconPrimate svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .menu.mobile {
-    display: initial;
-    cursor: pointer;
-    width: 24px;
-    width: fit-content;
-    height: fit-content;
-    padding: 0%;
-    margin: 15px 25px 15px 0px;
-    /* background-color: lawngreen; */
-    height: 24px;
+    /* width: 20px;
+    height: 20px; */
   }
 
   .desktop {
-    display: none;
+    /* background-color: seagreen; */
+    width: fit-content;
+  }
+  .desktop .search input,
+  .search {
+    width: 190px;
+    height: 36px;
+    border: 1px solid #eeeeee;
+    box-sizing: border-box;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    line-height: 20px;
+    color: #959da5;
+  }
+
+  .search {
+    display: flex;
+    margin-right: 20px;
+    position: relative;
+  }
+
+  .search svg {
+    position: absolute;
+    left: 160px;
+    cursor: pointer;
+    top: 8px;
+  }
+
+  .search input {
+    padding: 8px 10px;
   }
 }

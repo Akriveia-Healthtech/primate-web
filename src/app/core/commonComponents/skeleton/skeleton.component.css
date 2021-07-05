@@ -1,8 +1,8 @@
 .skeleton-title {
   width: 100%;
   height: 30px;
-  background: #eeeeee;
-  border-radius: 3px;
+  background: #f0f0f0;
+  border-radius: var(--borderRadius);
   position: relative;
   overflow: hidden;
 }
@@ -10,8 +10,8 @@
 .skeleton-description {
   width: 100%;
   height: 60px;
-  background: #eeeeee;
-  border-radius: 3px;
+  background: #f0f0f0;
+  border-radius: var(--borderRadius);
   position: relative;
   overflow: hidden;
 }
@@ -19,10 +19,10 @@
 .skeleton-paragraph {
   width: 100%;
   height: 18px;
-  background: #eeeeee;
+  background: #f0f0f0;
   position: relative;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
 }
 
 .skeleton-image {
@@ -30,7 +30,7 @@
   height: 130px;
   position: relative;
   overflow: hidden;
-  background: #eeeeee;
+  background: #f0f0f0;
   border: 0.737881px solid #e8e8e8;
 }
 
@@ -43,7 +43,7 @@
   width: 100%;
 
   height: 100%;
-  background-image: linear-gradient(to right, #eeeeee, rgba(0, 0, 0, 0.1) 20%, #eeeeee 40%, #eeeeee 100%);
+  background-image: linear-gradient(to right, #f0f0f0, rgba(0, 0, 0, 0.1) 20%, #f0f0f0 40%, #f0f0f0 100%);
   background-repeat: no-repeat;
   background-size: 450px 450px;
   animation: shimmer 1s linear infinite;

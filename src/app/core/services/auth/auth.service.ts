@@ -66,7 +66,7 @@ export class AuthService {
       })
       .catch((err) => {
         window.alert('somethig went wrong');
-        console.log(err);
+        this._utility.systemLog(err, 'error');
       });
   }
 
@@ -91,12 +91,14 @@ export class AuthService {
     return this._http.post(api.setupUser, data, null).toPromise();
   }
 
-  sendMagiclink(email) {
+  sendMagiclink(email, userName, prefix) {
     return this._http
       .post(
         api.magicLinkLogin,
         {
           email: email,
+          name: userName,
+          prefix: prefix,
         },
         null
       )
@@ -104,6 +106,16 @@ export class AuthService {
   }
   getUserDetails(uuid) {
     return this._http.get(api.getUser + '/' + uuid);
+  }
+
+  checkUserExistsWithEmail(email) {
+    return this._http.post(
+      api.checkSubdomain,
+      {
+        email: email,
+      },
+      null
+    );
   }
 
   async _CheckAuth() {
@@ -129,10 +141,10 @@ export class AuthService {
     }
     this._state.isAuthenticated.subscribe(
       (res) => {
-        console.log('IS AUTH:', res);
+        this._utility.systemLog(`IS AUTH: ${res}`, 'debug');
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
     this._state.authToken.subscribe(

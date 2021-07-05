@@ -8,9 +8,15 @@
       <div class="filterBox">
         <div class="primateFilter" (click)="toggleFilterOption()">
           <div class="filterText">Filter</div>
-          <div class="filterNumber">1</div>
+          <div class="filterNumber" *ngIf="filter.activeFilterNumber >= 1">
+            {{ filter.activeFilterNumber }}
+          </div>
           <div class="selector">
-            <svg width="8" height="20" viewBox="0 0 8 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.25 8.5L9 12.25L12.75 8.5H5.25Z" fill="black" />
+            </svg>
+
+            <!-- <svg width="8" height="20" viewBox="0 0 8 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M0.073724 8.46966L3.4702 5.07322C3.56783 4.97559 3.72612 4.97559 3.82375 5.07322L7.22014 8.46966C7.37764 8.62716 7.26614 8.89644 7.04334 8.89644H0.250504C0.0277738 8.89644 -0.083766 8.62715 0.073724 8.46966Z"
                 fill="black"
@@ -19,7 +25,7 @@
                 d="M0.073724 12.3232L3.4702 15.7197C3.56783 15.8173 3.72612 15.8173 3.82375 15.7197L7.22014 12.3232C7.37764 12.1657 7.26614 11.8964 7.04334 11.8964H0.250504C0.0277738 11.8964 -0.083766 12.1657 0.073724 12.3232Z"
                 fill="black"
               />
-            </svg>
+            </svg> -->
           </div>
         </div>
         <div class="optionMenu" *ngIf="filterMenuState">
@@ -27,8 +33,9 @@
             <input class="checkbox" type="checkbox" [checked]="filter.status.status" (click)="toggleFilter('Status')" />
             <div class="filterOptionText">Status</div>
           </div>
+          <hr />
           <div class="filterOption-double" *ngIf="filter.status.status">
-            <div class="marginbottom-3">
+            <div class="statusOption marginbottom-8">
               <input
                 class="checkbox"
                 type="checkbox"
@@ -37,7 +44,7 @@
               />
               <div class="filterOptionText">Shared</div>
             </div>
-            <div>
+            <div class="statusOption">
               <input
                 class="checkbox"
                 [checked]="filter.status.draft"
@@ -46,12 +53,14 @@
               />
               <div class="filterOptionText">Drafts</div>
             </div>
+            <hr />
           </div>
           <div class="filterOption-single date">
             <input class="checkbox" type="checkbox" (click)="toggleFilter('Date')" [checked]="filter.date.status" />
             <div class="filterOptionText">Date</div>
           </div>
           <div class="filterOption-between" *ngIf="filter.date.status">
+            <hr />
             <div class="text">Between</div>
             <div class="between-box">
               <mat-date-range-input [rangePicker]="picker">
@@ -86,8 +95,10 @@
         [slug]="post.slug"
         [createdDate]="post.createdDate"
         [reads]="post.reads"
+        [piningFunction]="piningFunction"
         [votes]="post.votes"
         [title]="post.title"
+        [pinned]="post.isPinned"
         [description]="post.description"
         [featuredImg]="post.featuredImg"
         [status]="post.status"

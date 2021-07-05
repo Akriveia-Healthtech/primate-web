@@ -36,6 +36,7 @@
   }
 
   .footerBox {
+    width: fit-content !important;
     margin: 0 auto;
   }
   .footerItem {

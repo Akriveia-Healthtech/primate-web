@@ -18,7 +18,7 @@
   margin-top: 30px;
   border: 1px solid #eeeeee;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
   padding: 15px;
 }
 
@@ -29,7 +29,7 @@ input {
   outline: none;
   border: 1px solid #eeeeee;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
 }
 
 .ForumName input {
@@ -93,7 +93,7 @@ button {
   width: 360px;
   height: 40px;
 
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -139,7 +139,7 @@ button {
   margin-top: 4px;
   border: 1px solid #bebebe;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
 }
 
 .item {

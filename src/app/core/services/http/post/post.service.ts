@@ -8,9 +8,10 @@ import { HttpService } from '../http.service';
 export class PostService {
   constructor(private _http: HttpService) {}
 
-  getAllPost(LastEvaluatedKey: null | object, jwtToken: string) {
+  getAllPost(LastEvaluatedKey: null | object, jwtToken: string | null, uuid: null | string) {
     const body = {
       pageNo: 1,
+      uuid: uuid,
       LastEvaluatedKey: LastEvaluatedKey === undefined ? null : LastEvaluatedKey,
     };
     return this._http.post(api.getAllPost, body, jwtToken);
@@ -28,5 +29,15 @@ export class PostService {
       params['endDate'] = endDate;
     }
     return this._http.get(api.filterPost, params, null);
+  }
+
+  pinPost(oldPost: string | null = null, newPost: string, jwtToken: string) {
+    let body = {
+      newPinnedID: newPost,
+    };
+    if (oldPost !== null) {
+      body['oldPinnedID'] = oldPost;
+    }
+    return this._http.post(api.pinPost, body, jwtToken);
   }
 }

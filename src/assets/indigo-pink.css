@@ -1016,7 +1016,7 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 
   border: 1px solid #bebebe;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--borderRadius);
   color: rgba(0, 0, 0, 0.87);
 }
 
