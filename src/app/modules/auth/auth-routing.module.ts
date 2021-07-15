@@ -7,6 +7,7 @@ import { RedirectComponent } from './redirect/redirect.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { UrlGuard } from '../../../app/core/services/guard/url.guard';
+import { ErrorPageNotFoundComponent } from 'src/app/core/errors/error-page-not-found/error-page-not-found.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,8 @@ const routes: Routes = [
       { path: 'redirect/:cypherCode', component: RedirectComponent },
     ],
   },
+  { path: '404', component: ErrorPageNotFoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

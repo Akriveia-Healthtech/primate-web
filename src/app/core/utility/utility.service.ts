@@ -98,10 +98,21 @@ export class UtilityService {
         break;
     }
   }
-
+  slugify(text) {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, '-') // Replace spaces with -
+      .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+      .replace(/\-\-+/g, '-') // Replace multiple - with single -
+      .replace(/^-+/, '') // Trim - from start of text
+      .replace(/-+$/, ''); // Trim - from end of text
+  }
   reArrangePostData(posts): Array<object> {
+    console.log('Re-Arranging Post Data');
     let post = [];
     posts.map((data, index) => {
+      // console.log(data.featuredImg);
       const CurData = {
         postID: data.postID.S,
         slug: data.slug.S,
@@ -111,7 +122,7 @@ export class UtilityService {
         isPinned: data.isPinned !== undefined ? data.isPinned.BOOL : false,
         title: data.title.S,
         description: data.description.S,
-        featuredImg: data.featuredImg.S,
+        featuredImg: data.featuredImg.S !== undefined ? data.featuredImg.S : '',
         tags: data.tags.L,
         status: data.status.S,
       };
@@ -126,6 +137,7 @@ export class UtilityService {
       }
       post.push(readyData);
     });
+    console.log(post);
     return post;
   }
 
@@ -152,8 +164,8 @@ export class UtilityService {
     const k: any = ((num / 1000) * Math.sign(num)).toFixed(0).toString() + 'K';
     return Math.abs(num) > 999 ? k : Math.sign(num) * Math.abs(num);
   }
-  testSite = 'https://prazu.primate.health';
-  testMode = false;
+  testSite = 'https://sae.primate.health';
+  testMode = true;
   checkSubdomainInput(): boolean {
     var domain = this.testMode ? /:\/\/([^\/]+)/.exec(this.testSite)[1] : /:\/\/([^\/]+)/.exec(window.location.href)[1];
     // var domain = /:\/\/([^\/]+)/.exec(this.testSite)[1];
@@ -188,6 +200,7 @@ export class UtilityService {
         return '';
       } else {
         return list[0];
+        undefined;
       }
     } else {
       return '';

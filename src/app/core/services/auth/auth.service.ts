@@ -124,12 +124,16 @@ export class AuthService {
       console.log('SESSION:', session);
       // console.log('SESSION:', res);
       const user = this._utility.LOCAL_STORAGE_GET('user');
+      console.log(user);
       // this._state.setUuid(user.uuid);
       this._state.setAuthentication(true);
       Auth.currentSession()
         .then((res) => {
           // console.log(res);
           this._state.setAuthjwtToken(res['idToken']['jwtToken']);
+          if (user) {
+            this._state.setUuid(user.uuid);
+          }
         })
         .catch((err) => {
           console.log(err);

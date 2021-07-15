@@ -40,4 +40,29 @@ export class PostService {
     }
     return this._http.post(api.pinPost, body, jwtToken);
   }
+  S3_addFeaturedImg(obj, type) {
+    const payLoad = {
+      image: obj,
+      mime: type,
+    };
+    console.log(payLoad);
+    return this._http.uploadImgPost(api.addFeaturedImg, payLoad).toPromise();
+  }
+  addANewPost(payload, jwtToken) {
+    console.log('Initiating Post');
+    return this._http.post(api.addPost, payload, jwtToken);
+  }
+
+  getPost(id, jwtToken) {
+    console.log(api.getPost + `/${id}`);
+    return this._http.get(api.getPost + `/${id}`, jwtToken);
+  }
+
+  deletePost(id, jwtToken) {
+    return this._http.delete(api.deletePost + `/${id}`, jwtToken);
+  }
+
+  deleteFeaturedImg(fileName, jwtToken) {
+    return this._http.delete(api.deleteFeatureImg + `/${fileName}`, jwtToken);
+  }
 }

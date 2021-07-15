@@ -1,8 +1,22 @@
 .cp-header {
   width: 100%;
+  background-color: transparent;
   border-bottom: 1px solid var(--dividerGrey);
 }
 
+.cp-parent,
+.cp-parent-setting {
+  display: none;
+}
+
+.cp-parent.show,
+.cp-parent-setting.show {
+  display: block;
+  height: 100vh;
+
+  width: 100%;
+  overflow-y: scroll;
+}
 .cp-container {
   width: 720px;
   max-width: 720px;
@@ -33,6 +47,8 @@
 
 .cp-body {
   padding-top: 32px;
+  /* background-color: red; */
+  margin-bottom: 80px;
 }
 .inputTitle {
   height: var(--h1LineHeight);
@@ -41,7 +57,8 @@
   font-size: var(--h1FontSize);
   line-height: var(--h1LineHeight);
   color: var(--black);
-
+  min-height: var(--h1LineHeight);
+  min-width: 720px;
   outline: none;
   border: none;
 }
@@ -51,11 +68,16 @@
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
+  min-height: 24px;
+  min-width: 720px;
   height: 24px;
   outline: none;
   border: none;
   line-height: 24px;
   color: rgba(0, 0, 0, 0.8);
+}
+.inputSubTitle {
+  margin-bottom: 32px;
 }
 
 .inputTitle::placeholder {
@@ -96,4 +118,225 @@
 
 .cp-settingBtn:hover {
   color: var(--primaryBlue);
+}
+
+.cp-setting-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  margin-top: 104px;
+  padding: 0 25px 0 20px;
+}
+
+.cp-setting-postPreview {
+  margin-top: 20px;
+  padding: 20px 0 0 0;
+}
+
+.cp-setting-postPreviewTitle {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+}
+
+.cp-setting-postPreviewText {
+  color: var(--black-80E);
+}
+
+.cp-setting-closeBtn {
+  height: 14px;
+  cursor: pointer;
+  width: 14px;
+}
+
+.cp-setting-postPreviewEditBtn {
+  background-color: transparent;
+  color: var(--black-80E);
+  margin-left: 8px;
+}
+
+.cp-setting-postCard {
+  /* background-color: tomato; */
+  padding: 20px;
+  display: flex;
+  /* align-items: center; */
+}
+
+.cp-setting-imgPlaceholder {
+  background: #f0f0f0;
+  border-radius: 4px;
+  height: fit-content;
+  padding: 45px 63px;
+  margin-right: 20px;
+}
+
+.cp-setting-imgUpload,
+.cp-setting-imgUpload img {
+  width: 0px;
+  margin-right: 0px;
+  border-radius: 0px;
+  height: 0px;
+}
+
+.cp-setting-imgUpload.show,
+.cp-setting-imgUpload.show img {
+  width: 156px;
+  margin-right: 20px;
+  border-radius: 4px;
+  height: 120px;
+}
+.inputUploadImg {
+  display: none;
+}
+
+.cp-setting-postCard-body {
+  height: 100%;
+  /* background-color: violet; */
+  width: 100%;
+}
+.cp-setting-postCard-title {
+  /* background-color: turquoise; */
+  letter-spacing: 0.15px;
+  max-height: 56px;
+  margin-bottom: 8px;
+}
+
+.cp-setting-postCard-postBody {
+  margin-bottom: 16px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  max-height: 72px;
+  line-height: 24px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  /* max-width: 200px; */
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* or 150% */
+
+  /* Text/Medium Emphasis - 80% */
+
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.cp-setting-postCard-footer {
+  color: var(--black-80E);
+  font-size: 14px;
+  line-height: 20px;
+}
+.cp-setting-postCard-date {
+  margin-left: 24px;
+  color: var(--black-60E);
+}
+.cp-setting-featuredPost-save,
+.cp-setting-postURL-edit,
+.cp-setting-postURL-save {
+  background-color: transparent;
+  color: var(--primaryBlue);
+}
+.cp-setting-featuredPost-uploadImg {
+  background: #fafafa;
+  /* Border/Border */
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: black;
+}
+.cp-setting-postURL {
+  padding: 24px 0px 20px 0px;
+  /* background-color: tomato; */
+}
+
+.cp-setting-postURL-header {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  height: 36px;
+}
+
+.cp-setting-postURL-headerText,
+.cp-setting-postURL-edit,
+.cp-setting-dangerZone-headerText {
+  color: var(--black-80E);
+}
+
+.cp-setting-postURL-body-editable {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 12px;
+}
+.cp-setting-postURL-primateurl {
+  color: var(--black-60E);
+}
+.cp-setting-postURL-slugInput {
+  width: 180px;
+  height: 36px;
+  padding: 8px 10px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+  outline: none;
+  margin-left: 8px;
+}
+.cp-setting-postURL-save {
+  margin-left: 8px;
+}
+
+input:focus {
+  border: 1px solid var(--primaryBlue);
+}
+.cp-setting-postURL-displayURL {
+  color: var(--black-60E);
+}
+.cp-setting-dangerZone {
+  padding: 24px 0 0 0;
+  /* background-color: tomato; */
+}
+
+.cp-setting-dangerZone-deletePostCTA {
+  background-color: transparent;
+  margin-top: 20px;
+  border: 1px solid var(--errorRed);
+  font-weight: 500;
+  color: var(--errorRed);
+}
+
+.blueText {
+  color: var(--primaryBlue) !important;
+}
+
+.cp-setting-postButton {
+  margin-top: 20px;
+}
+
+.sk-dashboardBtn {
+  width: 106px;
+  height: 36px !important;
+}
+.sk-title {
+  width: 100%;
+  height: 48px;
+}
+.sk-subTitle {
+  margin-top: 4px;
+  width: 100%;
+  height: 24px;
+}
+
+.sk-toolbox {
+  margin-top: 32px;
+  width: 100%;
+  height: 24px;
+}
+.sk-body {
+  margin-top: 16px;
+
+  width: 100%;
+  height: 700px;
 }

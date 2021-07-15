@@ -12,6 +12,7 @@ export class SkeletonComponent implements OnInit {
   @Input() type: 'image' | 'header';
   @Input() image: boolean = false;
   @Input() title: boolean = false;
+  @Input() box: boolean = false;
 
   @Input() description: boolean = false;
 

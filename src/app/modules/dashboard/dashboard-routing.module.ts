@@ -8,6 +8,7 @@ import { StatsComponent } from './stats/stats.component';
 import { UrlGuard } from '../../../app/core/services/guard/url.guard';
 import { StateService } from '../../../app//core/services/state/state.service';
 import { CreatePostComponent } from './post/create-post/create-post.component';
+import { ErrorPageNotFoundComponent } from 'src/app/core/errors/error-page-not-found/error-page-not-found.component';
 const routes: Routes = [
   {
     path: '',
@@ -26,6 +27,12 @@ const routes: Routes = [
     path: 'createPost',
     component: CreatePostComponent,
   },
+  {
+    path: 'editPost/:postID',
+    component: CreatePostComponent,
+  },
+  { path: '404', component: ErrorPageNotFoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

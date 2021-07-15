@@ -12,15 +12,21 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextFieldModule } from '@angular/cdk/text-field';
 @NgModule({
   declarations: [DashboardComponent, PostComponent, SettingComponent, StatsComponent, CreatePostComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
     MatDatepickerModule,
+    TextFieldModule,
     CommonComponentsModule,
     MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    QuillModule.forRoot(),
     DashboardRoutingModule,
   ],
 })

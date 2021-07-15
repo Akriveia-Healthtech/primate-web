@@ -19,6 +19,7 @@ import { UsersComponent } from './modules/users/users.component';
 import { LandingPageComponent } from './modules/users/landing-page/landing-page.component';
 import { DashboardModule } from '../app/modules/dashboard/dashboard.module';
 const routes: Routes = [
+  { path: '404', component: ErrorPageNotFoundComponent },
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
@@ -33,8 +34,8 @@ const routes: Routes = [
     //! Checking from subdomain
     // children: [{ path: ':prefix', component: LandingPageComponent }],
   },
-  { path: '404', component: ErrorPageNotFoundComponent },
-  // { path: '**', redirectTo: '404' },
+
+  { path: '**', redirectTo: '/auth/signin', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -42,7 +43,7 @@ const routes: Routes = [
   // TODO: Have turned on the hash routing to check NGINX can work in it or not, if it does not work then please turn off
   // ! Make sure you check the hashing route with NGINX
   // ! The /user/:prefix doesn't work with hash coz the array index doesn't match, check the array index if you wannt debug
-  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false, onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

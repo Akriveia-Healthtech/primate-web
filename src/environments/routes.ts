@@ -9,4 +9,5 @@ export const routes = {
   error404: '/404',
   landingPage: '/primate',
   redirect: '/auth/redirect',
+  editPost: '/dashboard/editPost',
 };

@@ -21,7 +21,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-primateweb-dev-181444-deployment/amplify-cfn-templates/hosting/template.json",
         "logicalId": "hostingS3AndCloudFront"
       },
-      "lastPushTimeStamp": "2021-07-04T11:08:59.030Z",
+      "lastPushTimeStamp": "2021-07-06T15:10:28.838Z",
       "output": {
         "CloudFrontSecureURL": "https://d320m25mt8uqti.cloudfront.net",
         "S3BucketSecureURL": "https://primate-dev.s3.amazonaws.com",
@@ -45,7 +45,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-primateweb-dev-181444-deployment/amplify-cfn-templates/auth/primateweb46bd53e6-cloudformation-template.yml",
         "logicalId": "authprimateweb46bd53e6"
       },
-      "lastPushTimeStamp": "2021-07-04T11:08:59.061Z",
+      "lastPushTimeStamp": "2021-07-06T15:10:28.869Z",
       "output": {
         "UserPoolId": "ap-south-1_Vo6RLgBHq",
         "AppClientIDWeb": "537af4stk41f0cd5q0kbj73fi4",

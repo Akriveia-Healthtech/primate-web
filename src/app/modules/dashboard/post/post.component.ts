@@ -65,6 +65,7 @@ export class PostComponent implements OnInit {
   isLoading: boolean = false;
   ngOnInit(): void {
     this.piningFunction = this._piningFunction.bind(this);
+    this.editPostFunction = this._editPost.bind(this);
     this._state.setPageTitle('Dashboard | Primate ');
 
     this._loadAllPostData();
@@ -197,6 +198,12 @@ export class PostComponent implements OnInit {
           );
       }
     });
+  }
+
+  public editPostFunction: Function;
+  _editPost(postID) {
+    console.log(postID);
+    this._router.navigate([routes.editPost, postID]);
   }
   _loadAllPostData() {
     this.isLoading = true;

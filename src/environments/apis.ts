@@ -7,5 +7,10 @@ export const api = {
   getAllPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/getAllPost',
   filterPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/filterPost',
   checkSubdomain: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/checkSubdomain',
+  addPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/addPost',
+  addFeaturedImg: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/addFeaturedImg',
   pinPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/pinPost',
+  getPost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/getPost',
+  deletePost: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/deletePost',
+  deleteFeatureImg: 'https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/deleteFeaturedImg',
 };

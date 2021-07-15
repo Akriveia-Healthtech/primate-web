@@ -18,6 +18,7 @@ export class UrlGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this._CheckAuth();
     console.log('isAuthenticated', this.isAuthenticated);
+    console.log(next);
     this._utility.systemLog(`isAuthenticated ${this.isAuthenticated}`, 'debug');
     if (this._utility.checkSubdomainInput()) {
       return false;

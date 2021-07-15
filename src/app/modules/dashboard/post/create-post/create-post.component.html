@@ -1,21 +1,165 @@
-<div class="cp-header">
-  <div class="cp-header-mid cp-container">
-    <button class="cp-dashboardBtn" [routerLink]="['/dashboard/post']">Dashboard</button>
+<div class="cp-parent" [ngClass]="{ show: postSettingStates.isOn == false }">
+  <div *ngIf="!isLoading">
+    <div class="cp-header">
+      <div class="cp-header-mid cp-container">
+        <button class="cp-dashboardBtn" (click)="checkEligibleForDraft()">Dashboard</button>
+      </div>
+    </div>
+    <form [formGroup]="postFormControl" class="cp-body cp-container">
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        #autosizeTitle="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="3"
+        formControlName="title"
+        [(value)]="editingPostData.title"
+        type="text"
+        class="inputTitle max-width"
+        placeholder="Enter Title"
+      ></textarea>
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        #autosizeSubTitle="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="3"
+        [(value)]="editingPostData.description"
+        formControlName="subTitle"
+        type="text"
+        class="inputSubTitle max-width"
+        placeholder="Enter subtitle"
+      ></textarea>
+      <quill-editor
+        id="quill-editor-custom"
+        [styles]="{ height: '400px', border: 'none' }"
+        [(ngModel)]="editingPostData.body"
+        [modules]="editorModules"
+        (onEditorChanged)="changedEditor($event)"
+      ></quill-editor>
+    </form>
+    <div class="cp-footer">
+      <div class="cp-footer-mid cp-container">
+        <div class="cp-footer-mid-left">
+          <p>Last save</p>
+          <p>{{ lastSavedTime }}</p>
+        </div>
+        <div class="cp-footer-mid-right">
+          <button class="cp-settingBtn" (click)="toggleSetting()">Setting</button>
+          <button class="cp-postBtn" (click)="toggleSetting(true)">Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isLoading">
+    <div class="cp-header">
+      <div class="cp-header-mid cp-container">
+        <div class="sk-dashboardBtn">
+          <app-skeleton [box]="true"></app-skeleton>
+        </div>
+      </div>
+    </div>
+    <div class="cp-body cp-container">
+      <div class="sk-title">
+        <app-skeleton [box]="true"></app-skeleton>
+      </div>
+      <div class="sk-subTitle">
+        <app-skeleton [box]="true"></app-skeleton>
+      </div>
+      <div class="sk-toolbox">
+        <app-skeleton [box]="true"></app-skeleton>
+      </div>
+      <div class="sk-body">
+        <app-skeleton [box]="true"></app-skeleton>
+      </div>
+    </div>
   </div>
 </div>
-<div class="cp-body cp-container">
-  <textarea type="text" class="inputTitle max-width" placeholder="Enter Title"></textarea>
-  <textarea type="text" class="inputSubTitle max-width" placeholder="Enter subtitle"></textarea>
-</div>
-<div class="cp-footer">
-  <div class="cp-footer-mid cp-container">
-    <div class="cp-footer-mid-left">
-      <p>Last save</p>
-      <p>4:34 PM</p>
+
+<div class="cp-parent-setting" [ngClass]="{ show: postSettingStates.isOn == true }">
+  <div class="cp-setting-header cp-container">
+    <h2 class="cp-setting-title">Post Setting</h2>
+    <div class="cp-setting-closeBtn" (click)="toggleSetting()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+          fill="black"
+        />
+      </svg>
     </div>
-    <div class="cp-footer-mid-right">
-      <button class="cp-settingBtn">Setting</button>
-      <button class="cp-postBtn">Post</button>
+  </div>
+  <div class="cp-setting-postPreview cp-container">
+    <div class="cp-setting-postPreviewTitle">
+      <h3 class="cp-setting-postPreviewText">Featured image</h3>
+      <button
+        class="cp-setting-postPreviewEditBtn"
+        [ngClass]="{ blueText: postSettingStates.featuredImageEdit == true }"
+        (click)="toggleFeatureEditState()"
+      >
+        Edit
+      </button>
     </div>
+    <div class="cp-setting-postCard">
+      <input #uploadImg type="file" (change)="uploadImgFunction($event)" class="inputUploadImg" />
+      <div *ngIf="!base64Image.preview" class="cp-setting-imgPlaceholder">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M26.6667 3.33333V26.6667H3.33333V3.33333H26.6667ZM26.6667 0H3.33333C1.5 0 0 1.5 0 3.33333V26.6667C0 28.5 1.5 30 3.33333 30H26.6667C28.5 30 30 28.5 30 26.6667V3.33333C30 1.5 28.5 0 26.6667 0ZM18.5667 14.7667L13.5667 21.2167L10 16.9L5 23.3333H25L18.5667 14.7667Z"
+            fill="black"
+            fill-opacity="0.12"
+          />
+        </svg>
+      </div>
+      <div [ngClass]="{ show: base64Image.preview == true }" class="cp-setting-imgUpload">
+        <img id="editPostImg" #containerImg />
+      </div>
+      <div class="cp-setting-postCard-body">
+        <h3 class="cp-setting-postCard-title">{{ postFormControl.value.title }}</h3>
+        <p class="cp-setting-postCard-postBody">
+          {{ postFormControl.value.subTitle }}
+        </p>
+        <p class="cp-setting-postCard-footer">
+          <span class="cp-setting-postCard-author"> {{ user.name }} </span>
+          <span class="cp-setting-postCard-date">May 13</span>
+        </p>
+      </div>
+    </div>
+    <div *ngIf="postSettingStates.featuredImageEdit" class="cp-setting-featuredPost-CTAs">
+      <button class="cp-setting-featuredPost-uploadImg" (click)="clickImgButton()">Upload new</button>
+      <button class="cp-setting-featuredPost-save" (click)="saveFeaturedImg()">Save</button>
+    </div>
+  </div>
+  <div class="cp-setting-postURL cp-container">
+    <div class="cp-setting-postURL-header">
+      <h3 class="cp-setting-postURL-headerText">Post URL</h3>
+      <button
+        class="cp-setting-postURL-edit"
+        [ngClass]="{ blueText: postSettingStates.postURLEdit == true }"
+        (click)="togglePostURLEditState()"
+      >
+        Edit
+      </button>
+    </div>
+    <div class="cp-setting-postURL-body">
+      <div *ngIf="postSettingStates.postURLEdit" class="cp-setting-postURL-body-editable">
+        <p class="cp-setting-postURL-primateurl postBody">https://prazu.primate.health/</p>
+        <input placeholder="something-new" #slugInputTag type="text" class="cp-setting-postURL-slugInput" />
+        <button class="cp-setting-postURL-save" (click)="saveNewSlug(slugInputTag.value)">Save</button>
+      </div>
+      <p class="small cp-setting-postURL-displayURL">
+        You post URL will be https://martina.primate.health/{{ postFormControl.value.customSlug }}
+      </p>
+    </div>
+  </div>
+  <div *ngIf="postSettingStates.isFromPost" class="cp-container">
+    <button class="cp-setting-postButton" (click)="postFunction()">Post now</button>
+  </div>
+  <div *ngIf="!postSettingStates.isFromPost" class="cp-setting-dangerZone cp-container">
+    <div class="cp-setting-dangerZone-header">
+      <h3 class="cp-setting-dangerZone-headerText">Danger zone</h3>
+    </div>
+    <button class="cp-setting-dangerZone-deletePostCTA" (click)="__deletePost__(editingPostData.postID)">
+      Delete post
+    </button>
   </div>
 </div>

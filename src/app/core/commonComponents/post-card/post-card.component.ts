@@ -31,4 +31,5 @@ export class PostCardComponent implements OnInit {
   @Input() isLandingPage: boolean = false;
   @Input() isSkeleton: boolean = false;
   @Input() piningFunction: Function;
+  @Input() editPostFunction: Function;
 }

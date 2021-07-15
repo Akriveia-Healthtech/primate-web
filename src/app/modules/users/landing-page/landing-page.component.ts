@@ -48,6 +48,7 @@ export class LandingPageComponent implements OnInit {
       (data) => {
         console.log(data);
         if (!data.exists) {
+          console.log('user not found.');
           this._router.navigate([routes.error404]);
         } else {
           const userData = data.userDetails[0];
