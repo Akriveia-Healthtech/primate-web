@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral&display=swap');
+
 :root {
   --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif !important ;
+  --postBodyfont: 'Spectral', serif !important ;
   --black: #000000;
   --white: #ffffff;
   --primaryBlue: #1c68fc;
@@ -77,6 +80,27 @@ textarea,
 div {
   font-family: var(--font);
 }
+.clickable {
+  cursor: pointer;
+}
+.pp-mainBody ul,
+.pp-mainBody h1,
+.pp-mainBody h2,
+.pp-mainBody h3,
+.pp-mainBody h4,
+.pp-mainBody h5,
+.pp-mainBody h6,
+.pp-mainBody input,
+.pp-mainBody span,
+.pp-mainBody a,
+.pp-mainBody p,
+.pp-mainBody div {
+  font-family: var(--postBodyfont);
+  font-size: 18px;
+  color: var(--black-80E);
+  line-height: 30px;
+}
+
 .primateMainContainer {
   font-family: var(--font);
   width: 1080px !important;
@@ -132,6 +156,15 @@ p.postBody {
   line-height: 24px;
 }
 
+p.post-description {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 28px;
+
+  letter-spacing: 0.15px;
+}
+
 p.small {
   font-size: var(--textSmallSize);
   line-height: var(--textSmallLineHeight);
@@ -150,7 +183,8 @@ p.underline {
   text-decoration: underline;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: var(--black-80E);
 }
 
@@ -184,13 +218,39 @@ button:active {
   background-color: #1653c9;
 }
 
+button.white {
+  cursor: pointer;
+  background: transparent;
+  color: var(--black);
+  outline: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  font-style: normal;
+  border: none;
+}
+
 button.loading {
   background-color: #1653c9;
 }
 
+button.white:disabled {
+  background: transparent;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+
+  cursor: initial;
+}
+
+button.white:active {
+  background-color: transparent;
+}
+
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
 }
 
 /* Track */

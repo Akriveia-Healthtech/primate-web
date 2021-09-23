@@ -1,0 +1,160 @@
+<div class="search-result-container">
+  <div class="navContainer">
+    <div class="sr-navbar">
+      <svg class="logo" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0H30V30H0V15.01H7.5V22.5H22.5V7.5H0V0Z" fill="black" />
+      </svg>
+      <div class="sr-search-bar">
+        <span class="textBox">
+          <input type="text" #searchBox (keyup.enter)="search(searchBox.value)" name="" id="searchBox" />
+        </span>
+        <span class="cancelBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+          </svg>
+        </span>
+        <div class="vLine"></div>
+        <span class="searchBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
+              fill="black"
+              fill-opacity="0.8"
+            />
+          </svg>
+        </span>
+      </div>
+      <div class="box">
+        <div class="feedback clickable">Feedback?</div>
+
+        <div class="menuIcon">
+          <div class="clickable MenuSVG" (click)="toggleMenu()">
+            <svg
+              *ngIf="!menuState"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="black" />
+            </svg>
+            <svg
+              *ngIf="menuState"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+
+          <div class="dropdownOption" *ngIf="menuState">
+            <div class="menuOption">
+              <div class="menuItem home clickable">Sign in</div>
+              <div class="menuItem help clickable">Help</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sr-navbar-mobile">
+      <div class="ctaBar">
+        <div class="sr-mobile-logo">
+          <div class="sr-mobile-Icon">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0H30V30H0V15.01H7.5V22.5H22.5V7.5H0V0Z" fill="black" />
+            </svg>
+          </div>
+          <div class="sr-mobile-PrimateName">Primate</div>
+        </div>
+        <div class="sr-mobileMenu">
+          <svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21H21V19H3V21ZM3 16H21V14H3V16ZM3 9V11H21V9H3Z" fill="black" />
+          </svg>
+        </div>
+      </div>
+      <div class="sr-mobileSearchBar">
+        <span class="sr-mobile-textBox">
+          <input type="text" #searchBox (keyup.enter)="search(searchBox.value)" name="" id="searchBar-mobile" />
+        </span>
+
+        <span class="sr-mobile-searchBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
+              fill="black"
+              fill-opacity="0.8"
+            />
+          </svg>
+        </span>
+        <!-- <input type="text" id="searchBar-mobile" /> -->
+      </div>
+    </div>
+  </div>
+  <div class="resultMainPage">
+    <div class="filterSection">
+      <div class="allRegion">
+        <span class="text"> All regions </span>
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.83301 8.33325L9.99967 12.4999L14.1663 8.33325H5.83301Z" fill="black" fill-opacity="0.6" />
+          </svg>
+        </span>
+      </div>
+      <div class="allRegion">
+        <span class="text"> Any time </span>
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.83301 8.33325L9.99967 12.4999L14.1663 8.33325H5.83301Z" fill="black" fill-opacity="0.6" />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div class="suggestionResult">
+      <span class="text">Including results for </span> <span></span>
+      <span class="suggestion"> Early mornings and better work </span>
+    </div>
+    <div class="suggestionResult searchOnly">
+      <span class="text">Including results for </span> <span></span>
+      <span class="suggestion"> Early mornings and better work </span>
+    </div>
+
+    <div class="sr-results" *ngFor="let data of results">
+      <app-search-result-post-card
+        [id]="data.id"
+        [authorName]="data.authorName"
+        [createddate]="data.createddate"
+        [description]="data.description"
+        [title]="data.title"
+        [votes]="data.votes"
+        [img]="data.img"
+      ></app-search-result-post-card>
+    </div>
+  </div>
+
+  <div class="sr-bottomFooter">
+    <div class="WOP">
+      <span class="pBlue">
+        <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 3H14V17H0V10.0047H3.5V13.5H10.5V6.5H0V3Z" fill="#1C68FC" />
+        </svg>
+      </span>
+      <span class="sr-bf-text"> Write on Primate </span>
+    </div>
+    <div class="sr-footerBox">
+      <div class="sr-footerCTA">Terms</div>
+      <div class="sr-footerCTA">Privacy</div>
+      <div class="sr-footerCTA">Help</div>
+    </div>
+  </div>
+</div>

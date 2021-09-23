@@ -71,6 +71,8 @@ export class RedirectComponent implements OnInit {
             name: res['data']['fName'] + ' ' + res['data']['lName'],
             email: res['data']['email'],
             isPro: res['data']['isPro'],
+            country: res['data']['country'],
+            subDomainPrefix: res['data']['subDomainPrefix'],
             img: res['data']['image'],
             isSetupCompleted_FLAG: res['data']['isSetupCompleted_FLAG'],
           };

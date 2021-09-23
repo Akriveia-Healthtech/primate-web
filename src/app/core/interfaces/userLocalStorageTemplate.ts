@@ -4,5 +4,7 @@ export interface userLocalStorageDataTemplate {
   email: string;
   isPro: boolean;
   img: string;
+  country: string;
+  subDomainPrefix: string;
   isSetupCompleted_FLAG: boolean;
 }

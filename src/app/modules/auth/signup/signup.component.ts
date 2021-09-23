@@ -141,8 +141,10 @@ export class SignupComponent implements OnInit {
             uuid: uploadData.uuid,
             name: uploadData.fName + ' ' + uploadData.lName,
             email: uploadData.email,
+            country: uploadData.country,
             img: '',
             isPro: uploadData.isPro,
+            subDomainPrefix: '',
             isSetupCompleted_FLAG: uploadData.isSetupCompleted_FLAG,
           };
           this._auth

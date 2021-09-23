@@ -33,7 +33,7 @@
   border-radius: inherit;
 }
 
-h4 {
+h3 {
   max-height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -78,7 +78,7 @@ p.Pbody {
   font-weight: normal;
   color: var(--black-80E);
   font-size: 14px;
-  line-height: 18px;
+  line-height: 20px;
 }
 
 .leftBottom {

@@ -8,7 +8,7 @@
     {{ draft ? 'Draft' : '' }}
   </div>
   <div class="body" [ngClass]="{ noImage: featuredImg.length <= 1 && !draft }">
-    <h3>{{ title }}</h3>
+    <h3 (click)="gotoPost(postID, slug)">{{ title }}</h3>
     <p class="Pbody" *ngIf="!draft">
       {{ description }}
     </p>
@@ -16,7 +16,7 @@
       <div class="leftBottom">
         <div class="date">
           <!-- {{new Date(createdDate * 1000)}} -->
-          <p class="small">
+          <p>
             {{ createdDate }}
           </p>
         </div>
@@ -43,7 +43,7 @@
           </svg>
 
           <div class="voteText">
-            <p class="small">
+            <p>
               {{ votes }}
             </p>
           </div>
@@ -71,7 +71,7 @@
             />
           </svg>
           <div class="viewText">
-            <p class="small">
+            <p>
               {{ reads }}
             </p>
           </div>

@@ -10,4 +10,6 @@ export const routes = {
   landingPage: '/primate',
   redirect: '/auth/redirect',
   editPost: '/dashboard/editPost',
+  postPreview: '/',
+  connect: '/connect',
 };

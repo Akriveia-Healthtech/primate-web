@@ -65,4 +65,11 @@ export class PostService {
   deleteFeaturedImg(fileName, jwtToken) {
     return this._http.delete(api.deleteFeatureImg + `/${fileName}`, jwtToken);
   }
+  q = `https://search-primate-posts-rm626giotwvzsiq4flbm2acw24.ap-southeast-1.cloudsearch.amazonaws.com/2013-01-01/search?q=`;
+
+  searchPosts(string, region = '', time = '') {
+    return this._http.get(
+      `https://107ef7pr84.execute-api.ap-south-1.amazonaws.com/dev/searchPosts?searchKey=${string}`
+    );
+  }
 }

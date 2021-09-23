@@ -1,0 +1,100 @@
+<div class="card" *ngIf="!isSkeleton">
+  <div class="imgPlaceholder" [ngClass]="{ img: featuredImg.length >= 1 }">
+    <img src="{{ featuredImg }}" *ngIf="featuredImg.length >= 1" />
+  </div>
+  <div class="body" [ngClass]="{ noImage: featuredImg.length <= 1 }">
+    <h3 (click)="gotoPost(postID, authorSubDomainPrefix)">{{ title }}</h3>
+    <p class="Pbody">
+      {{ description }}
+    </p>
+    <div class="bottom">
+      <div class="leftBottom">
+        <p class="authorName">
+          {{ author }}
+        </p>
+        <div class="pinnedIcon" *ngIf="pinned">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M0 4C0 1.79086 1.79086 0 4 0H16C18.2091 0 20 1.79086 20 4V16C20 18.2091 18.2091 20 16 20H4C1.79086 20 0 18.2091 0 16V4Z"
+              fill="#FFC700"
+            />
+            <path
+              d="M11.5 4V7.75C11.5 8.59 11.7775 9.37 12.25 10H7.75C8.2375 9.355 8.5 8.575 8.5 7.75V4H11.5ZM13.75 2.5H6.25C5.8375 2.5 5.5 2.8375 5.5 3.25C5.5 3.6625 5.8375 4 6.25 4H7V7.75C7 8.995 5.995 10 4.75 10V11.5H9.2275V16.75L9.9775 17.5L10.7275 16.75V11.5H15.25V10C14.005 10 13 8.995 13 7.75V4H13.75C14.1625 4 14.5 3.6625 14.5 3.25C14.5 2.8375 14.1625 2.5 13.75 2.5Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+          </svg>
+        </div>
+        <div class="date">
+          <!-- {{new Date(createdDate * 1000)}} -->
+          <p>
+            {{ createdDate }}
+          </p>
+        </div>
+        <div class="vote">
+          <svg
+            class="upVote clickable"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              *ngIf="!voted"
+              d="M0.666992 5.99996L1.60699 6.93996L5.33366 3.21996V11.3333H6.66699V3.21996L10.387 6.94663L11.3337 5.99996L6.00033 0.666626L0.666992 5.99996Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+            <path
+              *ngIf="voted"
+              d="M0.666504 6.00002L1.6065 6.94002L5.33317 3.22002V11.3334H6.6665V3.22002L10.3865 6.94669L11.3332 6.00002L5.99984 0.666687L0.666504 6.00002Z"
+              fill="white"
+            />
+          </svg>
+
+          <div class="voteText">
+            <p>
+              {{ votes }}
+            </p>
+          </div>
+
+          <svg
+            class="downVote clickable"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.333 6.00004L10.393 5.06004L6.66634 8.78004L6.66634 0.666708L5.33301 0.666709L5.33301 8.78004L1.61301 5.05338L0.666341 6.00004L5.99967 11.3334L11.333 6.00004Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isSkeleton" class="card skeleton-card">
+  <div class="sk-img">
+    <app-skeleton [image]="true"></app-skeleton>
+  </div>
+  <div class="sk-body body">
+    <app-skeleton [title]="true"></app-skeleton>
+    <div style="margin-top: 10px">
+      <app-skeleton [description]="true"></app-skeleton>
+    </div>
+    <div style="margin-top: 12px; display: flex; align-items: center">
+      <div style="width: 253px; margin-right: 24px">
+        <app-skeleton [paragraph]="true"></app-skeleton>
+      </div>
+      <div style="width: 44px">
+        <app-skeleton [paragraph]="true"></app-skeleton>
+      </div>
+    </div>
+  </div>
+</div>

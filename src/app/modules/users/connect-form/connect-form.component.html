@@ -1,0 +1,37 @@
+<div class="cf-container">
+  <div class="cf-topBar">
+    <h2 class="cf-title">Connect with {{ user.fName }}</h2>
+    <svg
+      (click)="goBack()"
+      class="clickable"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+        fill="black"
+      />
+    </svg>
+  </div>
+  <div class="cf-form">
+    <div class="name">
+      <input type="text" class="cf-input-firstName" placeholder="Your first name" />
+      <input type="text" class="cf-input-lastName" placeholder="Your last name" />
+    </div>
+    <div class="email">
+      <input type="text" class="cf-input-email" placeholder="Your email address" />
+    </div>
+    <div class="message">
+      <textarea type="text" class="cf-input-message" placeholder="Your message"></textarea>
+    </div>
+    <div class="TOC">
+      <input class="cf-input-checkBox clickable" type="checkbox" name="" id="" />
+      <p class="underline">I accept the Terms of use</p>
+    </div>
+
+    <button disabled class="cf-cta-submit">Send message</button>
+  </div>
+</div>

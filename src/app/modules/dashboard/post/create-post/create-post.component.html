@@ -30,13 +30,15 @@
         class="inputSubTitle max-width"
         placeholder="Enter subtitle"
       ></textarea>
-      <quill-editor
-        id="quill-editor-custom"
-        [styles]="{ height: '400px', border: 'none' }"
-        [(ngModel)]="editingPostData.body"
-        [modules]="editorModules"
-        (onEditorChanged)="changedEditor($event)"
-      ></quill-editor>
+      <div class="customQuill">
+        <quill-editor
+          id="quill-editor-custom"
+          [styles]="{ height: 'fit-content', border: 'none' }"
+          [(ngModel)]="editingPostData.body"
+          [modules]="editorModules"
+          (onEditorChanged)="changedEditor($event)"
+        ></quill-editor>
+      </div>
     </form>
     <div class="cp-footer">
       <div class="cp-footer-mid cp-container">
@@ -142,12 +144,12 @@
     </div>
     <div class="cp-setting-postURL-body">
       <div *ngIf="postSettingStates.postURLEdit" class="cp-setting-postURL-body-editable">
-        <p class="cp-setting-postURL-primateurl postBody">https://prazu.primate.health/</p>
+        <p class="cp-setting-postURL-primateurl postBody">https://{{ user.subDomainPrefix }}.primate.health/</p>
         <input placeholder="something-new" #slugInputTag type="text" class="cp-setting-postURL-slugInput" />
         <button class="cp-setting-postURL-save" (click)="saveNewSlug(slugInputTag.value)">Save</button>
       </div>
       <p class="small cp-setting-postURL-displayURL">
-        You post URL will be https://martina.primate.health/{{ postFormControl.value.customSlug }}
+        You post URL will be https://{{ user.subDomainPrefix }}.primate.health/{{ postFormControl.value.customSlug }}
       </p>
     </div>
   </div>

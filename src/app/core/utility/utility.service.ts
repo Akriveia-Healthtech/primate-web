@@ -3,6 +3,7 @@ import hmacSHA512 from 'crypto-js/hmac-sha512';
 import AES from 'crypto-js/aes';
 import * as CryptoJS from 'crypto-js';
 import { HttpService } from '../services/http/http.service';
+import { routes } from 'src/environments/routes';
 
 @Injectable({
   providedIn: 'root',
@@ -110,6 +111,7 @@ export class UtilityService {
   }
   reArrangePostData(posts): Array<object> {
     console.log('Re-Arranging Post Data');
+
     let post = [];
     posts.map((data, index) => {
       // console.log(data.featuredImg);
@@ -118,6 +120,7 @@ export class UtilityService {
         slug: data.slug.S,
         createdDate: data.createdDate.N,
         reads: data.reads.N,
+        authorName: data.authorName.S,
         votes: data.votes.N,
         isPinned: data.isPinned !== undefined ? data.isPinned.BOOL : false,
         title: data.title.S,
@@ -141,8 +144,8 @@ export class UtilityService {
     return post;
   }
 
-  formatCreatedDate(createdDate) {
-    const month = new Date(createdDate * 1000).toLocaleString('default', { month: 'short' });
+  formatCreatedDate(createdDate, monthNameType: 'short' | 'long' = 'short', getDate = true, getTime = true) {
+    const month = new Date(createdDate * 1000).toLocaleString('default', { month: monthNameType });
     const date = new Date(createdDate * 1000).getDate();
     const year = new Date(createdDate * 1000).getFullYear();
     const time = new Date(createdDate * 1000).toLocaleTimeString(navigator.language, {
@@ -152,11 +155,18 @@ export class UtilityService {
     const currentYear = new Date().getFullYear();
     let returnFormat = '';
     if (year < currentYear) {
-      returnFormat = month.toString() + ' ' + date.toString() + ' on ' + year.toString();
+      if (getDate) {
+        returnFormat = month.toString() + ' ' + date.toString() + ' on ' + year.toString();
+      } else {
+        returnFormat = month.toString() + ' ' + ' on ' + year.toString();
+      }
     } else {
-      returnFormat = month.toString() + ' ' + date.toString() + ' at ' + time.toString();
+      if (getTime) {
+        returnFormat = month.toString() + ' ' + date.toString() + ' at ' + time.toString();
+      } else {
+        returnFormat = month.toString() + ' ' + date.toString();
+      }
     }
-    // console.log(returnFormat);
     return returnFormat;
   }
 
@@ -164,8 +174,8 @@ export class UtilityService {
     const k: any = ((num / 1000) * Math.sign(num)).toFixed(0).toString() + 'K';
     return Math.abs(num) > 999 ? k : Math.sign(num) * Math.abs(num);
   }
-  testSite = 'https://sae.primate.health';
-  testMode = true;
+  testSite = 'https://prazu.primate.health';
+  testMode = false;
   checkSubdomainInput(): boolean {
     var domain = this.testMode ? /:\/\/([^\/]+)/.exec(this.testSite)[1] : /:\/\/([^\/]+)/.exec(window.location.href)[1];
     // var domain = /:\/\/([^\/]+)/.exec(this.testSite)[1];
@@ -205,5 +215,9 @@ export class UtilityService {
     } else {
       return '';
     }
+  }
+  //TODO: a custom navigate function for post coz it need to be //prazu.primate.health/post/hkasd
+  PROD_redirectToAuthorPost(id, author) {
+    window.open(`https://${author}.primate.health${routes.postPreview}/${id}`, '_self');
   }
 }

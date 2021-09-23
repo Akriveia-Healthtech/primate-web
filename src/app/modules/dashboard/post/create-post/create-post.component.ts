@@ -54,8 +54,10 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
   __isEditPage__: Boolean = false;
   user = {
     img: '',
+    country: '',
     name: '',
     uuid: '',
+    subDomainPrefix: '',
   };
   ngAfterViewInit() {
     let self = this;
@@ -74,6 +76,7 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
     this.ngAfterViewInit();
     // window.addEventListener('load', function (event) {});
     this.user = this._utility.LOCAL_STORAGE_GET('user');
+    console.log(this.user);
   }
 
   postFormControl: FormGroup;
@@ -225,6 +228,8 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
         uuid: this.user.uuid,
         name: this.user.name,
         img: this.user.img,
+        country: this.user.country,
+        subDomainPrefix: this.user.subDomainPrefix,
       },
       title: this.postFormControl.value.title,
       slug: this.postFormControl.value.customSlug == '' ? null : this.postFormControl.value.customSlug,

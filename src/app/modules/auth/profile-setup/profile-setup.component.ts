@@ -228,6 +228,7 @@ export class ProfileSetupComponent implements OnInit {
                     let user = this._utility.LOCAL_STORAGE_GET('user');
                     user.isSetupCompleted_FLAG = true;
                     user.img = payLoad.image;
+                    user.subDomainPrefix = this.signUpFormControl.value.subDomainPrefix;
                     this._utility.LOCAL_STORAGE_DELETE('user');
                     this._utility.LOCAL_STORAGE_SET('user', user);
                     this._router.navigate([routes.dashBaord]);

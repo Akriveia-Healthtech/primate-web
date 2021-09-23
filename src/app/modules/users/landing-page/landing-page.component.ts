@@ -25,6 +25,7 @@ export class LandingPageComponent implements OnInit {
     fName: '',
     isPro: false,
     image: '',
+    subDomainPrefix: '',
     oneLiner: '',
     lName: '',
     email: '',
@@ -59,6 +60,7 @@ export class LandingPageComponent implements OnInit {
             fName: userData.fName.S,
             isPro: userData.isPro.BOOL,
             image: userData.image.S,
+            subDomainPrefix: userData.subDomainPrefix.S,
             oneLiner: userData.oneLiner.S,
             lName: userData.lName.S,
             email: userData.email.S,
@@ -92,7 +94,7 @@ export class LandingPageComponent implements OnInit {
     );
   }
   isLoading: boolean = false;
-
+  TotalPostList = [];
   _loadResponseData(data) {
     console.log(data);
     let displayPost = [];
@@ -123,16 +125,53 @@ export class LandingPageComponent implements OnInit {
         displayPost.push(readyData);
       }
     });
-    this.PostData.PostList = this._utility.reArrangePostData(displayPost.slice(0, 3));
+    this.TotalPostList = displayPost;
+    this.PostData.PostList = this._utility.reArrangePostData(
+      this.TotalPostList.slice(this.postState.start, this.postState.size + this.postState.start)
+    );
     this.PostData.TotalSize = data.TotalSize;
     this.PostData.PostList.map((data) => {
-      data.createdDate = this._utility.formatCreatedDate(data.createdDate);
+      data.createdDate = this._utility.formatCreatedDate(data.createdDate, 'long', true, false);
       data.reads = this._utility.kFormatter(data.reads);
       data.votes = this._utility.kFormatter(data.votes);
 
       // console.log(data.featuredImg);
     });
     console.log(this.PostData);
+    this.checkShowMoreEvent(this.PostData.PostList);
     this.isLoading = false;
+  }
+  postState = {
+    start: 0,
+    size: 3,
+    page: 1,
+    isShowMore: false,
+    previous: 0,
+  };
+  showMore() {
+    this.postState.page += 1;
+    this.PostData.PostList = this._utility.reArrangePostData(
+      this.TotalPostList.slice(this.postState.start, this.postState.start + this.postState.size * this.postState.page)
+    );
+    this.PostData.PostList.map((data) => {
+      data.createdDate = this._utility.formatCreatedDate(data.createdDate, 'long', true, false);
+      data.reads = this._utility.kFormatter(data.reads);
+      data.votes = this._utility.kFormatter(data.votes);
+
+      // console.log(data.featuredImg);
+    });
+    this.checkShowMoreEvent(this.PostData.PostList);
+  }
+
+  checkShowMoreEvent(list) {
+    if (list.length < this.TotalPostList.length) {
+      this.postState.isShowMore = true;
+    } else {
+      this.postState.isShowMore = false;
+    }
+  }
+
+  __connect() {
+    this._router.navigate([routes.connect]);
   }
 }

@@ -208,10 +208,11 @@ export class PostComponent implements OnInit {
   _loadAllPostData() {
     this.isLoading = true;
     this._state.authToken.subscribe((res) => {
-      // console.log(res);
+      console.log(res);
       if (res) {
         this._postHttp.getAllPost(null, res, null).subscribe(
           (data) => {
+            this.isLoading = false;
             this._loadResponseData(data);
           },
           (err) => {

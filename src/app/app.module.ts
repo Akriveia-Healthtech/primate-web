@@ -18,10 +18,15 @@ import { ErrorPageNotFoundComponent } from './core/errors/error-page-not-found/e
 import { UsersComponent } from './modules/users/users.component';
 import { LandingPageComponent } from './modules/users/landing-page/landing-page.component';
 import { Router } from '@angular/router';
+import { PostPreviewComponent } from './modules/users/post-preview/post-preview.component';
+import { ConnectFormComponent } from './modules/users/connect-form/connect-form.component';
+import { SearchComponent } from './modules/search/search.component';
+import { SearchHomeComponent } from './modules/search/search-home/search-home.component';
+import { SearchResultComponent } from './modules/search/search-result/search-result.component';
 Amplify.configure(awsconfig);
 
 @NgModule({
-  declarations: [AppComponent, ErrorPageNotFoundComponent, UsersComponent, LandingPageComponent],
+  declarations: [AppComponent, ErrorPageNotFoundComponent, UsersComponent, LandingPageComponent, PostPreviewComponent, ConnectFormComponent, SearchComponent, SearchHomeComponent, SearchResultComponent],
   imports: [AppRoutingModule, CommonComponentsModule, BrowserModule, HttpClientModule, BrowserAnimationsModule],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent],
