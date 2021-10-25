@@ -11,5 +11,8 @@ if (environment.production) {
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch((err) => console.error(err));
-console.log('-----------------------Production Environment----------------------');
+
+//NOTE: disable this for debug mode
+
+console.log('-----------------------Production Dev Environment----------------------');
 console.log = function () {};
