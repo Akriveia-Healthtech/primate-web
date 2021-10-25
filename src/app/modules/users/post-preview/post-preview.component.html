@@ -15,7 +15,7 @@
         </div>
       </div>
       <h2 class="pp-authorName clickable" (click)="redirectToAuthorLP()">
-        {{ postData.author.name }}
+        {{ postData.authorName }}
       </h2>
       <div *ngIf="isLoadingPost" class="sk-authorName">
         <app-skeleton [box]="true"></app-skeleton>
@@ -60,10 +60,10 @@
     </p>
     <div class="pp-author">
       <div class="pp-authorImg">
-        <img src="{{ postData.author.img }}" />
+        <img src="{{ postData.authorImg }}" />
       </div>
       <div class="pp-authorBody">
-        <p class="pp-name">{{ postData.author.name }}</p>
+        <p class="pp-name">{{ postData.authorName }}</p>
         <div class="pp-details">
           <p class="pp-postDate">{{ postData.useAbleDate }}</p>
           <div class="voteBox">
@@ -187,7 +187,7 @@
   <hr />
   <div class="pp-container" style="padding: 0">
     <div class="pp-moreFromAuthor">
-      <h2 class="moreFromAuthorHeadline">More from {{ postData.author.name }}</h2>
+      <h2 class="moreFromAuthorHeadline">More from {{ postData.authorName }}</h2>
       <div *ngIf="isLoading">
         <div *ngFor="let post of [1, 2, 3]">
           <app-post-card [isSkeleton]="true"></app-post-card>

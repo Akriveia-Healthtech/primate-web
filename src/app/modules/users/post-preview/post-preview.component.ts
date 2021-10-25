@@ -32,6 +32,8 @@ export class PostPreviewComponent implements OnInit {
     title: '',
     description: '',
     body: ``,
+    authorImg: '',
+    authorName: '',
     author: {
       img: '',
       name: '',
@@ -104,7 +106,7 @@ export class PostPreviewComponent implements OnInit {
           if (this.crossCheckAuthor(this.uuid, this.user.uuid)) {
             console.log('user matched!');
             this._state.setPageTitle(`${this.postData['title']}  | Primate `);
-            this._loadAllPostData();
+            // this._loadAllPostData();
             this.postData['useAbleDate'] =
               new Date(this.postData['createdDate'] * 1000).toLocaleString('default', { month: 'short' }) +
               ' ' +
@@ -138,7 +140,9 @@ export class PostPreviewComponent implements OnInit {
   }
 
   _loadResponseData(data) {
+    console.log('---------------------LOADED DATA');
     console.log(data);
+
     let displayPost = [];
 
     this.authorPosts = {
