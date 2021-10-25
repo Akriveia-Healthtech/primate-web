@@ -1,5 +1,5 @@
 .header {
-  padding: 0px 15px;
+  padding: 0px 20px;
   display: flex;
   /* background-color: red; */
   /* align-items: center; */
@@ -103,6 +103,15 @@ hr {
   display: flex;
   margin-right: 25px;
   position: relative;
+  background: #ffffff;
+  /* Border/Border */
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  /* Search bar - Shadow */
+
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
 }
 
 .search svg {

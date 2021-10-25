@@ -8,7 +8,9 @@
     {{ draft ? 'Draft' : '' }}
   </div>
   <div class="body" [ngClass]="{ noImage: featuredImg.length <= 1 && !draft }">
-    <h3 (click)="gotoPost(postID, slug)">{{ title }}</h3>
+    <div class="titleHandler">
+      <h3 (click)="gotoPost(postID, slug)">{{ title }}</h3>
+    </div>
     <p class="Pbody" *ngIf="!draft">
       {{ description }}
     </p>

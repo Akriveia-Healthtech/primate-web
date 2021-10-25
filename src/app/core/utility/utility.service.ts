@@ -174,7 +174,7 @@ export class UtilityService {
     const k: any = ((num / 1000) * Math.sign(num)).toFixed(0).toString() + 'K';
     return Math.abs(num) > 999 ? k : Math.sign(num) * Math.abs(num);
   }
-  testSite = 'https://prazu.primate.health';
+  testSite = 'https://prazu.primate.health/';
   testMode = false;
   checkSubdomainInput(): boolean {
     var domain = this.testMode ? /:\/\/([^\/]+)/.exec(this.testSite)[1] : /:\/\/([^\/]+)/.exec(window.location.href)[1];
