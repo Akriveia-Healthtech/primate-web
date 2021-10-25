@@ -16,12 +16,12 @@ export class SearchResultComponent implements OnInit {
   }
   ngOnInit(): void {}
   results = [];
-
+  searchText = '';
   search(search) {
-    console.log(search);
     this.post.searchPosts(search).subscribe(
       (data) => {
         console.log(data);
+        this.searchText = search;
         this.results = this.cleanResult(data['data']['posts']);
         console.log(this.results);
       },
@@ -43,6 +43,7 @@ export class SearchResultComponent implements OnInit {
           createddate: this.utility.formatCreatedDate(data['fields']['createddate'], 'short', true, false),
           description: data['fields']['description'][0],
           title: data['fields']['title'][0],
+          postLink: `https://${data['fields']['authorsubdomainprefix'][0]}.primate.health/${data.id}`,
           votes: data['fields']['votes'][0],
           img: data['fields']['img'] !== undefined ? data['fields']['img'][0] : false,
         };
