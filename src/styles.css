@@ -103,7 +103,9 @@ div {
 
 .primateMainContainer {
   font-family: var(--font);
-  width: 1080px !important;
+  /* width: 1080px !important; */
+  width: 1040px !important;
+
   margin: 0 auto !important;
 }
 
