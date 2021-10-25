@@ -1,9 +1,11 @@
 <div class="searchResultPostCard">
-  <div class="img">
+  <div *ngIf="img" class="img">
     <img src="assets/post.svg" alt="" />
   </div>
   <div class="body">
-    <h3>{{ title }}</h3>
+    <div class="titleHandler">
+      <a href="{{ authorPostLink }}">{{ title }}</a>
+    </div>
     <p class="sr-desc">
       {{ description }}
     </p>
