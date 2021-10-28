@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { routes } from 'src/environments/routes';
 
 @Component({
   selector: 'app-error-page-not-found',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./error-page-not-found.component.css'],
 })
 export class ErrorPageNotFoundComponent implements OnInit {
-  constructor() {
+  constructor(private _router: Router) {
     console.log('Not FOUND PAGE.');
   }
 
   ngOnInit(): void {}
+  back() {
+    this._router.navigate([routes.signIp]);
+  }
 }

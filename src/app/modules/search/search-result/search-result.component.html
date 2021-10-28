@@ -123,26 +123,38 @@
         </span>
       </div>
     </div>
-    <div *ngIf="searchText" class="suggestionResult">
+    <div *ngIf="!isLoading" class="suggestionResult">
       <span class="text">Including results for </span> <span></span>
       <span class="suggestion"> {{ searchText }} </span>
     </div>
-    <div *ngIf="searchText" class="suggestionResult searchOnly">
+    <div *ngIf="!isLoading" class="suggestionResult searchOnly">
       <span class="text">Including results for </span> <span></span>
       <span class="suggestion"> {{ searchText }} </span>
     </div>
-
-    <div class="sr-results" *ngFor="let data of results">
-      <app-search-result-post-card
-        [id]="data.id"
-        [authorName]="data.authorName"
-        [createddate]="data.createddate"
-        [description]="data.description"
-        [title]="data.title"
-        [votes]="data.votes"
-        [authorPostLink]="data.postLink"
-        [img]="data.img"
-      ></app-search-result-post-card>
+    <div *ngIf="!isLoading">
+      <div class="sr-results" *ngFor="let data of results">
+        <app-search-result-post-card
+          [id]="data.id"
+          [authorName]="data.authorName"
+          [createddate]="data.createddate"
+          [description]="data.description"
+          [title]="data.title"
+          [votes]="data.votes"
+          [authorPostLink]="data.postLink"
+          [img]="data.img"
+        ></app-search-result-post-card>
+      </div>
+    </div>
+    <div *ngIf="isLoading" class="result-sk-container">
+      <div style="width: 300px; height: 20px; margin-left: 20px; margin-top: 30px">
+        <app-skeleton [box]="true"></app-skeleton>
+      </div>
+      <div style="width: 300px; height: 20px; margin-left: 20px; margin-top: 10px">
+        <app-skeleton [box]="true"></app-skeleton>
+      </div>
+      <div *ngFor="let post of [1, 2, 3, 4]">
+        <app-post-card [isSkeleton]="true"></app-post-card>
+      </div>
     </div>
   </div>
   <div class="sr-footerMain">

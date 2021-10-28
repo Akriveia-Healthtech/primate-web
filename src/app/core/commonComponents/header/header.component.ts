@@ -33,4 +33,19 @@ export class HeaderComponent implements OnInit {
     this._state.setBackdrop_Off();
     this._router.navigate([routes.signIp]);
   }
+
+  checkError(key) {
+    if (key.length <= 0) {
+      document.getElementById('searchInput').classList.add('redBorder');
+    } else {
+      document.getElementById('searchInput').classList.remove('redBorder');
+    }
+  }
+  search(key) {
+    if (key.length <= 0) {
+      document.getElementById('searchInput').classList.add('redBorder');
+    } else {
+      this._router.navigate([routes.searchResult], { queryParams: { search_key: key } });
+    }
+  }
 }

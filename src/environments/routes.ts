@@ -12,4 +12,5 @@ export const routes = {
   editPost: '/dashboard/editPost',
   postPreview: '/',
   connect: '/connect',
+  searchResult: '/result',
 };
