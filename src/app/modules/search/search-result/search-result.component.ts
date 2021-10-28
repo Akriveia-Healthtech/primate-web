@@ -10,23 +10,35 @@ import { UtilityService } from 'src/app/core/utility/utility.service';
 export class SearchResultComponent implements OnInit {
   constructor(private post: PostService, private utility: UtilityService) {}
   menuState: boolean = false;
+  isLoading: boolean = true;
   toggleMenu() {
     this.menuState = this.menuState ? false : true;
     return this.menuState;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const myParam = urlSearchParams.get('search_key');
+    console.log({
+      search_key: myParam,
+    });
+    this.search(myParam);
+  }
   results = [];
   searchText = '';
   search(search) {
+    this.isLoading = true;
     this.post.searchPosts(search).subscribe(
-      (data) => {
+      async (data) => {
         console.log(data);
         this.searchText = search;
-        this.results = this.cleanResult(data['data']['posts']);
+        document.getElementById('searchBox').setAttribute('value', search);
+        this.results = await this.cleanResult(data['data']['posts']);
+        this.isLoading = false;
         console.log(this.results);
       },
       (err) => {
         console.log(err);
+        this.isLoading = false;
       }
     );
   }

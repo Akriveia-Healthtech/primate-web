@@ -296,6 +296,10 @@ input {
   width: 100%;
   height: fit-content;
 }
+
+.result-sk-container {
+  max-width: 740px;
+}
 @media (max-width: 1080px) {
   .resultMainPage,
   .sr-navbar,
