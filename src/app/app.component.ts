@@ -31,9 +31,18 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if (!this._utility.checkSubdomainInput()) {
       // this.isPrimateLandingPage = false;
-      if (window.location.pathname.length >= 2) {
-        this._router.navigate([window.location.pathname]);
-        console.log(window.location.pathname);
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const myParam = urlSearchParams.get('search_key');
+
+      const pathUrl = window.location.href.split(window.location.host)[1];
+      if (pathUrl.length >= 2) {
+        if (window.location.search) {
+          let urla = pathUrl.split(window.location.search);
+          this._router.navigate([urla[0]], { queryParams: { search_key: urlSearchParams.get('search_key') } });
+        } else {
+          this._router.navigate([pathUrl]);
+        }
+        console.log(pathUrl);
       } else {
         this._router.navigate([routes.signIp]);
       }
